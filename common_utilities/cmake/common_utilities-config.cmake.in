@@ -1,0 +1,18 @@
+@PACKAGE_INIT@
+
+# Common Utilities Package Configuration File
+
+# 设置包含目录
+set(common_utilities_INCLUDE_DIRS "@PACKAGE_CMAKE_INSTALL_INCLUDEDIR@")
+
+# 导入目标
+include("${CMAKE_CURRENT_LIST_DIR}/CommonUtilitiesTargets.cmake")
+
+# 设置库目标
+set(common_utilities_LIBRARIES OSCEAN::common_utilities)
+
+# 检查所有必需的组件
+check_required_components(common_utilities)
+
+# 提供向后兼容的变量
+set(common_utilities_FOUND TRUE) 

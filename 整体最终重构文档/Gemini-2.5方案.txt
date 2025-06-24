@@ -1,0 +1,745 @@
+# GridData 结构优化最终实施方案：支持增强型三维坐标信息
+
+## 1. 背景与目标
+
+- **目标**: 优化 `GridData` 结构，使其能够全面表示三维数据（X, Y, Z/Band/Level/Time_Offset）的坐标信息，特别是增强对第三个独立维度（Z轴）的描述能力。此方案旨在为后续的插值、分析等高级功能提供更完善的数据基础。
+- **核心思路**: 将所有维度的定义信息集中到 `GridDefinition` 类中，`GridData` 类则更纯粹地关注数据存储和对 `GridDefinition` 的引用。
+
+## 2. 核心设计变更 (`GridDefinition` 和 `GridData`)
+
+**文件**: `core_service_interfaces/include/core_services/common_data_types.h`
+
+### 2.1. `DimensionCoordinateInfo` 结构体 (新增或完善)
+
+为了更通用地描述每个维度的坐标信息，我们可以引入或完善一个 `DimensionCoordinateInfo` 结构体。
+
+```cpp
+// In common_data_types.h
+
+// Forward declaration if CoordinateDimension is defined later, or include its definition first.
+// enum class CoordinateDimension { LON, LAT, TIME, VERTICAL, SPECTRAL, OTHER, NONE }; // Ensure NONE is an option
+
+struct DimensionCoordinateInfo {
+    std::string name;                               // 维度名称 (e.g., "longitude", "latitude", "time", "depth", "band_wavelength")
+    std::string standardName;                       // CF Standard Name (e.g., "longitude", "latitude", "time", "depth", "radiation_wavelength")
+    std::string longName;                           // 描述性长名称
+    std::string units;                              // 单位 (e.g., "degrees_east", "m", "seconds since YYYY-MM-DD")
+    CoordinateDimension type = CoordinateDimension::NONE; // 维度类型 (LON, LAT, TIME, VERTICAL, SPECTRAL, OTHER)
+    bool isRegular = false;                         // 坐标是否规则间隔
+    double resolution = 0.0;                        // 如果规则，则为分辨率；否则可能为0或平均间隔
+    std::vector<double> coordinates;                // 数值型坐标值
+    std::vector<std::string> coordinateLabels;      // 文本型坐标标签 (用于分类/标签型维度)
+    std::map<std::string, std::string> attributes;  // 附加的元数据属性
+
+    // Default constructor
+    DimensionCoordinateInfo() = default;
+
+    // Helper to get number of levels/points in this dimension
+    size_t getNumberOfLevels() const {
+        if (!coordinates.empty()) return coordinates.size();
+        if (!coordinateLabels.empty()) return coordinateLabels.size();
+        return 0;
+    }
+
+    bool hasNumericCoordinates() const { return !coordinates.empty(); }
+    bool hasTextualLabels() const { return !coordinateLabels.empty(); }
+};
+```
+
+### 2.2. `GridDefinition` 类修改
+
+`GridDefinition` 将使用 `DimensionCoordinateInfo` 来描述其各个维度。
+
+```cpp
+// In class GridDefinition inside common_data_types.h
+
+public: // Or provide appropriate accessors
+    std::string gridName;                           // 网格的名称或标识符
+    CRSInfo crs;                                    // 主坐标参考系统 (通常是X,Y平面)
+    BoundingBox boundingBox;                        // 网格在主CRS下的地理边界
+    DataType originalDataType = DataType::Unknown;  // 原始数据源的数据类型
+    std::map<std::string, std::string> globalAttributes; // 网格级别的全局元数据
+
+    // 维度定义 (使用map，键为维度名称，或者固定成员，如xDim, yDim, zDim, tDim)
+    // Using a map allows for more flexibility if dimensions are not fixed.
+    // For now, let's assume up to 4 dimensions for common geospatial grids.
+    // Alternatively, a std::vector<DimensionCoordinateInfo> dimensions; could be used,
+    // and then identify them by their 'type' or 'name'.
+
+    DimensionCoordinateInfo xDimension;             // X 维度信息 (e.g., longitude)
+    DimensionCoordinateInfo yDimension;             // Y 维度信息 (e.g., latitude)
+    DimensionCoordinateInfo zDimension;             // Z 维度信息 (e.g., depth, height, band)
+    DimensionCoordinateInfo tDimension;             // T 维度信息 (e.g., time)
+
+    // Optional: Store the order of dimensions as they appear in the data array
+    // std::vector<std::string> dimensionOrderInData; // e.g., {"time", "depth", "latitude", "longitude"}
+
+    // Constructor and methods to set/get dimension info
+    GridDefinition() = default;
+
+    // Example helper methods
+    bool hasXDimension() const { return xDimension.type != CoordinateDimension::NONE && xDimension.getNumberOfLevels() > 0; }
+    bool hasYDimension() const { return yDimension.type != CoordinateDimension::NONE && yDimension.getNumberOfLevels() > 0; }
+    bool hasZDimension() const { return zDimension.type != CoordinateDimension::NONE && zDimension.getNumberOfLevels() > 0; }
+    bool hasTDimension() const { return tDimension.type != CoordinateDimension::NONE && tDimension.getNumberOfLevels() > 0; }
+
+    // Get number of levels for a specific dimension type
+    size_t getLevelsForDimension(CoordinateDimension dimType) const {
+        if (xDimension.type == dimType) return xDimension.getNumberOfLevels();
+        if (yDimension.type == dimType) return yDimension.getNumberOfLevels();
+        if (zDimension.type == dimType) return zDimension.getNumberOfLevels();
+        if (tDimension.type == dimType) return tDimension.getNumberOfLevels();
+        return 0;
+    }
+
+    // ... other existing members like TimeReferenceInfo, etc., if they don't fit into DimensionCoordinateInfo ...
+    TimeReferenceInfo timeReference; // If 'tDimension' handles time coordinates, this might hold epoch/calendar info.
+                                     // Or TimeReferenceInfo could be part of DimensionCoordinateInfo when type is TIME.
+
+    // Deprecate or ensure consistency for old dimension-related members:
+    // std::vector<double> xCoordinates; // Now in xDimension.coordinates
+    // std::vector<double> yCoordinates; // Now in yDimension.coordinates
+    // std::vector<double> tCoordinates; // Now in tDimension.coordinates
+    // std::vector<std::string> dimensionNames; // Can be derived from x/y/z/tDimension.name
+    // std::vector<size_t> dimensionSizes;   // Can be derived from x/y/z/tDimension.getNumberOfLevels()
+    // bool isRegularGrid = true; // Should now be per-dimension: xDimension.isRegular, yDimension.isRegular etc.
+    // double xResolution = 0.0;  // Now in xDimension.resolution
+    // double yResolution = 0.0;  // Now in yDimension.resolution
+```
+
+### 2.3. `GridData` 类修改
+
+`GridData` 保持相对简洁。
+
+```cpp
+// In class GridData inside common_data_types.h
+
+public:
+    GridDefinition definition;                   // 完整的网格定义
+    std::vector<unsigned char> data;             // 实际的多维数据，以字节形式存储 (or std::vector<std::byte>)
+    DataType internalDataType = DataType::Unknown; // `data` 向量中实际存储的数据类型
+    // std::string variableNameInSource;          // Optional: 原始数据源中的变量名
+
+    // Constructor
+    GridData(const GridDefinition& def, DataType actualStorageType)
+        : definition(def), internalDataType(actualStorageType) {
+        // Data allocation logic will depend on the product of dimension sizes from 'definition'
+        // e.g., definition.xDimension.getNumberOfLevels() *
+        //       definition.yDimension.getNumberOfLevels() * ...
+        // and getDataTypeSizeBytes(internalDataType)
+    }
+
+    // Accessors for definition are direct: gridData.definition.xDimension.coordinates etc.
+    // Or provide convenience wrappers:
+    const GridDefinition& getDefinition() const { return definition; }
+    const std::vector<unsigned char>& getDataBuffer() const { return data; }
+    DataType getInternalDataType() const { return internalDataType; }
+
+    // Example convenience getter for Z-axis levels
+    size_t getNumberOfZLevels() const {
+        return definition.getLevelsForDimension(CoordinateDimension::VERTICAL); // Or SPECTRAL, etc.
+                                                                               // Or directly: definition.zDimension.getNumberOfLevels()
+    }
+
+    // The old 'bands' member is now fully represented by zDimension within definition.
+    // size_t bands = 1; // DEPRECATED or handled by definition.zDimension
+```
+
+**关键决策与考虑**:
+
+*   **`CoordinateDimension` 枚举**: 确保这个枚举类型清晰定义并被所有模块共享。增加 `SPECTRAL` (光谱) 和 `NONE` (未指定/不存在) 等类型。
+*   **`TimeReferenceInfo` 的整合**: 时间参考信息（历法、起始纪元）可以整合到 `tDimension.attributes` 或作为 `DimensionCoordinateInfo` 的一个专用成员（如果 `type == CoordinateDimension::TIME`）。
+*   **数据布局 (`GridData::data`)**: 必须明确 `GridData::data` 中多维数据的存储顺序（例如，是 (T, Z, Y, X) 还是 (Z, T, Y, X) 等）。这可以由 `GridDefinition` 中的 `dimensionOrderInData` (如果添加) 或约定来定义。读取器在填充 `data` 时必须遵循此顺序。
+*   **废弃旧成员**: 在 `GridDefinition` 中，逐步废弃如 `xCoordinates`, `dimensionNames`, `isRegularGrid` 等旧的、现在由 `DimensionCoordinateInfo` 结构体更全面覆盖的成员，以避免冗余和不一致。提供一个过渡期，或者通过方法将旧接口映射到新结构。
+
+## 3. 受影响模块及详细修改方案
+
+### 3.1. 数据读取器 (Data Readers)
+
+#### 3.1.1. NetCDF 读取器
+
+**主要涉及文件**:
+*   `core_services_impl/data_access_service/src/impl/readers/netcdf_metadata_manager.cpp`
+*   `core_services_impl/data_access_service/src/impl/readers/netcdf_coordinate_system.cpp`
+*   `core_services_impl/data_access_service/src/impl/readers/netcdf_reader.cpp`
+*   Headers: `netcdf_metadata_manager.h`, `netcdf_coordinate_system.h`, `netcdf_reader.h`, `netcdf_common_types.h`
+
+**修改步骤**:
+
+1.  **`NetCDFMetadataManager` 和 `NetCDFCoordinateSystem`**:
+    *   **识别维度**: 遍历NetCDF文件中的所有维度和坐标变量。
+    *   **填充 `DimensionCoordinateInfo`**: 对于每个识别出的地理空间维度 (X, Y, Z, T)，创建一个 `DimensionCoordinateInfo` 实例。
+        *   `name`: 维度/坐标变量名。
+        *   `standardName`, `longName`, `units`: 从变量属性中读取。
+        *   `type`: 根据 `axis` 属性、`standard_name` 或 CF约定判断 (e.g., "X" -> `LON`, "depth" -> `VERTICAL`).
+        *   `isRegular`, `resolution`: 判断坐标值是否等间距，并计算分辨率。
+        *   `coordinates`: 读取坐标变量的数值数据。
+        *   `coordinateLabels`: 如果维度是分类的（例如，通过 `flag_meanings` 和 `flag_values` 属性），则填充标签。
+        *   `attributes`: 存储相关的NetCDF变量属性。
+    *   **`GridDefinition` 构建**: `NetCDFDataReader` (或其辅助类) 在 `open()` 或首次元数据加载时，收集这些 `DimensionCoordinateInfo` 实例来填充 `GridDefinition` 的 `xDimension`, `yDimension`, `zDimension`, `tDimension` 成员。
+    *   **`TimeReferenceInfo`**: 从时间坐标变量的 `units` 和 `calendar` 属性中解析，填充到 `GridDefinition::timeReference` 或 `GridDefinition::tDimension` 中。
+
+2.  **`NetCDFDataReader::readGridData` (或相关数据读取方法)**:
+    *   当客户端请求数据时，该方法已经拥有一个填充好的 `GridDefinition`。
+    *   根据请求的范围（BoundingBox, TimeRange, Z-level range），利用 `GridDefinition` 中的坐标信息将地理范围转换为NetCDF文件中的索引范围 (start, count)。
+    *   读取数据并填充到 `GridData::data`。
+    *   传递给 `GridData` 构造函数的 `GridDefinition` 实例现在应包含所有维度的详细坐标信息。
+
+#### 3.1.2. GDAL 栅格读取器
+
+**主要涉及文件**:
+*   `core_services_impl/data_access_service/src/impl/readers/gdal_raster_reader.cpp`
+*   `core_services_impl/data_access_service/src/impl/readers/gdal_raster_reader.h`
+
+**修改步骤**:
+
+1.  **元数据提取与 `DimensionCoordinateInfo` 填充**:
+    *   **X, Y 维度**: `xDimension` 和 `yDimension` 的信息从GDAL的地理转换（geotransform）、投影（projection）、数据集大小（raster XSize, YSize）中获取。
+        *   `name`: "x", "y" 或 "longitude", "latitude"。
+        *   `units`: 从CRS中获取。
+        *   `type`: `LON`, `LAT`.
+        *   `isRegular`: 通常为true。
+        *   `resolution`: 从geotransform获取。
+        *   `coordinates`: 可以根据起始坐标、分辨率和大小计算生成。
+    *   **Z 维度 (波段)**: `zDimension` 的信息从波段中获取。
+        *   `name`: "band"。
+        *   `standardName`, `longName`: 可尝试从波段描述 `GDALGetDescription()` 或元数据中获取。
+        *   `units`: 尝试从 `GDALGetRasterBand()->GetUnitType()` 或元数据获取。
+        *   `type`: `SPECTRAL` 或 `OTHER`.
+        *   `isRegular`: 如果波段代表的是等间隔的物理量（如波长），则为true。
+        *   `resolution`: 相应计算。
+        *   `coordinates`:
+            *   优先尝试从波段元数据中解析数值（如中心波长）。
+            *   其次，如果波段有描述，可以用作 `coordinateLabels`。
+            *   最后，可以使用波段索引 (1 to N) 作为 `coordinates` 或 "Band_1"..."Band_N" 作为 `coordinateLabels`。
+        *   `attributes`: 存储波段级别的元数据。
+    *   **T 维度 (时间)**: GDAL本身对时间维度的直接支持较弱。如果时间信息存在于文件名模式或元数据标签中，读取器需要有特定逻辑来解析它，并填充 `tDimension`。这通常是比较定制化的部分。
+
+2.  **`GDALRasterReader::readGridData`**:
+    *   在打开文件并解析元数据后，构建一个包含上述X, Y, Z (以及可能的T) 维度信息的 `GridDefinition` 对象。
+    *   当读取数据子集时，使用此 `GridDefinition` 来准备传递给 `GridData` 构造函数。
+
+### 3.2. `DataChunkCache::estimateGridDataSize`
+
+**文件**: `core_services_impl/data_access_service/src/impl/cache/data_chunk_cache.cpp`
+
+**修改内容**:
+必须更新此函数以准确估算新的 `GridDefinition` 结构所占用的内存。
+
+```cpp
+size_t estimateGridDataSize(const oscean::core_services::GridData& gridData) const {
+    const size_t METADATA_OVERHEAD = 1024; // Increased base overhead for more complex GridDefinition
+    size_t definitionSize = 0;
+
+    auto estimateDimInfoSize = [&](const oscean::core_services::data_access::DimensionCoordinateInfo& dimInfo) {
+        size_t size = 0;
+        size += dimInfo.name.capacity();
+        size += dimInfo.standardName.capacity();
+        size += dimInfo.longName.capacity();
+        size += dimInfo.units.capacity();
+        size += dimInfo.coordinates.capacity() * sizeof(double);
+        for (const auto& label : dimInfo.coordinateLabels) {
+            size += label.capacity();
+            size += sizeof(std::string); // Overhead for string object itself
+        }
+        for (const auto& attr : dimInfo.attributes) {
+            size += attr.first.capacity() + attr.second.capacity();
+            size += 2 * sizeof(std::string); // Overhead for map key/value strings
+        }
+        size += sizeof(oscean::core_services::data_access::DimensionCoordinateInfo); // Size of the struct itself
+        return size;
+    };
+
+    definitionSize += estimateDimInfoSize(gridData.definition.xDimension);
+    definitionSize += estimateDimInfoSize(gridData.definition.yDimension);
+    definitionSize += estimateDimInfoSize(gridData.definition.zDimension);
+    definitionSize += estimateDimInfoSize(gridData.definition.tDimension);
+
+    definitionSize += gridData.definition.gridName.capacity();
+    // Estimate CRSInfo size (can be complex) - simplified here
+    definitionSize += gridData.definition.crs.wktString.capacity() + gridData.definition.crs.projString.capacity() + sizeof(oscean::core_services::CRSInfo);
+
+    // Estimate TimeReferenceInfo size
+    definitionSize += gridData.definition.timeReference.calendar.capacity() +
+                      gridData.definition.timeReference.units.capacity() +
+                      gridData.definition.timeReference.epochString.capacity() +
+                      sizeof(oscean::core_services::TimeReferenceInfo);
+
+    for (const auto& attr : gridData.definition.globalAttributes) {
+        definitionSize += attr.first.capacity() + attr.second.capacity();
+        definitionSize += 2 * sizeof(std::string);
+    }
+    
+    definitionSize += sizeof(oscean::core_services::GridDefinition); // Size of the GridDefinition struct itself
+
+    size_t calculated_size = gridData.data.size() + definitionSize + METADATA_OVERHEAD;
+    // CACHE_LOG_TRACE("Estimating size for GridData: data.size() = {}, definitionSize = {}, METADATA_OVERHEAD = {}, total = {}",
+    // gridData.data.size(), definitionSize, METADATA_OVERHEAD, calculated_size);
+    return calculated_size;
+}
+```
+*注意*: `std::string::capacity()` 和 `std::vector::capacity()` 提供了更接近实际分配内存的估算。对于嵌套的复杂对象，估算会更复杂。上述是一个更细致的尝试。
+
+### 3.3. 确保兼容性和废弃旧接口
+
+*   在 `GridDefinition` 中，对于被 `DimensionCoordinateInfo` 取代的旧成员（如 `xCoordinates`, `isRegularGrid`），可以采取以下策略：
+    1.  **立即移除**: 如果下游代码可以快速同步修改。
+    2.  **标记为 `[[deprecated]]`**: 提供一个过渡期，并在getter/setter中将调用重定向到新的 `DimensionCoordinateInfo` 成员。
+    3.  **保留但确保同步**: 在设置新结构时，同时更新旧成员以保持一致性（不推荐，易出错）。
+*   对于 `GridData::bands` 字段，强烈建议废弃，并通过 `gridData.definition.zDimension.getNumberOfLevels()` 获取Z轴大小。
+
+## 4. 实施阶段 (与之前方案类似，但细节更明确)
+
+### 阶段 1: 核心结构更新
+1.  **备份** `common_data_types.h`。
+2.  **定义/完善 `DimensionCoordinateInfo`** 结构体。
+3.  **修改 `GridDefinition`**: 引入 `x/y/z/tDimension` 成员 (类型为 `DimensionCoordinateInfo`)，并处理旧成员的废弃/兼容。
+4.  **修改 `GridData`**: 调整构造函数以配合新的 `GridDefinition`，废弃旧 `bands` 成员。
+5.  **编译整个项目**: 解决因API变化引起的编译错误。这是最关键的一步，会暴露所有直接依赖旧结构的调用点。
+
+### 阶段 2: 更新数据读取器
+1.  **NetCDF 读取器**:
+    *   修改 `NetCDFMetadataManager`, `NetCDFCoordinateSystem` 以完全填充 `GridDefinition` 中的 `x/y/z/tDimension` (类型为 `DimensionCoordinateInfo`)。特别注意正确识别维度类型和提取所有相关元数据。
+    *   `NetCDFDataReader` 使用填充好的 `GridDefinition`。
+2.  **GDAL 栅格读取器**:
+    *   修改 `GDALRasterReader` 以填充 `GridDefinition` 中的 `x/y/zDimension`。Z维度对应波段，T维度可能需要自定义逻辑。
+3.  **单元测试 (读取器)**: 使用包含复杂多维结构（包括不同类型Z轴和时间轴）的NetCDF和GDAL兼容文件进行严格测试。验证所有 `DimensionCoordinateInfo` 字段都被正确填充。
+
+### 阶段 3: 更新 `DataChunkCache`
+1.  **修改 `estimateGridDataSize`**: 实现更准确的内存估算。
+2.  **单元测试 (缓存)**: 验证缓存行为，特别是驱逐策略是否因大小估算变化而受影响。
+
+### 阶段 4: 集成测试、验证和文档更新
+1.  **完整构建与集成测试**: 同前。
+2.  **手动验证**: 使用多种数据集进行端到端测试。
+3.  **文档更新**: 更新所有与 `GridData` 和 `GridDefinition` 相关的开发者文档和API注释，解释新的结构和用法。
+
+## 5. 测试策略 (与之前方案类似，但更侧重验证`DimensionCoordinateInfo`的每个字段)
+
+*   **单元测试**:
+    *   测试 `DimensionCoordinateInfo` 的构造和方法。
+    *   测试 `GridDefinition` 如何聚合 `DimensionCoordinateInfo`，以及旧接口到新接口的兼容层（如果提供）。
+    *   读取器测试需覆盖所有维度类型 (`LON`, `LAT`, `TIME`, `VERTICAL`, `SPECTRAL`) 以及数值型和标签型坐标的提取。
+*   **集成测试**: 验证数据从读取器到 `GridData` 再到潜在消费者模块的流程中，所有维度信息都保持一致和正确。
+*   **回归测试**: 确保对单波段、二维等简单数据的处理不受影响。
+
+## 6. 风险与缓解 (与之前方案类似)
+
+*   **API 破坏性**: 废弃旧成员是API的破坏性变更。
+    *   **缓解**: 提供清晰的迁移指南和`[[deprecated]]`标记。
+*   **数据布局一致性**: `GridData::data` 的维度顺序。
+    *   **缓解**: 在`GridDefinition`中明确记录（例如通过`dimensionOrderInData`成员），或通过严格的文档和约定来保证。读取器和消费者必须遵守。
+*   **性能**: 新结构的复杂性可能引入轻微性能开销。
+    *   **缓解**: 通过性能分析识别瓶颈。对于频繁访问的便利性方法，可以考虑缓存结果。
+
+## 7. 总结
+
+此最终方案通过引入通用的 `DimensionCoordinateInfo` 结构，并将其应用于 `GridDefinition` 的所有维度，提供了一个高度灵活和可扩展的方式来描述多维网格数据。它统一了不同维度坐标信息的表示，增强了对Z轴（及其他维度）的描述能力，并为未来的功能扩展奠定了坚实的基础。虽然改动更为深入，但其带来的结构清晰性和功能完整性将是长远受益的。
+
+---
+
+这个方案比之前的更彻底，但也更强大。它将 `GridDefinition` 变成了一个非常通用的网格描述符。
+
+
+CLUADE的实施计划
+
+# Gemini-2.5 方案完整实施计划
+
+## 一、影响范围分析
+
+基于 Gemini-2.5 方案，需要修改的文件和代码包括:
+
+### 1. 核心数据结构
+
+- **`core_service_interfaces/include/core_services/common_data_types.h`**: 
+  - 添加 `DimensionCoordinateInfo` 结构体
+  - 重构 `GridDefinition` 类
+  - 简化 `GridData` 类
+
+### 2. 数据读取服务
+
+- **NetCDF 读取器**:
+  - `core_services_impl/data_access_service/src/impl/readers/netcdf_metadata_manager.cpp/h`
+  - `core_services_impl/data_access_service/src/impl/readers/netcdf_coordinate_system.cpp/h`
+  - `core_services_impl/data_access_service/src/impl/readers/netcdf_reader.cpp/h`
+  - `core_services_impl/data_access_service/src/impl/readers/netcdf_file_processor.cpp/h`
+
+- **GDAL 读取器**:
+  - `core_services_impl/data_access_service/src/impl/readers/gdal_raster_reader.cpp/h`
+  - `core_services_impl/data_access_service/src/impl/readers/gdal_common.cpp/h`
+
+### 3. 缓存与内存管理
+
+- `core_services_impl/data_access_service/src/impl/cache/data_chunk_cache.cpp/h`
+
+### 4. 服务实现层
+
+- `core_services_impl/data_access_service/src/impl/raw_data_access_service_impl.cpp/h`
+
+## 二、分阶段实施计划
+
+### 阶段一：核心数据结构修改 (1-2周)
+
+1. **准备阶段**
+   - 创建开发分支
+   - 备份关键文件
+   - 建立测试环境
+
+2. **添加 `DimensionCoordinateInfo` 结构**
+   - 在 `common_data_types.h` 中定义新结构体
+   - 实现所有必要的辅助方法
+   - 完成单元测试
+
+3. **重构 `GridDefinition`**
+   - 添加 x/y/z/t 维度成员
+   - 增加便捷方法
+   - 保留旧成员(标记为deprecated)但重定向到新的结构
+   - 完成单元测试
+
+4. **修改 `GridData`**
+   - 简化结构，更新构造函数
+   - 增加便捷方法访问新维度信息
+   - 保留向后兼容性
+
+5. **编译验证**
+   - 编译整个项目，标记所有编译错误
+   - 解决基本的编译问题
+
+### 阶段二：数据读取器更新 (2-3周)
+
+1. **NetCDF 读取器修改**
+   - 更新 `NetCDFMetadataManager` 以识别所有维度类型
+   - 修改 `NetCDFCoordinateSystem` 提取并填充维度坐标
+   - 更新 `NetCDFDataReader` 使用新的 GridDefinition 结构
+   - 创建单元测试验证各类维度坐标提取
+
+2. **GDAL 读取器修改**
+   - 更新 `GDALRasterReader` 提取并填充维度信息
+   - 特别关注波段坐标和元数据提取
+   - 创建单元测试验证波段坐标提取
+
+3. **测试各种数据类型**
+   - 测试 NetCDF 文件(含多维度)
+   - 测试 GeoTIFF 和其他栅格文件
+   - 测试各种边界情况(单波段、缺少坐标等)
+
+### 阶段三：缓存与内存管理更新 (1周)
+
+1. **修改 `DataChunkCache`**
+   - 更新 `estimateGridDataSize` 方法
+   - 增强内存使用估算精度
+   - 验证缓存管理行为
+
+2. **性能测试**
+   - 测试新结构对内存使用的影响
+   - 测试读取和缓存操作的性能变化
+   - 优化关键路径
+
+### 阶段四：对外接口适配与测试 (1-2周)
+
+1. **原始数据访问服务修改**
+   - 更新 `raw_data_access_service_impl.cpp/h` 适配新结构
+   - 确保所有公共接口保持兼容性
+
+2. **全面回归测试**
+   - 端到端测试不同数据源和操作
+   - 验证特殊用例和边界条件
+   - 检查内存泄漏和性能变化
+
+3. **文档更新**
+   - 更新 API 文档
+   - 提供迁移指南
+   - 添加示例代码
+
+### 阶段五：集成与部署 (1周)
+
+1. **代码审查**
+   - 全面代码审查所有修改
+   - 检查代码质量和一致性
+
+2. **最终验证**
+   - 在完整环境中进行集成测试
+   - 执行负载测试
+
+3. **合并与部署**
+   - 将开发分支合并到主分支
+   - 准备发布版本
+
+## 三、详细代码修改指南
+
+### 1. `common_data_types.h` 修改
+
+```cpp
+// 新增 CoordinateDimension 枚举类
+enum class CoordinateDimension { 
+    LON, LAT, TIME, VERTICAL, SPECTRAL, OTHER, NONE 
+};
+
+// 新增 DimensionCoordinateInfo 结构体
+struct DimensionCoordinateInfo {
+    std::string name;                               // 维度名称
+    std::string standardName;                       // CF Standard Name
+    std::string longName;                           // 描述性长名称
+    std::string units;                              // 单位
+    CoordinateDimension type = CoordinateDimension::NONE; // 维度类型
+    bool isRegular = false;                         // 坐标是否规则间隔
+    double resolution = 0.0;                        // 分辨率
+    std::vector<double> coordinates;                // 数值型坐标值
+    std::vector<std::string> coordinateLabels;      // 文本坐标标签
+    std::map<std::string, std::string> attributes;  // 附加元数据
+
+    // 方法实现...
+};
+
+// 修改 GridDefinition 类
+class GridDefinition {
+public:
+    // 现有成员...
+    
+    // 新增维度信息
+    DimensionCoordinateInfo xDimension;
+    DimensionCoordinateInfo yDimension;
+    DimensionCoordinateInfo zDimension;
+    DimensionCoordinateInfo tDimension;
+    
+    // 标记旧成员为 deprecated 并实现重定向...
+    
+    // 新增辅助方法...
+};
+
+// 简化 GridData 类
+class GridData {
+public:
+    GridDefinition definition;
+    std::vector<unsigned char> data;
+    DataType internalDataType = DataType::Unknown;
+    
+    // 构造函数与方法...
+    
+    // 兼容层实现...
+};
+```
+
+### 2. NetCDF 读取器修改
+
+```cpp
+// netcdf_coordinate_system.cpp
+// 增加对各类维度的识别和提取
+std::optional<DimensionCoordinateInfo> NetCDFCoordinateSystem::extractDimensionInfo(
+    const std::string& dimName, netCDF::NcVar& var) {
+    DimensionCoordinateInfo info;
+    info.name = dimName;
+    
+    // 获取标准名称、长名称、单位
+    std::string standardName, longName, units;
+    if (var.getAtt("standard_name").getValues(standardName))
+        info.standardName = standardName;
+        
+    if (var.getAtt("long_name").getValues(longName))
+        info.longName = longName;
+        
+    if (var.getAtt("units").getValues(units))
+        info.units = units;
+    
+    // 确定维度类型
+    std::string axis;
+    if (var.getAtt("axis").getValues(axis)) {
+        if (axis == "X") info.type = CoordinateDimension::LON;
+        else if (axis == "Y") info.type = CoordinateDimension::LAT;
+        else if (axis == "Z") info.type = CoordinateDimension::VERTICAL;
+        else if (axis == "T") info.type = CoordinateDimension::TIME;
+    } else {
+        // 通过标准名称判断...
+    }
+    
+    // 读取坐标值
+    std::vector<double> values;
+    var.getVar(values);
+    info.coordinates = std::move(values);
+    
+    // 判断是否规则间隔并计算分辨率...
+    
+    // 提取其他属性...
+    
+    return info;
+}
+
+// netcdf_reader.cpp
+std::shared_ptr<GridData> NetCDFDataReader::readGridData(
+    const std::string& variableName,
+    const BoundingBox& boundingBox,
+    const std::optional<TimeRange>& timeRange,
+    const std::optional<IndexRange>& verticalRange) 
+{
+    // 构建 GridDefinition
+    GridDefinition def;
+    
+    // 填充 x/y/z/t 维度信息
+    def.xDimension = _coordinateSystem->getXDimensionInfo(variableName).value_or(DimensionCoordinateInfo{});
+    def.yDimension = _coordinateSystem->getYDimensionInfo(variableName).value_or(DimensionCoordinateInfo{});
+    def.zDimension = _coordinateSystem->getVerticalDimensionInfo(variableName).value_or(DimensionCoordinateInfo{});
+    def.tDimension = _coordinateSystem->getTimeDimensionInfo(variableName).value_or(DimensionCoordinateInfo{});
+    
+    // 其他 GridDefinition 属性...
+    
+    // 读取数据...
+    
+    // 创建并返回 GridData
+    auto gridData = std::make_shared<GridData>(def, dataType);
+    gridData->data = std::move(dataBuffer);
+    
+    return gridData;
+}
+```
+
+### 3. GDAL 读取器修改
+
+```cpp
+// gdal_raster_reader.cpp
+void GDALRasterReader::fillGridDefinition(GridDefinition& def) {
+    // 填充 X 维度
+    def.xDimension.name = "x";
+    def.xDimension.type = CoordinateDimension::LON;
+    def.xDimension.isRegular = true;
+    def.xDimension.resolution = _geoTransform[1];
+    // 生成 X 坐标...
+    
+    // 填充 Y 维度
+    def.yDimension.name = "y";
+    def.yDimension.type = CoordinateDimension::LAT;
+    def.yDimension.isRegular = true;
+    def.yDimension.resolution = std::abs(_geoTransform[5]);
+    // 生成 Y 坐标...
+    
+    // 填充 Z 维度 (波段)
+    def.zDimension.name = "band";
+    def.zDimension.type = CoordinateDimension::SPECTRAL;
+    
+    for (int i = 1; i <= _dataset->GetRasterCount(); ++i) {
+        auto band = _dataset->GetRasterBand(i);
+        if (band) {
+            // 尝试获取波段描述和元数据
+            const char* desc = band->GetDescription();
+            if (desc && strlen(desc) > 0) {
+                def.zDimension.coordinateLabels.push_back(desc);
+            }
+            
+            // 尝试获取波段波长或其他数值信息
+            double wavelength = 0.0;
+            // 从元数据获取波长...
+            if (wavelength > 0) {
+                def.zDimension.coordinates.push_back(wavelength);
+            } else {
+                def.zDimension.coordinates.push_back(static_cast<double>(i));
+            }
+        }
+    }
+    
+    // 其他维度信息和元数据...
+}
+```
+
+### 4. 缓存大小估算修改
+
+```cpp
+// data_chunk_cache.cpp
+size_t DataChunkCache::estimateGridDataSize(const GridData& gridData) const {
+    const size_t METADATA_OVERHEAD = 1024;
+    size_t definitionSize = 0;
+    
+    // 估算维度信息大小的函数
+    auto estimateDimInfoSize = [](const DimensionCoordinateInfo& dimInfo) -> size_t {
+        size_t size = 0;
+        size += dimInfo.name.capacity();
+        size += dimInfo.standardName.capacity();
+        size += dimInfo.longName.capacity();
+        size += dimInfo.units.capacity();
+        size += dimInfo.coordinates.capacity() * sizeof(double);
+        
+        for (const auto& label : dimInfo.coordinateLabels) {
+            size += label.capacity() + sizeof(std::string);
+        }
+        
+        for (const auto& attr : dimInfo.attributes) {
+            size += attr.first.capacity() + attr.second.capacity() + 2 * sizeof(std::string);
+        }
+        
+        return size + sizeof(DimensionCoordinateInfo);
+    };
+    
+    // 估算所有维度信息
+    definitionSize += estimateDimInfoSize(gridData.definition.xDimension);
+    definitionSize += estimateDimInfoSize(gridData.definition.yDimension);
+    definitionSize += estimateDimInfoSize(gridData.definition.zDimension);
+    definitionSize += estimateDimInfoSize(gridData.definition.tDimension);
+    
+    // 估算其他 GridDefinition 成员...
+    
+    return gridData.data.size() + definitionSize + METADATA_OVERHEAD;
+}
+```
+
+## 四、测试计划
+
+### 1. 单元测试
+
+- **核心数据结构**:
+  - `DimensionCoordinateInfo` 各方法测试
+  - `GridDefinition` 各方法测试
+  - 兼容层测试
+
+- **读取器**:
+  - 维度识别与提取测试
+  - 坐标值生成与验证
+  - 完整读取测试
+
+- **缓存**:
+  - 大小估算准确性测试
+  - 内存管理与淘汰策略测试
+
+### 2. 集成测试
+
+- **端到端读取流程**:
+  - NetCDF多维数据读取测试
+  - GeoTIFF多波段读取测试
+  - 复杂坐标系统测试
+
+- **特殊场景**:
+  - 缺少某些维度信息的数据
+  - 非规则间隔的坐标
+  - 超大数据集
+
+### 3. 性能测试
+
+- **内存使用**:
+  - 新结构内存开销测试
+  - 缓存效率测试
+
+- **处理速度**:
+  - 读取时间比较测试
+  - 批量操作性能测试
+
+## 五、风险与缓解策略
+
+1. **API兼容性风险**:
+   - **风险**: 修改可能破坏现有代码
+   - **缓解**: 提供兼容层和过渡期，详细文档指导迁移
+
+2. **数据一致性风险**:
+   - **风险**: 新旧结构数据不一致
+   - **缓解**: 单元测试确保同步，废弃旧API前严格验证
+
+3. **性能风险**:
+   - **风险**: 结构复杂化可能影响性能
+   - **缓解**: 性能测试，必要时优化关键路径
+
+4. **实施时间风险**:
+   - **风险**: 改动范围大，可能超出预期时间
+   - **缓解**: 分阶段实施，设置检查点，优先基本功能
+
+## 六、总结
+
+Gemini-2.5方案是一个全面的结构优化，通过统一维度描述提高了数据结构的灵活性和表达能力。完整实施需要5-8周时间，分5个阶段进行，涉及核心数据结构、读取器、缓存机制等多个模块的修改。通过严格的测试和兼容性设计，可以确保平滑过渡到新结构，同时为后续功能（如插值模块）奠定坚实基础。
+
+dir
+

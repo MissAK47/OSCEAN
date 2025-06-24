@@ -1,0 +1,5 @@
+if(EXISTS "D:/OSCEAN/core_services_impl/crs_service/tests/crs_stress_tests[1]_tests.cmake")
+  include("D:/OSCEAN/core_services_impl/crs_service/tests/crs_stress_tests[1]_tests.cmake")
+else()
+  add_test(crs_stress_tests_NOT_BUILT crs_stress_tests_NOT_BUILT)
+endif()

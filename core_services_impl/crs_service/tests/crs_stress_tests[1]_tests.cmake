@@ -1,0 +1,5 @@
+add_test([=[馃搳 鍘嬪姏娴嬭瘯瑕嗙洊锛?.馃殌 鐧句竾绾ф暟鎹苟鍙戝帇鍔涙祴璇?]=]  D:/OSCEAN/bin/Debug/crs_stress_tests.exe [==[--gtest_filter=馃搳 鍘嬪姏娴嬭瘯瑕嗙洊锛?.馃殌 鐧句竾绾ф暟鎹苟鍙戝帇鍔涙祴璇?]==] --gtest_also_run_disabled_tests)
+set_tests_properties([=[馃搳 鍘嬪姏娴嬭瘯瑕嗙洊锛?.馃殌 鐧句竾绾ф暟鎹苟鍙戝帇鍔涙祴璇?]=]  PROPERTIES WORKING_DIRECTORY D:/OSCEAN/bin SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] VS_DEBUGGER_WORKING_DIRECTORY D:/OSCEAN/bin)
+add_test([=[CrsStressTest.MillionDataConcurrencyStressTest]=]  D:/OSCEAN/bin/Debug/crs_stress_tests.exe [==[--gtest_filter=CrsStressTest.MillionDataConcurrencyStressTest]==] --gtest_also_run_disabled_tests)
+set_tests_properties([=[CrsStressTest.MillionDataConcurrencyStressTest]=]  PROPERTIES WORKING_DIRECTORY D:/OSCEAN/bin SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==] VS_DEBUGGER_WORKING_DIRECTORY D:/OSCEAN/bin)
+set(  crs_stress_tests_TESTS [==[馃搳 鍘嬪姏娴嬭瘯瑕嗙洊锛?.馃殌 鐧句竾绾ф暟鎹苟鍙戝帇鍔涙祴璇?]==] CrsStressTest.MillionDataConcurrencyStressTest)

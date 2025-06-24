@@ -1,0 +1,15 @@
+{
+    "database": {
+        "output_path": "./database/ocean_environment.db",
+        "schema_directory": "./database/schema"
+    },
+    "logging": {
+        "level": "info",
+        "log_to_console": true,
+        "log_to_file": true,
+        "log_directory": "./logs"
+    },
+    "data_processing": {
+        "default_input_directory": "E:/Ocean_data"
+    }
+} 

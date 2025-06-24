@@ -1,0 +1,31 @@
+# WorkflowEngineConfig.cmake.in
+# WorkflowEngine package configuration file
+
+@PACKAGE_INIT@
+
+# 设置包信息
+set(WORKFLOW_ENGINE_VERSION "@WORKFLOW_ENGINE_VERSION@")
+
+# 检查组件并设置变量
+set(_supported_components workflow_engine_core data_management data_workflow)
+
+foreach(_comp ${workflow_engine_FIND_COMPONENTS})
+    if (NOT _comp IN_LIST _supported_components)
+        set(workflow_engine_FOUND False)
+        set(workflow_engine_NOT_FOUND_MESSAGE "Unsupported component: ${_comp}")
+    endif()
+endforeach()
+
+# 查找依赖
+find_dependency(Boost REQUIRED COMPONENTS thread system container)
+find_dependency(SQLite3 REQUIRED)
+
+# 导入目标
+include("${CMAKE_CURRENT_LIST_DIR}/WorkflowEngineTargets.cmake")
+
+# 设置库路径变量
+set_and_check(WORKFLOW_ENGINE_INCLUDE_DIRS "@PACKAGE_CMAKE_INSTALL_INCLUDEDIR@")
+set_and_check(WORKFLOW_ENGINE_LIBRARY_DIRS "@PACKAGE_CMAKE_INSTALL_LIBDIR@")
+
+# 验证必需组件
+check_required_components(workflow_engine) 

@@ -1,0 +1,267 @@
+# 变量分类配置 (v2.1 - 配置驱动增强版)
+variable_classification:
+  # 配置版本
+  version: "2.1"
+  
+  # 海洋环境变量分类
+  ocean_variables:
+    current:
+      - "u"
+      - "v"
+      - "uo"                  # 哥白尼: 东向海流
+      - "vo"                  # 哥白尼: 北向海流
+      - "current_speed"
+      - "current_direction"
+      - "u_velocity"
+      - "v_velocity"
+      - "eastward_sea_water_velocity"
+      - "northward_sea_water_velocity"
+      - "海流速度"
+      - "流速"
+      - "流向"
+    
+    temperature:
+      - "temperature"
+      - "temp"
+      - "sst"
+      - "water_temp"
+      - "thetao"              # 哥白尼: 海水势温
+      - "sea_surface_temperature"
+      - "sea_water_temperature"
+      - "sea_water_potential_temperature"
+      - "海水温度"
+      - "海表温度"
+    
+    salinity:
+      - "salinity"
+      - "sal"
+      - "so"                  # 哥白尼: 海水盐度
+      - "psu"
+      - "sea_water_salinity"
+      - "盐度"
+      - "海水盐度"
+    
+    pressure:
+      - "pressure"
+      - "sea_water_pressure"
+      - "压力"
+      - "海水压力"
+
+    sea_level:
+      - "zos"                 # 哥白尼: 海面高
+      - "sla"                 # 海平面异常
+      - "sea_surface_height"
+      - "sea_level_anomaly"
+      - "海面高"
+
+    waves:
+      - "vhm0"                # 哥白尼: 有效波高
+      - "vtm02"               # 哥白尼: 平均波周期
+      - "vmdr"                # 哥白尼: 平均波向
+      - "wave_height"
+      - "wave_period"
+      - "wave_direction"
+      - "significant_wave_height"
+      - "波高"
+      - "波周期"
+      - "波向"
+
+    sea_ice:
+      - "siconc"              # 哥白尼: 海冰密集度
+      - "sithick"             # 哥白尼: 海冰厚度
+      - "sea_ice_concentration"
+      - "sea_ice_fraction"
+      - "sea_ice_thickness"
+      - "海冰密集度"
+      - "海冰厚度"
+      
+    biogeochemistry:
+      - "chl"                 # 哥白尼: 叶绿素
+      - "o2"                  # 哥白尼: 氧
+      - "no3"                 # 哥白尼: 硝酸盐
+      - "po4"                 # 哥白尼: 磷酸盐
+      - "nppv"                # 哥白尼: 净初级生产力
+      - "chlorophyll"
+      - "oxygen"
+      - "nitrate"
+      - "phosphate"
+      - "primary_production"
+      - "叶绿素"
+      - "溶解氧"
+
+  # 地形底质变量分类  
+  topography_variables:
+    coordinates:              # 增加坐标分类
+      - "lat"
+      - "latitude"
+      - "lon"
+      - "longitude"
+      - "经度"
+      - "纬度"
+    
+    elevation:
+      - "elevation"
+      - "height"
+      - "altitude"
+      - "dem"
+      - "高程"
+      - "海拔"
+      - "高度"
+    
+    bathymetry:
+      - "depth"
+      - "bathymetry"
+      - "seafloor_depth"
+      - "water_depth"
+      - "深度"
+      - "水深"
+      - "海底深度"
+    
+    slope:
+      - "slope"
+      - "gradient"
+      - "坡度"
+      - "梯度"
+
+  # 边界线变量分类
+  boundary_variables:
+    coastline:
+      - "coastline"
+      - "shoreline"
+      - "coast"
+      - "海岸线"
+      - "岸线"
+    
+    administrative:
+      - "boundary"
+      - "border"
+      - "limit"
+      - "administrative_boundary"
+      - "边界"
+      - "行政边界"
+      - "界线"
+
+  # 声纳传播变量分类
+  sonar_variables:
+    acoustic:
+      - "sound_speed"
+      - "acoustic_velocity"
+      - "transmission_loss"
+      - "声速"
+      - "声学速度"
+      - "传播损失"
+    
+    frequency:
+      - "frequency"
+      - "freq"
+      - "center_frequency"
+      - "频率"
+      - "中心频率"
+    
+    sensor_info:
+      - "platform_id"
+      - "sensor_id" 
+      - "working_mode_id"
+      - "deployment_time"
+      - "平台编号"
+      - "传感器编号"
+      - "工作模式"
+
+# 变量名映射配置
+variable_name_mapping:
+  # 中文到英文映射
+  "水温": "temperature"
+  "盐度": "salinity"
+  "流速": "current_speed"
+  "深度": "depth"
+  "高程": "elevation"
+  "海岸线": "coastline"
+  "边界": "boundary"
+  "声速": "sound_speed"
+  "频率": "frequency"
+  
+  # 简写到标准名映射
+  "temp": "temperature"
+  "sal": "salinity"
+  "u": "u_velocity"
+  "v": "v_velocity"
+  "sst": "sea_surface_temperature"
+  
+  # 哥白尼标准名到通用名映射
+  "thetao": "temperature"
+  "so": "salinity"
+  "uo": "u_velocity"
+  "vo": "v_velocity"
+  "zos": "sea_surface_height"
+  "vhm0": "significant_wave_height"
+  "siconc": "sea_ice_concentration"
+  "sithick": "sea_ice_thickness"
+  "chl": "chlorophyll"
+  "o2": "oxygen"
+  "no3": "nitrate"
+  "po4": "phosphate"
+  "nppv": "primary_production"
+
+# 单位映射配置
+variable_units_mapping:
+  temperature: ["celsius", "kelvin", "°C", "K", "摄氏度"]
+  salinity: ["psu", "ppt", "1e-3", "实用盐度单位"] # 哥白尼盐度单位通常是1e-3
+  current_speed: ["m/s", "cm/s", "knots", "米/秒", "厘米/秒"]
+  depth: ["m", "meters", "km", "米", "千米"]
+  elevation: ["m", "meters", "ft", "feet", "米", "英尺"]
+  frequency: ["Hz", "kHz", "MHz", "赫兹", "千赫", "兆赫"]
+  sea_surface_height: ["m", "meters"]
+  significant_wave_height: ["m", "meters"]
+  sea_ice_concentration: ["%", "(0-1)", "fraction"]
+  sea_ice_thickness: ["m", "meters"]
+  chlorophyll: ["mg m-3", "milligrammes_per_cubic_metre"]
+  oxygen: ["mol m-3", "micromol/kg"]
+
+# 新增：GDAL格式特殊变量
+gdal_variables:
+  raster_bands:
+    - "Band_1"
+    - "Band_2" 
+    - "Band_3"
+    - "Band_4"
+    - "elevation"
+    - "bathymetry"
+    - "red"
+    - "green"
+    - "blue"
+    - "nir"  # 近红外
+    
+  vector_attributes:
+    - "OBJECTID"
+    - "FID"
+    - "Shape_Length"
+    - "Shape_Area"
+    - "NAME"
+    - "TYPE"
+    - "CLASS"
+    - "CATEGORY"
+
+# 新增：数据库选择权重配置
+database_selection_weights:
+  format_weight: 0.6      # 文件格式权重
+  variable_weight: 0.3    # 变量内容权重
+  temporal_weight: 0.1    # 时间特征权重
+
+# 智能匹配配置
+fuzzy_matching:
+  enable: true
+  threshold: 0.8
+  max_suggestions: 5
+  
+# 优先变量配置（用于智能推荐）
+priority_variables:
+  - "temperature"
+  - "salinity" 
+  - "u_velocity"
+  - "v_velocity"
+  - "depth"
+  - "elevation"
+  - "sea_surface_height"
+  - "significant_wave_height"
+  - "chlorophyll"
+  - "sea_ice_concentration" 

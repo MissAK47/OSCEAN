@@ -1,0 +1,21 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+# Dependencies for the public interface of crs_service
+find_dependency(core_service_interfaces REQUIRED)
+find_dependency(common_utilities REQUIRED)
+find_dependency(PROJ REQUIRED)
+find_dependency(GDAL REQUIRED)
+
+# Private dependencies are not typically listed here unless they affect ABI
+# find_dependency(Boost REQUIRED COMPONENTS system thread) # If needed by headers/ABI
+
+# Conditional dependency on NetCDF
+if(@OSCEAN_CRS_HAS_NETCDF@)
+    find_dependency(netCDF)
+endif()
+
+if(NOT TARGET OSCEAN::crs_service)
+    include("${CMAKE_CURRENT_LIST_DIR}/crs_service-targets.cmake")
+endif() 

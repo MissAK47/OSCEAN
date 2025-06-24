@@ -1,0 +1,213 @@
+# 文件格式到数据库映射配置 v2.0
+# 支持配置驱动的文件分类和数据库选择
+
+file_format_mapping:
+  # 配置版本
+  version: "2.0"
+  
+  # 文件格式分类策略
+  classification_strategy:
+    # 策略1：格式优先 - 某些格式固定进入特定数据库
+    format_priority:
+      - format: "GeoTIFF"
+        extensions: [".tif", ".tiff", ".geotiff"]
+        target_database: "topography_bathymetry"
+        reason: "栅格地形数据"
+        confidence: 0.95
+        
+      - format: "Shapefile"
+        extensions: [".shp"]
+        target_database: "boundary_lines"
+        reason: "矢量边界数据"
+        confidence: 0.95
+        
+      - format: "ESRI_Grid"
+        extensions: [".asc", ".grd"]
+        target_database: "topography_bathymetry"
+        reason: "栅格地形数据"
+        confidence: 0.90
+        
+      - format: "KML"
+        extensions: [".kml", ".kmz"]
+        target_database: "boundary_lines"
+        reason: "地理标记语言"
+        confidence: 0.85
+        
+      - format: "GeoJSON"
+        extensions: [".geojson", ".json"]
+        target_database: "boundary_lines"
+        reason: "地理JSON数据"
+        confidence: 0.80
+    
+    # 策略2：内容分析 - 需要分析变量内容的格式
+    content_analysis:
+      - format: "NetCDF"
+        extensions: [".nc", ".nc4", ".netcdf"]
+        classification_method: "variable_based"
+        fallback_database: "ocean_environment"
+        analysis_depth: "deep"  # deep, shallow, minimal
+        
+      - format: "HDF5"
+        extensions: [".h5", ".hdf5", ".he5"]
+        classification_method: "variable_based"
+        fallback_database: "ocean_environment"
+        analysis_depth: "deep"
+        
+      - format: "GRIB"
+        extensions: [".grb", ".grib", ".grib2"]
+        classification_method: "variable_based"
+        fallback_database: "ocean_environment"
+        analysis_depth: "shallow"
+        
+      - format: "MAT"
+        extensions: [".mat"]
+        classification_method: "variable_based"
+        fallback_database: "ocean_environment"
+        analysis_depth: "minimal"
+
+  # 变量内容到数据库的映射规则
+  variable_to_database_mapping:
+    ocean_environment:
+      priority_variables: 
+        - "temperature"
+        - "salinity" 
+        - "current"
+        - "sea_level"
+        - "waves"
+        - "sea_ice"
+        - "biogeochemistry"
+        - "u_velocity"
+        - "v_velocity"
+        - "sea_surface_temperature"
+        - "sea_water_salinity"
+        - "chlorophyll"
+        - "oxygen"
+      required_temporal: true
+      weight: 1.0
+      
+    topography_bathymetry:
+      priority_variables: 
+        - "elevation"
+        - "bathymetry"
+        - "depth"
+        - "slope"
+        - "coordinates"
+        - "height"
+        - "altitude"
+        - "dem"
+        - "water_depth"
+        - "seafloor_depth"
+      required_temporal: false
+      weight: 0.9
+      
+    boundary_lines:
+      priority_variables: 
+        - "coastline"
+        - "administrative"
+        - "boundary"
+        - "shoreline"
+        - "border"
+        - "limit"
+      required_temporal: false
+      weight: 0.8
+      
+    sonar_propagation:
+      priority_variables: 
+        - "acoustic"
+        - "frequency"
+        - "sensor_info"
+        - "transmission_loss"
+        - "sound_speed"
+        - "acoustic_velocity"
+        - "platform_id"
+        - "sensor_id"
+      required_temporal: true
+      weight: 0.85
+      
+    tactical_environment:
+      priority_variables: 
+        - "sonic_layer_depth"
+        - "sound_channel"
+        - "convergence_zone"
+        - "tactical_parameter"
+        - "layer_depth"
+        - "propagation_loss"
+      required_temporal: true
+      weight: 0.85
+
+  # GDAL特殊处理配置
+  gdal_specific:
+    # 启用GDAL特殊处理
+    enable_gdal_processing: true
+    
+    # 空间分辨率提取
+    spatial_resolution_extraction: true
+    
+    # CRS信息增强
+    crs_enhancement: true
+    
+    # 从文件名提取时间信息
+    temporal_from_filename: true
+    
+    # 文件名时间模式
+    filename_patterns:
+      - pattern: ".*_(\\d{4})(\\d{2})(\\d{2}).*"
+        date_format: "%Y%m%d"
+        description: "YYYYMMDD格式"
+        
+      - pattern: ".*_(\\d{4})-(\\d{2})-(\\d{2}).*"
+        date_format: "%Y-%m-%d"
+        description: "YYYY-MM-DD格式"
+        
+      - pattern: ".*_(\\d{4})(\\d{3}).*"
+        date_format: "%Y%j"
+        description: "年+儒略日格式"
+        
+      - pattern: ".*_(\\d{8})_.*"
+        date_format: "%Y%m%d"
+        description: "下划线分隔的日期"
+    
+    # GDAL格式特定配置
+    format_specific:
+      GeoTIFF:
+        extract_bands: true
+        extract_overviews: true
+        extract_color_table: true
+        
+      Shapefile:
+        extract_attributes: true
+        extract_geometry_stats: true
+        
+      NetCDF:
+        prefer_cf_conventions: true
+        extract_global_attributes: true
+
+  # 数据库选择权重配置
+  database_selection_weights:
+    format_weight: 0.6      # 文件格式权重
+    variable_weight: 0.3    # 变量内容权重
+    temporal_weight: 0.1    # 时间特征权重
+    
+  # 分类置信度阈值
+  confidence_thresholds:
+    high_confidence: 0.9    # 高置信度阈值
+    medium_confidence: 0.7  # 中等置信度阈值
+    low_confidence: 0.5     # 低置信度阈值
+    
+  # 冲突解决策略
+  conflict_resolution:
+    # 当多个数据库都匹配时的策略
+    strategy: "weighted_score"  # weighted_score, first_match, user_prompt
+    
+    # 权重计算方法
+    scoring_method: "linear"    # linear, exponential, logarithmic
+    
+    # 最小置信度差异（用于区分相近的匹配）
+    min_confidence_gap: 0.1
+
+# 调试和日志配置
+debug:
+  enable_classification_logging: true
+  log_confidence_scores: true
+  log_variable_analysis: true
+  save_classification_history: true 

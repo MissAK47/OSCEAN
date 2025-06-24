@@ -1,0 +1,74 @@
+# 元数据服务数据库配置 v2.0
+database:
+  base_path: "./databases"
+  
+  # 新增：Schema版本管理
+  schema_version: "2.0"
+  auto_upgrade: true
+  backup_before_upgrade: true
+  
+  # 新增：统一字段配置
+  unified_fields:
+    enable_geohash: true
+    geohash_precision: [6, 8]
+    enable_full_text_search: true
+    enable_spatial_resolution: true
+    enable_enhanced_crs: true
+    enable_variable_attributes: true
+    enable_temporal_resolution_seconds: true
+  
+  # 五种专用数据库配置
+  connections:
+    # 海洋环境数据库 - 存储u,v,温度,盐度等海洋变量
+    ocean_environment:
+      file: "ocean_environment.db"
+      max_connections: 10
+      timeout_seconds: 30
+      enable_wal: true
+      cache_size: 2000
+      
+    # 地形底质数据库 - 存储高程,深度等地形变量
+    topography_bathymetry:
+      file: "topography_bathymetry.db"
+      max_connections: 5
+      timeout_seconds: 30
+      enable_wal: true
+      cache_size: 1000
+      
+    # 边界线数据库 - 存储海岸线,边界等边界变量
+    boundary_lines:
+      file: "boundary_lines.db"
+      max_connections: 5
+      timeout_seconds: 30
+      enable_wal: true
+      cache_size: 1000
+      
+    # 声纳传播数据库 - 存储传感器数据，支持platform_id + sensor_id + working_mode_id联合索引
+    sonar_propagation:
+      file: "sonar_propagation.db"
+      max_connections: 8
+      timeout_seconds: 30
+      enable_wal: true
+      cache_size: 1500
+
+# 数据库初始化配置
+initialization:
+  create_tables_if_not_exist: true
+  enable_foreign_keys: true
+  journal_mode: "WAL"
+  synchronous: "NORMAL"
+  
+  # 新增：数据库初始化顺序
+  initialization_order:
+    - "ocean_environment"
+    - "topography_bathymetry" 
+    - "boundary_lines"
+    - "sonar_propagation"
+    - "tactical_environment"
+    
+  # 新增：Schema升级配置
+  schema_upgrade:
+    enable_auto_upgrade: true
+    backup_directory: "./database_backups"
+    max_backup_files: 5
+    upgrade_timeout_seconds: 300 

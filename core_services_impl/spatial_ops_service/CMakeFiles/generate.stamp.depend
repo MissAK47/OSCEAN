@@ -1,0 +1,30 @@
+# CMake generation dependency list for this directory.
+C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeFindDependencyMacro.cmake
+C:/Program Files/CMake/share/cmake-4.0/Modules/FindBoost.cmake
+C:/Program Files/CMake/share/cmake-4.0/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-4.0/Modules/FindPackageMessage.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost/BoostConfig.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost/BoostConfigVersion.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost/vcpkg-cmake-wrapper.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_filesystem/boost_filesystem-config-version.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_filesystem/boost_filesystem-config.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_filesystem/boost_filesystem-targets.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_headers/boost_headers-config-version.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_headers/boost_headers-config.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_headers/boost_headers-targets.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_system/boost_system-config-version.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_system/boost_system-config.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_system/boost_system-targets.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_thread/boost_thread-config-version.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_thread/boost_thread-config.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_thread/boost_thread-targets.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/gdal/GDAL-targets.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/gdal/GDALConfig.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/gdal/GDALConfigVersion.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/gdal/vcpkg-cmake-wrapper.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/geos/geos-config-version.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/geos/geos-config.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/geos/geos-targets-debug.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/geos/geos-targets-release.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/geos/geos-targets.cmake
+D:/OSCEAN/core_services_impl/spatial_ops_service/CMakeLists.txt

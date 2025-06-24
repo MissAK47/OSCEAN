@@ -1,0 +1,679 @@
+/**
+ * @file unified_data_access_service_impl.cpp
+ * @brief 统一数据访问服务实现 - 基于依赖注入的版本
+ */
+
+#include "unified_data_access_service_impl.h"
+#include "concurrent_optimization_components.h"
+#include "common_utils/utilities/logging_utils.h"
+
+#include <filesystem>
+#include <algorithm>
+#include <execution>
+#include <fstream>
+#include <chrono>
+#include <shared_mutex>
+#include <unordered_map>
+#include <cctype>
+
+// �� 修复：使用正确的OSCEAN日志宏
+#ifndef LOG_DEBUG
+#define LOG_DEBUG(tag, msg, ...) OSCEAN_LOG_DEBUG(tag, msg, ##__VA_ARGS__)
+#endif
+#ifndef LOG_INFO  
+#define LOG_INFO(tag, msg, ...) OSCEAN_LOG_INFO(tag, msg, ##__VA_ARGS__)
+#endif
+#ifndef LOG_WARN
+#define LOG_WARN(tag, msg, ...) OSCEAN_LOG_WARN(tag, msg, ##__VA_ARGS__)
+#endif
+#ifndef LOG_ERROR
+#define LOG_ERROR(tag, msg, ...) OSCEAN_LOG_ERROR(tag, msg, ##__VA_ARGS__)
+#endif
+#ifndef LOG_CRITICAL
+#define LOG_CRITICAL(tag, msg, ...) OSCEAN_LOG_CRITICAL(tag, msg, ##__VA_ARGS__)
+#endif
+
+namespace oscean::core_services {
+
+// 🔧 修复：正确的命名空间别名
+namespace readers = data_access::readers;
+
+// ===============================================================================
+// UnifiedDataAccessServiceImpl 类实现 - DI版本
+// ===============================================================================
+
+UnifiedDataAccessServiceImpl::UnifiedDataAccessServiceImpl(
+    std::shared_ptr<common_utils::infrastructure::CommonServicesFactory> servicesFactory,
+    const data_access::api::DataAccessConfiguration& config,
+    std::shared_ptr<GdalInitializationManager> gdalManager,
+    std::shared_ptr<FileAccessLockManager> lockManager,
+    std::shared_ptr<ReaderPoolManager> poolManager)
+    : servicesFactory_(std::move(servicesFactory))
+    , config_(config)
+    , gdalManager_(std::move(gdalManager))
+    , lockManager_(std::move(lockManager))
+    , poolManager_(std::move(poolManager))
+    , isInitialized_(false)
+    , totalRequests_(0)
+    , successfulRequests_(0) {
+    
+    OSCEAN_LOG_INFO("UnifiedDataAccessServiceImpl", "创建UnifiedDataAccessServiceImpl - DI版本");
+    OSCEAN_LOG_INFO("UnifiedDataAccessServiceImpl", "服务: {}, 版本: {}", 
+                    config_.serviceName.c_str(), config_.version.c_str());
+    
+    // 如果没有提供并发优化组件，创建默认的轻量级实现
+    if (!gdalManager_) {
+        gdalManager_ = std::make_shared<GdalInitializationManagerImpl>(servicesFactory_);
+    }
+    if (!lockManager_) {
+        lockManager_ = std::make_shared<FileAccessLockManagerImpl>();
+    }
+    if (!poolManager_) {
+        poolManager_ = std::make_shared<ReaderPoolManagerImpl>();
+    }
+    
+    initializeServices();
+}
+
+UnifiedDataAccessServiceImpl::~UnifiedDataAccessServiceImpl() {
+    OSCEAN_LOG_INFO("UnifiedDataAccessServiceImpl", "UnifiedDataAccessServiceImpl析构 - DI版本");
+    shutdown();
+}
+
+// ===============================================================================
+// 初始化和清理 - DI版本
+// ===============================================================================
+
+void UnifiedDataAccessServiceImpl::initializeServices() {
+    if (isInitialized_.load()) {
+        return;
+    }
+    
+    try {
+        OSCEAN_LOG_INFO("UnifiedDataAccessServiceImpl", "🔧 开始初始化UnifiedDataAccessServiceImpl - DI并发优化版本");
+        
+        // ===== 步骤1: GDAL预热初始化 =====
+        OSCEAN_LOG_INFO("UnifiedDataAccessServiceImpl", "🔥 [步骤1] 开始GDAL预热初始化...");
+        auto startGdalTime = std::chrono::high_resolution_clock::now();
+        
+        if (gdalManager_ && !gdalManager_->isWarmedUp()) {
+            if (!gdalManager_->warmupInitialization()) {
+                OSCEAN_LOG_WARN("UnifiedDataAccessServiceImpl", "⚠️ GDAL预热失败，将在运行时初始化");
+            }
+        }
+        
+        auto endGdalTime = std::chrono::high_resolution_clock::now();
+        auto gdalDuration = std::chrono::duration_cast<std::chrono::milliseconds>(endGdalTime - startGdalTime);
+        OSCEAN_LOG_INFO("UnifiedDataAccessServiceImpl", "✅ [步骤1] GDAL预热完成 ({}ms)", gdalDuration.count());
+        
+        // ===== 步骤2: 初始化Common Services =====
+        OSCEAN_LOG_INFO("UnifiedDataAccessServiceImpl", "🔧 [步骤2] 初始化Common Services...");
+        
+        if (!servicesFactory_) {
+            throw std::runtime_error("CommonServicesFactory不能为空");
+        }
+        
+        // 获取文件格式检测器
+        fileFormatDetector_ = std::make_shared<common_utils::utilities::FileFormatDetector>();
+        
+        // 创建缓存实例 - 使用默认大小
+        metadataCache_ = servicesFactory_->createCache<std::string, FileMetadata>(
+            "metadata_cache", 10000);  // 默认大小
+        gridCache_ = servicesFactory_->createCache<std::string, GridData>(
+            "grid_cache", 1000);       // 默认大小
+        
+        OSCEAN_LOG_INFO("UnifiedDataAccessServiceImpl", "✅ [步骤2] Common Services初始化完成");
+        
+        // ===== 步骤3: 创建读取器注册表 =====
+        OSCEAN_LOG_INFO("UnifiedDataAccessServiceImpl", "📚 [步骤3] 创建读取器注册表...");
+        
+        readerRegistry_ = std::make_shared<data_access::readers::ReaderRegistry>(servicesFactory_);
+        if (!readerRegistry_) {
+            throw std::runtime_error("读取器注册表创建失败");
+        }
+        
+        OSCEAN_LOG_INFO("UnifiedDataAccessServiceImpl", "✅ [步骤3] 读取器注册表创建完成");
+        
+        // ===== 步骤4: 初始化读取器池 =====
+        if (poolManager_) {
+            OSCEAN_LOG_INFO("UnifiedDataAccessServiceImpl", "🏊 [步骤4] 初始化读取器池...");
+            
+            ReaderPoolManager::PoolConfiguration poolConfig;
+            poolConfig.initialPoolSize = 4;      // 默认初始大小
+            poolConfig.maxPoolSize = 16;         // 默认最大大小
+            poolConfig.enablePooling = config_.enableCaching;
+            
+            if (!poolManager_->initializePool(poolConfig, readerRegistry_, servicesFactory_)) {
+                OSCEAN_LOG_WARN("UnifiedDataAccessServiceImpl", "⚠️ 读取器池初始化失败，将直接创建读取器");
+            }
+            
+            OSCEAN_LOG_INFO("UnifiedDataAccessServiceImpl", "✅ [步骤4] 读取器池初始化完成");
+        }
+        
+        // ===== 步骤5: 文件锁定管理器就绪 =====
+        if (lockManager_) {
+            OSCEAN_LOG_INFO("UnifiedDataAccessServiceImpl", "🔒 [步骤5] 文件级锁定管理器已就绪");
+        }
+        
+        isInitialized_.store(true);
+        
+        OSCEAN_LOG_INFO("UnifiedDataAccessServiceImpl", "🚀 UnifiedDataAccessServiceImpl DI版本初始化完成");
+        
+    } catch (const std::exception& e) {
+        OSCEAN_LOG_ERROR("UnifiedDataAccessServiceImpl", "❌ 初始化失败: {}", e.what());
+        throw;
+    }
+}
+
+void UnifiedDataAccessServiceImpl::shutdown() {
+    if (!isInitialized_.load()) {
+        return;
+    }
+    
+    try {
+        clearCache();
+        isInitialized_.store(false);
+        LOG_INFO("UnifiedDataAccessServiceImpl清理完成");
+    } catch (const std::exception& e) {
+        LOG_ERROR("服务清理异常: {}", e.what());
+    }
+}
+
+// ===============================================================================
+// IUnifiedDataAccessService 接口实现
+// ===============================================================================
+
+boost::future<data_access::api::UnifiedDataResponse> UnifiedDataAccessServiceImpl::processDataRequestAsync(
+    const data_access::api::UnifiedDataRequest& request) {
+    
+    ++totalRequests_;
+    
+    return createAsyncTask<data_access::api::UnifiedDataResponse>([this, request]() -> data_access::api::UnifiedDataResponse {
+        try {
+            LOG_DEBUG("处理统一数据请求: 类型={}, 文件={}", 
+                static_cast<int>(request.requestType), request.filePath);
+            
+            data_access::api::UnifiedDataResponse response;
+            response.requestId = request.requestId;
+            response.status = data_access::api::UnifiedResponseStatus::SUCCESS;
+            
+            // 验证文件路径
+            if (!validateFilePath(request.filePath)) {
+                response.status = data_access::api::UnifiedResponseStatus::INVALID_REQUEST;
+                response.errorMessage = "无效的文件路径";
+                return response;
+            }
+            
+            // 根据请求类型处理数据
+            switch (request.requestType) {
+                case data_access::api::UnifiedRequestType::FILE_METADATA: {
+                    auto metadataFuture = getFileMetadataAsync(request.filePath);
+                    auto metadata = metadataFuture.get();
+                    if (metadata.has_value()) {
+                        response.data = std::make_shared<FileMetadata>(metadata.value());
+                        response.status = data_access::api::UnifiedResponseStatus::SUCCESS;
+                        ++successfulRequests_;
+                    } else {
+                        response.status = data_access::api::UnifiedResponseStatus::NOT_FOUND;
+                        response.errorMessage = "无法获取文件元数据";
+                    }
+                    break;
+                }
+                
+                case data_access::api::UnifiedRequestType::FEATURE_COLLECTION: {
+                    // ✅ 矢量功能已启用 - 使用专门的GDAL矢量读取器
+                    LOG_DEBUG("处理要素集合请求: 文件={}, 图层={}", 
+                             request.filePath, request.variableName);
+                    
+                    try {
+                        // 使用图层名称或默认为空（读取所有图层）
+                        std::string layerName = request.variableName.empty() ? "" : request.variableName;
+                        
+                        auto gridDataFuture = readGridDataAsync(request.filePath, layerName, request.spatialBounds);
+                        auto gridData = gridDataFuture.get();
+                        
+                        if (gridData) {
+                            response.data = gridData;
+                            response.status = data_access::api::UnifiedResponseStatus::SUCCESS;
+                            ++successfulRequests_;
+                            LOG_INFO("要素集合请求成功: 文件={}, 数据大小={} 字节", 
+                                    request.filePath, gridData->data.size());
+                        } else {
+                            response.status = data_access::api::UnifiedResponseStatus::NOT_FOUND;
+                            response.errorMessage = "无法读取矢量要素数据";
+                            LOG_WARN("要素集合读取失败: 文件={}", request.filePath);
+                        }
+                    } catch (const std::exception& e) {
+                        response.status = data_access::api::UnifiedResponseStatus::FAILED;
+                        response.errorMessage = std::string("要素集合读取异常: ") + e.what();
+                        LOG_ERROR("要素集合请求异常: {}", e.what());
+                    }
+                    break;
+                }
+                
+                case data_access::api::UnifiedRequestType::GRID_DATA: {
+                    if (request.variableName.empty()) {
+                        response.status = data_access::api::UnifiedResponseStatus::INVALID_REQUEST;
+                        response.errorMessage = "网格数据请求需要变量名";
+                        return response;
+                    }
+                    
+                    auto gridDataFuture = readGridDataAsync(request.filePath, request.variableName, request.spatialBounds);
+                    auto gridData = gridDataFuture.get();
+                    if (gridData) {
+                        response.data = gridData;
+                        response.status = data_access::api::UnifiedResponseStatus::SUCCESS;
+                        ++successfulRequests_;
+                    } else {
+                        response.status = data_access::api::UnifiedResponseStatus::NOT_FOUND;
+                        response.errorMessage = "无法读取网格数据";
+                    }
+                    break;
+                }
+                
+                case data_access::api::UnifiedRequestType::VARIABLE_EXISTS_CHECK: {
+                    if (request.variableName.empty()) {
+                        response.status = data_access::api::UnifiedResponseStatus::INVALID_REQUEST;
+                        response.errorMessage = "变量存在性检查需要变量名";
+                        return response;
+                    }
+                    
+                    auto existsFuture = checkVariableExistsAsync(request.filePath, request.variableName);
+                    bool exists = existsFuture.get();
+                    response.data = exists;
+                    response.status = data_access::api::UnifiedResponseStatus::SUCCESS;
+                    ++successfulRequests_;
+                    break;
+                }
+                
+                default:
+                    response.status = data_access::api::UnifiedResponseStatus::INVALID_REQUEST;
+                    response.errorMessage = "不支持的请求类型";
+                    LOG_WARN("不支持的统一请求类型: {}", static_cast<int>(request.requestType));
+                    break;
+            }
+            
+            return response;
+            
+        } catch (const std::exception& e) {
+            LOG_ERROR("processDataRequestAsync失败: {}", e.what());
+            data_access::api::UnifiedDataResponse errorResponse;
+            errorResponse.requestId = request.requestId;
+            errorResponse.status = data_access::api::UnifiedResponseStatus::FAILED;
+            errorResponse.errorMessage = e.what();
+            return errorResponse;
+        }
+    });
+}
+
+boost::future<std::vector<data_access::api::UnifiedDataResponse>> UnifiedDataAccessServiceImpl::processBatchRequestsAsync(
+    const std::vector<data_access::api::UnifiedDataRequest>& requests) {
+    
+    return createAsyncTask<std::vector<data_access::api::UnifiedDataResponse>>([this, requests]() -> std::vector<data_access::api::UnifiedDataResponse> {
+        try {
+            LOG_DEBUG("处理批量统一数据请求: 数量={}", requests.size());
+            
+            std::vector<data_access::api::UnifiedDataResponse> responses;
+            responses.reserve(requests.size());
+            
+            // 并行处理所有请求
+            std::vector<boost::future<data_access::api::UnifiedDataResponse>> futures;
+            futures.reserve(requests.size());
+            
+            for (const auto& request : requests) {
+                futures.push_back(processDataRequestAsync(request));
+            }
+            
+            // 收集所有结果
+            for (auto& future : futures) {
+                try {
+                    responses.push_back(future.get());
+                } catch (const std::exception& e) {
+                    LOG_ERROR("批量请求中的单个请求失败: {}", e.what());
+                    
+                    data_access::api::UnifiedDataResponse errorResponse;
+                    errorResponse.status = data_access::api::UnifiedResponseStatus::FAILED;
+                    errorResponse.errorMessage = e.what();
+                    responses.push_back(errorResponse);
+                }
+            }
+            
+            return responses;
+            
+        } catch (const std::exception& e) {
+            LOG_ERROR("批量统一数据请求处理异常: {}", e.what());
+            throw;
+        }
+    });
+}
+
+boost::future<std::optional<FileMetadata>> UnifiedDataAccessServiceImpl::getFileMetadataAsync(const std::string& filePath) {
+    return createAsyncTask<std::optional<FileMetadata>>([this, filePath]() -> std::optional<FileMetadata> {
+        
+        // ===== 生产环境并发优化：文件级锁定 =====
+        auto fileGuard = lockManager_->createFileGuard(filePath);
+        
+        // 📊 记录文件访问统计
+        auto accessStats = lockManager_->getFileAccessStats(filePath);
+        
+        LOG_DEBUG("文件访问统计: 活跃读取器={}, 排队请求={}", 
+                 accessStats.activeReaders, accessStats.queuedRequests);
+        
+        try {
+            LOG_DEBUG("📄 开始获取文件元数据: {}", filePath);
+            
+            // 验证文件路径
+            if (!validateFilePath(filePath)) {
+                LOG_WARN("❌ 无效文件路径: {}", filePath);
+                return std::nullopt;
+            }
+            
+            // 检测文件格式
+            std::string readerType = detectFileFormat(filePath);
+            
+            // 🏊 从池中获取或创建读取器
+            auto reader = poolManager_->getOrCreateReader(filePath, readerType);
+            
+            if (!reader) {
+                LOG_ERROR("❌ 创建读取器失败: {} (类型: {})", filePath, readerType);
+                return std::nullopt;
+            }
+            
+            LOG_DEBUG("✅ 获得读取器: {} (类型: {})", filePath, readerType);
+            
+            // RAII方式确保读取器最终归还到池中
+            struct ReaderGuard {
+                std::shared_ptr<readers::UnifiedDataReader> reader_;
+                std::shared_ptr<ReaderPoolManager> poolManager_;
+                
+                ReaderGuard(std::shared_ptr<readers::UnifiedDataReader> reader, std::shared_ptr<ReaderPoolManager> pm)
+                    : reader_(reader), poolManager_(pm) {}
+                    
+                ~ReaderGuard() {
+                    if (reader_ && poolManager_) {
+                        poolManager_->returnReaderToPool(reader_);
+                    }
+                }
+            } readerGuard(reader, poolManager_);
+            
+            // 打开文件
+            bool opened = reader->openAsync().get();
+            if (!opened) {
+                LOG_ERROR("❌ 读取器打开文件失败: {}", filePath);
+                return std::nullopt;
+            }
+            
+            // 获取元数据
+            auto metadataFuture = reader->getFileMetadataAsync();
+            auto metadata = metadataFuture.get();
+            
+            if (metadata.has_value()) {
+                LOG_DEBUG("✅ 元数据获取成功: {} (变量: {}, 维度: {})", 
+                         filePath, metadata->variables.size(), metadata->geographicDimensions.size());
+                return metadata;
+            } else {
+                LOG_WARN("⚠️ 读取器返回空元数据: {}", filePath);
+                return std::nullopt;
+            }
+            
+        } catch (const std::exception& e) {
+            LOG_ERROR("❌ 获取文件元数据异常: {} - {}", filePath, e.what());
+            return std::nullopt;
+        }
+    });
+}
+
+boost::future<std::shared_ptr<GridData>> UnifiedDataAccessServiceImpl::readGridDataAsync(
+    const std::string& filePath,
+    const std::string& variableName,
+    const std::optional<BoundingBox>& bounds) {
+    
+    return createAsyncTask<std::shared_ptr<GridData>>([this, filePath, variableName, bounds]() -> std::shared_ptr<GridData> {
+        try {
+            // 获取读取器
+            auto reader = getReaderForFile(filePath);
+            if (!reader) {
+                LOG_ERROR("无法为文件创建读取器: {}", filePath);
+                return nullptr;
+            }
+            
+            // 🔧 关键修复：先打开文件
+            auto openResult = reader->openAsync().get();
+            if (!openResult) {
+                LOG_ERROR("无法打开文件: {}", filePath);
+                return nullptr;
+            }
+            
+            // 读取网格数据
+            auto gridDataFuture = reader->readGridDataAsync(variableName, bounds);
+            auto gridData = gridDataFuture.get();
+            
+            // 🔧 在处理完后关闭文件
+            try {
+                reader->closeAsync().get();
+            } catch (const std::exception& e) {
+                LOG_WARN("关闭文件时出现异常: {} - {}", filePath, e.what());
+            }
+            
+            return gridData;
+            
+        } catch (const std::exception& e) {
+            LOG_ERROR("读取网格数据异常: {} - {}", filePath, e.what());
+            return nullptr;
+        }
+    });
+}
+
+boost::future<bool> UnifiedDataAccessServiceImpl::checkVariableExistsAsync(
+    const std::string& filePath,
+    const std::string& variableName) {
+    
+    return createAsyncTask<bool>([this, filePath, variableName]() -> bool {
+        try {
+            auto reader = getReaderForFile(filePath);
+            if (!reader) {
+                return false;
+            }
+            
+            auto variablesFuture = reader->getVariableNamesAsync();
+            auto variables = variablesFuture.get();
+            
+            return std::find(variables.begin(), variables.end(), variableName) != variables.end();
+        } catch (const std::exception& e) {
+            LOG_ERROR("检查变量存在性失败: {}", e.what());
+            return false;
+        }
+    });
+}
+
+boost::future<std::vector<std::string>> UnifiedDataAccessServiceImpl::getVariableNamesAsync(
+    const std::string& filePath) {
+    
+    return createAsyncTask<std::vector<std::string>>([this, filePath]() -> std::vector<std::string> {
+        try {
+            auto reader = getReaderForFile(filePath);
+            if (!reader) {
+                return {};
+            }
+            
+            auto variablesFuture = reader->getVariableNamesAsync();
+            return variablesFuture.get();
+        } catch (const std::exception& e) {
+            LOG_ERROR("获取变量名失败: {}", e.what());
+            return {};
+        }
+    });
+}
+
+boost::future<void> UnifiedDataAccessServiceImpl::startStreamingAsync(
+    const std::string& filePath,
+    const std::string& variableName,
+    std::function<bool(const std::vector<double>&)> chunkProcessor) {
+    
+    return createAsyncTask<void>([this, filePath, variableName, chunkProcessor]() -> void {
+        try {
+            auto reader = getReaderForFile(filePath);
+            if (!reader) {
+                LOG_ERROR("无法获取文件读取器: {}", filePath);
+                return;
+            }
+            
+            // 简化的流式处理实现 - 读取完整数据然后转换
+            auto gridDataFuture = reader->readGridDataAsync(variableName);
+            auto gridData = gridDataFuture.get();
+            
+            if (gridData && !gridData->data.empty()) {
+                // 将unsigned char数据转换为double数据传递给处理器
+                std::vector<double> doubleData;
+                doubleData.reserve(gridData->data.size());
+                
+                for (const auto& byte : gridData->data) {
+                    doubleData.push_back(static_cast<double>(byte));
+                }
+                
+                chunkProcessor(doubleData);
+            }
+        } catch (const std::exception& e) {
+            LOG_ERROR("流式处理失败: {}", e.what());
+        }
+    });
+}
+
+data_access::api::DataAccessMetrics UnifiedDataAccessServiceImpl::getPerformanceMetrics() const {
+    data_access::api::DataAccessMetrics metrics;
+    
+    metrics.totalRequests = totalRequests_.load();
+    metrics.successfulRequests = successfulRequests_.load();
+    metrics.failedRequests = metrics.totalRequests - metrics.successfulRequests;
+    metrics.averageResponseTimeMs = 0.0; // 简化实现
+    
+    return metrics;
+}
+
+void UnifiedDataAccessServiceImpl::configurePerformanceTargets(
+    const data_access::api::DataAccessPerformanceTargets& targets) {
+    LOG_INFO("性能目标已配置");
+}
+
+void UnifiedDataAccessServiceImpl::clearCache() {
+    // 🎯 数据访问模块不负责缓存管理
+    // 缓存管理应该由各个专门的模块（如元数据模块）负责
+    LOG_INFO("数据访问模块不负责缓存管理，缓存清理应由各专门模块执行");
+}
+
+bool UnifiedDataAccessServiceImpl::isHealthy() const {
+    return isInitialized_.load() && servicesFactory_ != nullptr;
+}
+
+// ===============================================================================
+// 内部辅助方法
+// ===============================================================================
+
+std::shared_ptr<data_access::readers::UnifiedDataReader> 
+UnifiedDataAccessServiceImpl::getReaderForFile(const std::string& filePath) {
+    
+    if (!validateFilePath(filePath)) {
+        LOG_ERROR("UnifiedDataAccessServiceImpl", "❌ 无效的文件路径: {}", filePath.c_str());
+        return nullptr;
+    }
+    
+    try {
+        // 🔒 使用文件级锁定，确保并发安全
+        auto fileGuard = lockManager_->createFileGuard(filePath);
+        
+        // 📊 记录文件访问统计
+        auto accessStats = lockManager_->getFileAccessStats(filePath);
+        
+        LOG_DEBUG("文件访问统计: 活跃读取器={}, 排队请求={}", 
+                 accessStats.activeReaders, accessStats.queuedRequests);
+        
+        // 检测文件格式
+        std::string readerType = detectFileFormat(filePath);
+        if (readerType.empty()) {
+            LOG_WARN("UnifiedDataAccessServiceImpl", "❌ 无法确定读取器类型: {}", filePath.c_str());
+            return nullptr;
+        }
+        
+        // 🏊 从池中获取或创建读取器
+        auto reader = poolManager_->getOrCreateReader(filePath, readerType);
+        
+        if (!reader) {
+            LOG_ERROR("UnifiedDataAccessServiceImpl", "❌ 无法创建读取器: {} (类型: {})", 
+                     filePath.c_str(), readerType.c_str());
+            return nullptr;
+        }
+        
+        LOG_DEBUG("✅ 成功获取读取器: {} (类型: {})", filePath.c_str(), readerType.c_str());
+        return reader;
+        
+    } catch (const std::exception& e) {
+        LOG_ERROR("UnifiedDataAccessServiceImpl", "❌ 获取读取器异常: {} - {}", filePath.c_str(), e.what());
+        return nullptr;
+    }
+}
+
+bool UnifiedDataAccessServiceImpl::validateFilePath(const std::string& filePath) const {
+    if (filePath.empty()) {
+        return false;
+    }
+    
+    try {
+        std::filesystem::path path(filePath);
+        return std::filesystem::exists(path) && std::filesystem::is_regular_file(path);
+    } catch (const std::exception&) {
+        return false;
+    }
+}
+
+std::string UnifiedDataAccessServiceImpl::detectFileFormat(const std::string& filePath) const {
+    try {
+        if (!fileFormatDetector_) {
+            LOG_WARN("UnifiedDataAccessServiceImpl", "⚠️ 文件格式检测器未初始化");
+            return "";
+        }
+        
+        auto result = fileFormatDetector_->detectFormat(filePath);
+        
+        if (!result.isValid()) {
+            LOG_WARN("UnifiedDataAccessServiceImpl", "⚠️ 无法检测文件格式: {}", filePath.c_str());
+            return "";
+        }
+        
+        // 转换为大写格式名称（匹配注册表格式）
+        std::string formatName = result.formatName;
+        std::transform(formatName.begin(), formatName.end(), formatName.begin(), ::toupper);
+        
+        // 标准化格式名称映射
+        static const std::unordered_map<std::string, std::string> formatMapping = {
+            {"NETCDF", "NETCDF"},
+            {"NETCDF3", "NETCDF"},
+            {"NETCDF4", "NETCDF"},
+            {"GEOTIFF", "GEOTIFF"},
+            {"TIFF", "GEOTIFF"},
+            {"TIF", "GEOTIFF"},
+            {"SHAPEFILE", "SHAPEFILE"},
+            {"SHP", "SHAPEFILE"},
+            {"HDF5", "HDF5"},
+            {"GEOPACKAGE", "GEOPACKAGE"},
+            {"GPKG", "GEOPACKAGE"}
+        };
+        
+        auto it = formatMapping.find(formatName);
+        if (it != formatMapping.end()) {
+            return it->second;
+        }
+        
+        return formatName;  // 如果没有映射，返回原始名称
+        
+    } catch (const std::exception& e) {
+        LOG_ERROR("UnifiedDataAccessServiceImpl", "❌ 格式检测异常: {} - {}", filePath.c_str(), e.what());
+        return "";
+    }
+}
+
+template<typename T>
+boost::future<T> UnifiedDataAccessServiceImpl::createAsyncTask(std::function<T()> task) const {
+    return boost::async(boost::launch::async, std::move(task));
+}
+
+} // namespace oscean::core_services 

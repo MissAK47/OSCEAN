@@ -1,0 +1,22 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+# Dependencies for the public interface of metadata_service
+find_dependency(core_service_interfaces REQUIRED)
+find_dependency(common_utilities REQUIRED)
+
+# Dependencies for the private implementation (if they affect linkage or ABI)
+# For a static library, these might not always be needed here unless they are also
+# transitive dependencies of its public interface or required for using the library.
+find_dependency(Boost REQUIRED COMPONENTS thread) # Example if Boost::thread is part of public API or ABI
+find_dependency(nlohmann_json REQUIRED) # Example if nlohmann::json is part of public API or ABI
+
+# Conditional dependency on SQLite3
+if(@OSCEAN_METADATA_HAS_SQLITE@)
+    find_dependency(SQLite3)
+endif()
+
+if(NOT TARGET OSCEAN::metadata_service)
+    include("${CMAKE_CURRENT_LIST_DIR}/metadata_service-targets.cmake")
+endif() 

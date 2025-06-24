@@ -1,0 +1,21 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+# CoreServicesImpl is an INTERFACE library that bundles other services.
+# It depends on the interfaces and utilities, and the concrete service implementations.
+
+find_dependency(common_utilities REQUIRED)
+find_dependency(core_service_interfaces REQUIRED)
+
+# Add dependencies for each specific service that core_services_impl aggregates.
+# The actual package names must match what those services export.
+# For example, if data_access_service exports as "data_access_service":
+find_dependency(data_access_service REQUIRED)
+find_dependency(metadata_service REQUIRED) # Assuming metadata_service exports itself
+find_dependency(crs_service REQUIRED)    # Assuming crs_service exports itself
+
+# Include the targets file generated for core_services_impl itself
+if(NOT TARGET OSCEAN::core_services_impl)
+    include("${CMAKE_CURRENT_LIST_DIR}/CoreServicesImplTargets.cmake")
+endif() 

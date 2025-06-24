@@ -1,0 +1,39 @@
+# CMake generation dependency list for this directory.
+C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeFindDependencyMacro.cmake
+C:/Program Files/CMake/share/cmake-4.0/Modules/CheckCSourceCompiles.cmake
+C:/Program Files/CMake/share/cmake-4.0/Modules/CheckIncludeFile.cmake
+C:/Program Files/CMake/share/cmake-4.0/Modules/CheckLibraryExists.cmake
+C:/Program Files/CMake/share/cmake-4.0/Modules/FindBoost.cmake
+C:/Program Files/CMake/share/cmake-4.0/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-4.0/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-4.0/Modules/FindThreads.cmake
+C:/Program Files/CMake/share/cmake-4.0/Modules/InstallRequiredSystemLibraries.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost/BoostConfig.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost/BoostConfigVersion.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost/vcpkg-cmake-wrapper.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_chrono/boost_chrono-config-version.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_chrono/boost_chrono-config.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_chrono/boost_chrono-targets.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_filesystem/boost_filesystem-config-version.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_filesystem/boost_filesystem-config.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_filesystem/boost_filesystem-targets.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_headers/boost_headers-config-version.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_headers/boost_headers-config.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_headers/boost_headers-targets.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_system/boost_system-config-version.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_system/boost_system-config.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_system/boost_system-targets.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_thread/boost_thread-config-version.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_thread/boost_thread-config.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/boost_thread/boost_thread-targets.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/gdal/GDAL-targets.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/gdal/GDALConfig.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/gdal/GDALConfigVersion.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/gdal/vcpkg-cmake-wrapper.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/gtest/GTestConfig.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/gtest/GTestConfigVersion.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/gtest/GTestTargets.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/spdlog/spdlogConfig.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/spdlog/spdlogConfigTargets.cmake
+C:/Users/Administrator/vcpkg/installed/x64-windows/share/spdlog/spdlogConfigVersion.cmake
+D:/OSCEAN/common_utilities/tests/CMakeLists.txt

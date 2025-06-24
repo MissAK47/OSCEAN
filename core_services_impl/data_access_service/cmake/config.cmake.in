@@ -1,0 +1,23 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+# Dependencies for the public interface of data_access_service
+find_dependency(core_service_interfaces REQUIRED)
+find_dependency(common_utilities REQUIRED)
+
+# GDAL is required for data access
+find_dependency(GDAL REQUIRED)
+
+# Conditional dependencies
+if(@OSCEAN_HAS_PROJ@)
+    find_dependency(PROJ)
+endif()
+
+if(@OSCEAN_HAS_NETCDF@)
+    find_dependency(netCDF)
+endif()
+
+if(NOT TARGET OSCEAN::data_access_service)
+    include("${CMAKE_CURRENT_LIST_DIR}/data_access_service-targets.cmake")
+endif() 

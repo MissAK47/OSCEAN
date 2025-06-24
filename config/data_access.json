@@ -1,0 +1,17 @@
+{
+  "netcdf": {
+    "memory_pool": {
+      "enabled": true,
+      "max_size_mb": 128,
+      "buffer_size_range": {
+        "min": 4096,
+        "max": 16777216
+      },
+      "cleanup_interval_seconds": 60
+    },
+    "simd_processing": {
+      "enabled": true,
+      "auto_detect": true
+    }
+  }
+} 

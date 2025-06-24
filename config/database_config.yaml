@@ -1,0 +1,171 @@
+# 元数据服务数据库配置
+database:
+  base_path: "D:/OSCEAN/database"
+  
+  # 四种专用数据库配置
+  connections:
+    # 海洋环境数据库 - 存储u,v,温度,盐度等海洋变量
+    ocean_environment:
+      file: "ocean_environment.db"
+      max_connections: 10
+      timeout_seconds: 30
+      enable_wal: true
+      cache_size: 2000
+      
+    # 地形底质数据库 - 存储高程,深度等地形变量
+    topography_bathymetry:
+      file: "topography_bathymetry.db"
+      max_connections: 5
+      timeout_seconds: 30
+      enable_wal: true
+      cache_size: 1000
+      
+    # 边界线数据库 - 存储海岸线,边界等边界变量
+    boundary_lines:
+      file: "boundary_lines.db"
+      max_connections: 5
+      timeout_seconds: 30
+      enable_wal: true
+      cache_size: 1000
+      
+    # 声纳传播数据库 - 存储传感器数据，支持platform_id + sensor_id + working_mode_id联合索引
+    sonar_propagation:
+      file: "sonar_propagation.db"
+      max_connections: 8
+      timeout_seconds: 30
+      enable_wal: true
+      cache_size: 1500
+
+# 🔧 元数据服务配置 - 完全配置驱动
+metadata:
+  database:
+    # 数据库基础路径
+    base_path: "D:/OSCEAN/database"
+    
+    # 统一连接配置
+    unified_connection:
+      directory: "D:/OSCEAN/database"
+      file: "ocean_environment.db"
+
+    # Schema文件路径 - 关键修复
+    schema_path: "config/unified_schema.sql"
+    directory: "D:/OSCEAN/database"
+    filename: "ocean_environment.db"
+    max_connections: 5
+    timeout_seconds: 30
+    enable_wal: true
+    cache_size: 1000
+  
+  # 🔧 统一数据库架构配置
+  unified_connection:
+    directory: "D:/OSCEAN/database"
+    file: "ocean_environment.db"
+    max_connections: 20
+    timeout_seconds: 30
+    enable_wal: true
+    cache_size: 4000
+  
+  # 🚀 核心创新：完全配置驱动的SQL查询系统
+  queries:
+    # === 📝 插入操作 ===
+    insert_file_info: |
+      INSERT OR REPLACE INTO file_info 
+      (file_id, file_path, logical_name, file_size, last_modified, file_format, primary_category, created_at, updated_at) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+    
+    insert_spatial_coverage: |
+      INSERT OR REPLACE INTO spatial_coverage 
+      (file_id, min_longitude, max_longitude, min_latitude, max_latitude, spatial_resolution_x, crs_wkt) 
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    
+    insert_temporal_coverage: |
+      INSERT OR REPLACE INTO temporal_coverage 
+      (file_id, start_time, end_time, start_timestamp, end_timestamp, time_resolution_seconds, time_calendar) 
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    
+    insert_variable_info: |
+      INSERT INTO variable_info 
+      (file_id, variable_name, standard_name, long_name, units, data_type, variable_category) 
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    
+    insert_variable_attributes: |
+      INSERT INTO variable_attributes 
+      (variable_id, attribute_name, attribute_value) 
+      VALUES (?, ?, ?)
+    
+    # === 🔍 查询操作 ===
+    select_file_by_path: |
+      SELECT file_id FROM file_info WHERE file_path = ?
+    
+    select_file_info: |
+      SELECT file_id, file_path, logical_name, file_format, file_size, last_modified, primary_category 
+      FROM file_info WHERE file_id = ?
+    
+    select_spatial_coverage: |
+      SELECT min_longitude, max_longitude, min_latitude, max_latitude, spatial_resolution_x, crs_wkt 
+      FROM spatial_coverage WHERE file_id = ?
+    
+    select_temporal_coverage: |
+      SELECT start_time, end_time, time_resolution_seconds, time_calendar 
+      FROM temporal_coverage WHERE file_id = ?
+    
+    select_variables: |
+      SELECT variable_name, data_type, units, long_name 
+      FROM variable_info WHERE file_id = ?
+    
+    # === 🗑️ 删除操作 ===
+    delete_file_info: |
+      DELETE FROM file_info WHERE file_id = ?
+    
+    delete_spatial_coverage: |
+      DELETE FROM spatial_coverage WHERE file_id = ?
+    
+    delete_temporal_coverage: |
+      DELETE FROM temporal_coverage WHERE file_id = ?
+    
+    delete_variables: |
+      DELETE FROM variable_info WHERE file_id = ?
+    
+    # === 📊 统计查询 ===
+    count_files: |
+      SELECT COUNT(*) FROM file_info
+    
+    count_files_by_format: |
+      SELECT file_format, COUNT(*) FROM file_info GROUP BY file_format
+    
+    select_spatial_bounds: |
+      SELECT 
+        MIN(min_longitude) as overall_min_lon,
+        MAX(max_longitude) as overall_max_lon,
+        MIN(min_latitude) as overall_min_lat,
+        MAX(max_latitude) as overall_max_lat
+      FROM spatial_coverage
+  
+  # 🎯 表结构映射 - 支持动态表结构适配
+  table_mappings:
+    file_info:
+      primary_key: "file_id"
+      path_field: "file_path"
+      required_fields: ["file_id", "file_path"]
+    
+    spatial_coverage:
+      primary_key: "file_id"
+      foreign_key: "file_id"
+      bounds_fields: ["min_longitude", "max_longitude", "min_latitude", "max_latitude"]
+    
+    temporal_coverage:
+      primary_key: "file_id"
+      foreign_key: "file_id"
+      time_fields: ["start_time", "end_time"]
+    
+    variable_info:
+      primary_key: "variable_id"
+      foreign_key: "file_id"
+      name_field: "variable_name"
+
+# 数据库初始化配置
+initialization:
+  create_tables_if_not_exist: true
+  enable_foreign_keys: true
+  journal_mode: "WAL"
+  synchronous: "NORMAL" 

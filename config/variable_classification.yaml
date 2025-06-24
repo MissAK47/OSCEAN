@@ -1,0 +1,183 @@
+# OSCEAN 变量分类配置文件
+# 用于智能识别和分类海洋数据变量
+
+# 物理变量分类
+physical_variables:
+  temperature:
+    patterns: ["temp", "temperature", "sst", "sea_surface_temperature", "water_temp"]
+    units: ["celsius", "kelvin", "°C", "K"]
+    description: "温度相关变量"
+    
+  salinity:
+    patterns: ["sal", "salinity", "psu", "practical_salinity"]
+    units: ["psu", "pss-78", "g/kg"]
+    description: "盐度相关变量"
+    
+  velocity:
+    patterns: ["uo", "vo", "w", "velocity", "current", "speed"]
+    units: ["m/s", "cm/s", "knots"]
+    description: "流速相关变量"
+    
+  pressure:
+    patterns: ["pressure", "press", "depth", "level"]
+    units: ["pa", "hpa", "dbar", "m"]
+    description: "压力和深度相关变量"
+
+# 化学变量分类
+chemical_variables:
+  oxygen:
+    patterns: ["o2", "oxygen", "dissolved_oxygen", "do"]
+    units: ["ml/l", "mg/l", "μmol/kg"]
+    description: "氧气相关变量"
+    
+  nutrients:
+    patterns: ["no3", "po4", "sio4", "nitrate", "phosphate", "silicate"]
+    units: ["μmol/l", "mg/l"]
+    description: "营养盐相关变量"
+    
+  ph:
+    patterns: ["ph", "acidity", "alkalinity"]
+    units: ["ph_units", "μmol/kg"]
+    description: "酸碱度相关变量"
+
+# 生物变量分类
+biological_variables:
+  chlorophyll:
+    patterns: ["chl", "chlorophyll", "chla", "chlorophyll_a"]
+    units: ["mg/m3", "μg/l"]
+    description: "叶绿素相关变量"
+    
+  biomass:
+    patterns: ["biomass", "phytoplankton", "zooplankton"]
+    units: ["mg/m3", "g/m3"]
+    description: "生物量相关变量"
+
+# 气象变量分类
+meteorological_variables:
+  wind:
+    patterns: ["wind", "u10", "v10", "wind_speed", "wind_direction"]
+    units: ["m/s", "degrees"]
+    description: "风场相关变量"
+    
+  precipitation:
+    patterns: ["rain", "precipitation", "precip"]
+    units: ["mm", "mm/day", "kg/m2/s"]
+    description: "降水相关变量"
+
+# 坐标变量分类
+coordinate_variables:
+  spatial:
+    patterns: ["lon", "lat", "longitude", "latitude", "x", "y"]
+    units: ["degrees_east", "degrees_north", "m", "km"]
+    description: "空间坐标变量"
+    
+  temporal:
+    patterns: ["time", "date", "datetime", "julian_day"]
+    units: ["days", "hours", "seconds", "julian_days"]
+    description: "时间坐标变量"
+    
+  vertical:
+    patterns: ["depth", "level", "z", "height", "altitude"]
+    units: ["m", "km", "dbar", "sigma"]
+    description: "垂直坐标变量"
+
+# 质量控制变量
+quality_variables:
+  flags:
+    patterns: ["flag", "qc", "quality", "status"]
+    units: ["dimensionless", "1"]
+    description: "质量控制标志"
+    
+  errors:
+    patterns: ["error", "uncertainty", "std", "variance"]
+    units: ["same_as_variable"]
+    description: "误差和不确定性"
+
+# 默认分类规则
+default_classification:
+  unknown:
+    description: "未识别的变量类型"
+    action: "use_content_analysis"
+
+# =============================================================================
+# 分类规则配置 (Classification Rules)
+# =============================================================================
+classification_rules:
+  
+  # 优先级顺序（数字越小优先级越高）
+  priority_order:
+    1: "cf_standard_names"     # CF标准名称最高优先级
+    2: "units"                 # 单位匹配
+    3: "variable_name_patterns" # 变量名模式匹配
+    
+  # 模式匹配选项
+  pattern_matching:
+    case_sensitive: false      # 大小写不敏感
+    regex_enabled: true        # 启用正则表达式
+    
+  # 分类阈值
+  confidence_thresholds:
+    high_confidence: 0.9       # 高置信度阈值
+    medium_confidence: 0.7     # 中等置信度阈值
+    low_confidence: 0.5        # 低置信度阈值
+    
+  # 默认分类
+  default_classification:
+    category: "unknown"
+    subcategory: "unclassified"
+    confidence: 0.0
+
+# =============================================================================
+# 质量控制规则 (Quality Control Rules)
+# =============================================================================
+quality_control:
+  
+  # 数值范围检查
+  value_ranges:
+    temperature:
+      ocean: [-5.0, 40.0]      # 海水温度合理范围（℃）
+      air: [-80.0, 60.0]       # 气温合理范围（℃）
+    salinity:
+      ocean: [0.0, 50.0]       # 海水盐度合理范围（psu）
+    velocity:
+      ocean: [-5.0, 5.0]       # 海流速度合理范围（m/s）
+      wind: [0.0, 100.0]       # 风速合理范围（m/s）
+      
+  # 单位转换规则
+  unit_conversions:
+    temperature:
+      "K": "celsius"           # 开尔文转摄氏度：T(°C) = T(K) - 273.15
+    velocity:
+      "cm/s": "m/s"           # 厘米/秒转米/秒：除以100
+      
+# =============================================================================
+# 扩展配置 (Extension Configuration)
+# =============================================================================
+extensions:
+  
+  # 自定义变量类型支持
+  custom_variables:
+    enabled: true
+    config_path: "config/custom_variables.yaml"
+    
+  # 第三方标准支持
+  external_standards:
+    acdd: true                 # Attribute Convention for Data Discovery
+    coards: true               # Cooperative Ocean/Atmosphere Research Data Service
+    udunits: true              # Units Database
+    
+  # 插件支持
+  plugins:
+    enabled: false
+    plugin_directory: "plugins/classification"
+
+# =============================================================================
+# 日志和调试配置 (Logging Configuration)
+# =============================================================================
+logging:
+  level: "info"                # 日志级别：debug, info, warn, error
+  enable_classification_log: true # 是否记录分类过程
+  log_unmatched_variables: true   # 是否记录未匹配的变量
+  performance_logging: false      # 是否启用性能日志
+
+# 文件结束 

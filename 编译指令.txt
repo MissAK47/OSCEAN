@@ -1,0 +1,18 @@
+cmake --build build -DCMAKE_TOOLCHAIN_FILE=D:\vcpkg\scripts\buildsystems\vcpkg.cmake
+
+cmake .. -G "Visual Studio 17 2022" -A x64 -DCMAKE_TOOLCHAIN_FILE="D:/vcpkg/scripts/buildsystems/vcpkg.cmake"
+
+cmake --build . --config Debug --verbose
+cmake --build build --target common_utilities --config Debug
+
+中文显示激活UTF-8  chcp 65001 
+
+cmake --build . --target unified_memory_manager_tests
+
+
+cmak
+e --build build --target run_all_tests --config Debug
+cmake --build . --target metadata_service --config Debug --verbose
+
+
+cmake --build build --config Debug --target data_access_service --verbose

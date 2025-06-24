@@ -1,0 +1,1539 @@
+
+D:\OSCEAN\build\bin\Debug>test_real_ocean_data_processing.exe
+=== 基于真实API的海洋数据处理测试程序 ===
+版本: 1.0
+目标: E:\Ocean_data 目录处理
+=========================================
+正在初始化服务...
+[2025-06-07 01:41:46.936] [early_logger] [info] === 初始化海洋数据处理器 ===
+[UnifiedThreadPoolManager] 初始化线程池管理器
+[UnifiedThreadPoolManager] 创建线程池: 0 (32 线程)
+[UnifiedThreadPoolManager] 创建线程池: 1 (16 线程)
+[UnifiedThreadPoolManager] 创建线程池: 3 (32 线程)
+[UnifiedThreadPoolManager] 创建线程池: 4 (2 线程)
+[2025-06-07 01:41:46.951] [early_logger] [info] 元数据服务工厂已初始化
+[2025-06-07 01:41:46.951] [early_logger] [info] 开始创建元数据服务实例
+[2025-06-07 01:41:46.951] [early_logger] [info] 开始初始化统一元数据服务
+[2025-06-07 01:41:46.952] [early_logger] [info] 初始化配置管理器
+[2025-06-07 01:41:46.952] [early_logger] [info] 初始化配置管理器
+[2025-06-07 01:41:46.952] [early_logger] [info] 初始化多数据库管理器
+[2025-06-07 01:41:46.952] [early_logger] [info] 初始化多数据库管理器
+[2025-06-07 01:41:46.952] [early_logger] [info] 开始初始化所有数据库
+[2025-06-07 01:41:46.953] [SQLiteStorage] [info] Creating SQLiteStorage with database path: ./ocean_metadata_db/ocean_environment.db
+[2025-06-07 01:41:46.953] [SQLiteStorage] [info] 数据库已打开: ./ocean_metadata_db/ocean_environment.db
+[2025-06-07 01:41:46.979] [SQLiteStorage] [info] Database tables created successfully
+[2025-06-07 01:41:46.980] [SQLiteStorage] [info] SQL 语句准备完毕.
+[2025-06-07 01:41:46.980] [early_logger] [info] SQLiteStorage初始化成功: 0 - 路径: ./ocean_metadata_db/ocean_environment.db
+[2025-06-07 01:41:46.981] [early_logger] [info] 数据库schema初始化成功: 0 (基于SQLiteStorage内置表结构)
+[2025-06-07 01:41:46.981] [early_logger] [info] 数据库schema初始化成功: 0
+[2025-06-07 01:41:46.981] [early_logger] [info] 数据库创建成功: 0 - 路径: ./ocean_metadata_db/ocean_environment.db
+[2025-06-07 01:41:46.981] [early_logger] [info] 数据库初始化成功: 0
+[2025-06-07 01:41:46.982] [SQLiteStorage] [info] Creating SQLiteStorage with database path: ./ocean_metadata_db/topography_bathymetry.db
+[2025-06-07 01:41:46.982] [SQLiteStorage] [info] 数据库已打开: ./ocean_metadata_db/topography_bathymetry.db
+[2025-06-07 01:41:47.001] [SQLiteStorage] [info] Database tables created successfully
+[2025-06-07 01:41:47.002] [SQLiteStorage] [info] SQL 语句准备完毕.
+[2025-06-07 01:41:47.002] [early_logger] [info] SQLiteStorage初始化成功: 1 - 路径: ./ocean_metadata_db/topography_bathymetry.db
+[2025-06-07 01:41:47.003] [early_logger] [info] 数据库schema初始化成功: 1 (基于SQLiteStorage内置表结构)
+[2025-06-07 01:41:47.003] [early_logger] [info] 数据库schema初始化成功: 1
+[2025-06-07 01:41:47.003] [early_logger] [info] 数据库创建成功: 1 - 路径: ./ocean_metadata_db/topography_bathymetry.db
+[2025-06-07 01:41:47.003] [early_logger] [info] 数据库初始化成功: 1
+[2025-06-07 01:41:47.003] [SQLiteStorage] [info] Creating SQLiteStorage with database path: ./ocean_metadata_db/boundary_lines.db
+[2025-06-07 01:41:47.004] [SQLiteStorage] [info] 数据库已打开: ./ocean_metadata_db/boundary_lines.db
+[2025-06-07 01:41:47.023] [SQLiteStorage] [info] Database tables created successfully
+[2025-06-07 01:41:47.024] [SQLiteStorage] [info] SQL 语句准备完毕.
+[2025-06-07 01:41:47.024] [early_logger] [info] SQLiteStorage初始化成功: 2 - 路径: ./ocean_metadata_db/boundary_lines.db
+[2025-06-07 01:41:47.024] [early_logger] [info] 数据库schema初始化成功: 2 (基于SQLiteStorage内置表结构)
+[2025-06-07 01:41:47.024] [early_logger] [info] 数据库schema初始化成功: 2
+[2025-06-07 01:41:47.024] [early_logger] [info] 数据库创建成功: 2 - 路径: ./ocean_metadata_db/boundary_lines.db
+[2025-06-07 01:41:47.025] [early_logger] [info] 数据库初始化成功: 2
+[2025-06-07 01:41:47.025] [SQLiteStorage] [info] Creating SQLiteStorage with database path: ./ocean_metadata_db/sonar_propagation.db
+[2025-06-07 01:41:47.025] [SQLiteStorage] [info] 数据库已打开: ./ocean_metadata_db/sonar_propagation.db
+[2025-06-07 01:41:47.043] [SQLiteStorage] [info] Database tables created successfully
+[2025-06-07 01:41:47.043] [SQLiteStorage] [info] SQL 语句准备完毕.
+[2025-06-07 01:41:47.044] [early_logger] [info] SQLiteStorage初始化成功: 3 - 路径: ./ocean_metadata_db/sonar_propagation.db
+[2025-06-07 01:41:47.044] [early_logger] [info] 数据库schema初始化成功: 3 (基于SQLiteStorage内置表结构)
+[2025-06-07 01:41:47.044] [early_logger] [info] 数据库schema初始化成功: 3
+[2025-06-07 01:41:47.044] [early_logger] [info] 数据库创建成功: 3 - 路径: ./ocean_metadata_db/sonar_propagation.db
+[2025-06-07 01:41:47.045] [early_logger] [info] 数据库初始化成功: 3
+[2025-06-07 01:41:47.045] [early_logger] [info] 多数据库管理器初始化成功
+[2025-06-07 01:41:47.045] [early_logger] [info] 初始化智能元数据识别器
+[2025-06-07 01:41:47.045] [early_logger] [info] 初始化智能元数据识别器
+[2025-06-07 01:41:47.045] [early_logger] [info] 初始化元数据提取器
+[2025-06-07 01:41:47.046] [early_logger] [info] 初始化元数据提取器
+[2025-06-07 01:41:47.046] [early_logger] [info] 初始化查询引擎
+[2025-06-07 01:41:47.046] [early_logger] [info] 多数据库查询引擎初始化完成
+[2025-06-07 01:41:47.046] [early_logger] [info] 所有组件初始化完成
+[2025-06-07 01:41:47.046] [early_logger] [info] 统一元数据服务初始化完成
+[2025-06-07 01:41:47.047] [early_logger] [info] 元数据服务实例创建成功
+[2025-06-07 01:41:47.047] [early_logger] [info] 服务初始化完成
+✓ 初始化成功
+[2025-06-07 01:41:47.048] [early_logger] [info] === 开始处理海洋数据目录: E:\Ocean_data ===
+[2025-06-07 01:41:47.050] [early_logger] [info] 发现 232 个数据文件
+发现 232 个数据文件
+开始处理 232 个文件...
+[1/232] 处理: cs_2023_01_00_00.nc
+[2025-06-07 01:41:47.051] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2023_01_00_00.nc
+[2025-06-07 01:41:47.052] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2023_01_00_00.nc
+[2025-06-07 01:41:47.054] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 16819703963627453990)
+[2025-06-07 01:41:47.054] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2023_01_00_00.nc, ID=16819703963627453990, 数据库类型=0
+  ✓ 成功
+[2/232] 处理: cs_2023_02_00_00.nc
+[2025-06-07 01:41:47.056] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2023_02_00_00.nc
+[2025-06-07 01:41:47.057] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2023_02_00_00.nc
+[2025-06-07 01:41:47.059] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 11930562649616417145)
+[2025-06-07 01:41:47.059] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2023_02_00_00.nc, ID=11930562649616417145, 数据库类型=0
+  ✓ 成功
+[3/232] 处理: cs_2023_03_00_00.nc
+[2025-06-07 01:41:47.065] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2023_03_00_00.nc
+[2025-06-07 01:41:47.066] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2023_03_00_00.nc
+[2025-06-07 01:41:47.068] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 12693466225516024428)
+[2025-06-07 01:41:47.068] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2023_03_00_00.nc, ID=12693466225516024428, 数据库类型=0
+  ✓ 成功
+[4/232] 处理: cs_2023_04_00_00.nc
+[2025-06-07 01:41:47.069] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2023_04_00_00.nc
+[2025-06-07 01:41:47.070] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2023_04_00_00.nc
+[2025-06-07 01:41:47.072] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 13260307264124604383)
+[2025-06-07 01:41:47.073] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2023_04_00_00.nc, ID=13260307264124604383, 数据库类型=0
+  ✓ 成功
+[5/232] 处理: cs_2023_05_00_00.nc
+[2025-06-07 01:41:47.073] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2023_05_00_00.nc
+[2025-06-07 01:41:47.074] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2023_05_00_00.nc
+[2025-06-07 01:41:47.077] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 11784860562926523178)
+[2025-06-07 01:41:47.083] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2023_05_00_00.nc, ID=11784860562926523178, 数据库类型=0
+  ✓ 成功
+[6/232] 处理: cs_2023_06_00_00.nc
+[2025-06-07 01:41:47.084] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2023_06_00_00.nc
+[2025-06-07 01:41:47.085] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2023_06_00_00.nc
+[2025-06-07 01:41:47.087] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 11456225892207062109)
+[2025-06-07 01:41:47.088] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2023_06_00_00.nc, ID=11456225892207062109, 数据库类型=0
+  ✓ 成功
+[7/232] 处理: cs_2023_07_00_00.nc
+[2025-06-07 01:41:47.089] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2023_07_00_00.nc
+[2025-06-07 01:41:47.090] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2023_07_00_00.nc
+[2025-06-07 01:41:47.092] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 4742992397450613168)
+[2025-06-07 01:41:47.092] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2023_07_00_00.nc, ID=4742992397450613168, 数据库类型=0
+  ✓ 成功
+[8/232] 处理: cs_2023_08_00_00.nc
+[2025-06-07 01:41:47.099] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2023_08_00_00.nc
+[2025-06-07 01:41:47.100] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2023_08_00_00.nc
+[2025-06-07 01:41:47.102] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 6072828994037708931)
+[2025-06-07 01:41:47.103] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2023_08_00_00.nc, ID=6072828994037708931, 数据库类型=0
+  ✓ 成功
+[9/232] 处理: cs_2023_09_00_00.nc
+[2025-06-07 01:41:47.103] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2023_09_00_00.nc
+[2025-06-07 01:41:47.104] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2023_09_00_00.nc
+[2025-06-07 01:41:47.106] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 674759050543179886)
+[2025-06-07 01:41:47.106] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2023_09_00_00.nc, ID=674759050543179886, 数据库类型=0
+  ✓ 成功
+[10/232] 处理: cs_2023_10_00_00.nc
+[2025-06-07 01:41:47.107] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2023_10_00_00.nc
+[2025-06-07 01:41:47.108] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2023_10_00_00.nc
+[2025-06-07 01:41:47.111] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 5419638845625830588)
+[2025-06-07 01:41:47.116] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2023_10_00_00.nc, ID=5419638845625830588, 数据库类型=0
+  ✓ 成功
+进度: 10/232 (成功: 10, 失败: 0)
+[11/232] 处理: cs_2023_11_00_00.nc
+[2025-06-07 01:41:47.117] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2023_11_00_00.nc
+[2025-06-07 01:41:47.118] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2023_11_00_00.nc
+[2025-06-07 01:41:47.120] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 18392557503591721161)
+[2025-06-07 01:41:47.121] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2023_11_00_00.nc, ID=18392557503591721161, 数据库类型=0
+  ✓ 成功
+[12/232] 处理: cs_2023_12_00_00.nc
+[2025-06-07 01:41:47.121] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2023_12_00_00.nc
+[2025-06-07 01:41:47.122] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2023_12_00_00.nc
+[2025-06-07 01:41:47.124] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 10013392563719941302)
+[2025-06-07 01:41:47.125] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2023_12_00_00.nc, ID=10013392563719941302, 数据库类型=0
+  ✓ 成功
+[13/232] 处理: cs_2024_01_00_00.nc
+[2025-06-07 01:41:47.125] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2024_01_00_00.nc
+[2025-06-07 01:41:47.126] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2024_01_00_00.nc
+[2025-06-07 01:41:47.128] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 8178551994039012443)
+[2025-06-07 01:41:47.128] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2024_01_00_00.nc, ID=8178551994039012443, 数据库类型=0
+  ✓ 成功
+[14/232] 处理: cs_2024_02_00_00.nc
+[2025-06-07 01:41:47.129] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2024_02_00_00.nc
+[2025-06-07 01:41:47.130] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2024_02_00_00.nc
+[2025-06-07 01:41:47.132] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 4778013121028175244)
+[2025-06-07 01:41:47.140] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2024_02_00_00.nc, ID=4778013121028175244, 数据库类型=0
+  ✓ 成功
+[15/232] 处理: cs_2024_03_00_00.nc
+[2025-06-07 01:41:47.141] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2024_03_00_00.nc
+[2025-06-07 01:41:47.141] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2024_03_00_00.nc
+[2025-06-07 01:41:47.144] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 2457671042440101785)
+[2025-06-07 01:41:47.144] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2024_03_00_00.nc, ID=2457671042440101785, 数据库类型=0
+  ✓ 成功
+[16/232] 处理: cs_2024_04_00_00.nc
+[2025-06-07 01:41:47.145] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2024_04_00_00.nc
+[2025-06-07 01:41:47.145] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2024_04_00_00.nc
+[2025-06-07 01:41:47.147] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 13268142186516980042)
+[2025-06-07 01:41:47.148] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2024_04_00_00.nc, ID=13268142186516980042, 数据库类型=0
+  ✓ 成功
+[17/232] 处理: cs_2024_05_00_00.nc
+[2025-06-07 01:41:47.149] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2024_05_00_00.nc
+[2025-06-07 01:41:47.149] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2024_05_00_00.nc
+[2025-06-07 01:41:47.151] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 12290272714363667071)
+[2025-06-07 01:41:47.158] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2024_05_00_00.nc, ID=12290272714363667071, 数据库类型=0
+  ✓ 成功
+[18/232] 处理: cs_2024_06_00_00.nc
+[2025-06-07 01:41:47.158] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2024_06_00_00.nc
+[2025-06-07 01:41:47.159] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2024_06_00_00.nc
+[2025-06-07 01:41:47.161] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 16635716625524050256)
+[2025-06-07 01:41:47.161] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2024_06_00_00.nc, ID=16635716625524050256, 数据库类型=0
+  ✓ 成功
+[19/232] 处理: cs_2024_07_00_00.nc
+[2025-06-07 01:41:47.162] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2024_07_00_00.nc
+[2025-06-07 01:41:47.163] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2024_07_00_00.nc
+[2025-06-07 01:41:47.165] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 10733917253490601085)
+[2025-06-07 01:41:47.165] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2024_07_00_00.nc, ID=10733917253490601085, 数据库类型=0
+  ✓ 成功
+[20/232] 处理: cs_2024_08_00_00.nc
+[2025-06-07 01:41:47.166] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2024_08_00_00.nc
+[2025-06-07 01:41:47.166] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2024_08_00_00.nc
+[2025-06-07 01:41:47.169] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 17463712457135727118)
+[2025-06-07 01:41:47.174] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2024_08_00_00.nc, ID=17463712457135727118, 数据库类型=0
+  ✓ 成功
+进度: 20/232 (成功: 20, 失败: 0)
+[21/232] 处理: cs_2024_09_00_00.nc
+[2025-06-07 01:41:47.175] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2024_09_00_00.nc
+[2025-06-07 01:41:47.176] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2024_09_00_00.nc
+[2025-06-07 01:41:47.178] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 1083566776691601955)
+[2025-06-07 01:41:47.178] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2024_09_00_00.nc, ID=1083566776691601955, 数据库类型=0
+  ✓ 成功
+[22/232] 处理: cs_2024_10_00_00.nc
+[2025-06-07 01:41:47.179] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2024_10_00_00.nc
+[2025-06-07 01:41:47.180] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2024_10_00_00.nc
+[2025-06-07 01:41:47.182] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 11628273260017720101)
+[2025-06-07 01:41:47.182] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2024_10_00_00.nc, ID=11628273260017720101, 数据库类型=0
+  ✓ 成功
+[23/232] 处理: cs_2024_11_00_00.nc
+[2025-06-07 01:41:47.183] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2024_11_00_00.nc
+[2025-06-07 01:41:47.184] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2024_11_00_00.nc
+[2025-06-07 01:41:47.186] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 17599518907412136760)
+[2025-06-07 01:41:47.192] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2024_11_00_00.nc, ID=17599518907412136760, 数据库类型=0
+  ✓ 成功
+[24/232] 处理: cs_2024_12_00_00.nc
+[2025-06-07 01:41:47.192] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2024_12_00_00.nc
+[2025-06-07 01:41:47.193] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2024_12_00_00.nc
+[2025-06-07 01:41:47.195] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 9712977761026328711)
+[2025-06-07 01:41:47.195] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2024_12_00_00.nc, ID=9712977761026328711, 数据库类型=0
+  ✓ 成功
+[25/232] 处理: cs_2025_01_00_00.nc
+[2025-06-07 01:41:47.196] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2025_01_00_00.nc
+[2025-06-07 01:41:47.197] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2025_01_00_00.nc
+[2025-06-07 01:41:47.199] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 138746262941493568)
+[2025-06-07 01:41:47.199] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2025_01_00_00.nc, ID=138746262941493568, 数据库类型=0
+  ✓ 成功
+[26/232] 处理: cs_2025_02_00_00.nc
+[2025-06-07 01:41:47.200] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\cs\cs_2025_02_00_00.nc
+[2025-06-07 01:41:47.201] [early_logger] [info] 文件识别完成: E:\Ocean_data\cs\cs_2025_02_00_00.nc
+[2025-06-07 01:41:47.203] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 18132502534671182703)
+[2025-06-07 01:41:47.209] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\cs\cs_2025_02_00_00.nc, ID=18132502534671182703, 数据库类型=0
+  ✓ 成功
+[27/232] 处理: DECK41_V2_coordinates.nc
+[2025-06-07 01:41:47.209] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\dk\DECK41_V2_coordinates.nc
+[2025-06-07 01:41:47.210] [early_logger] [info] 文件识别完成: E:\Ocean_data\dk\DECK41_V2_coordinates.nc
+[2025-06-07 01:41:47.212] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 12417768571936850866)
+[2025-06-07 01:41:47.213] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\dk\DECK41_V2_coordinates.nc, ID=12417768571936850866, 数据库类型=0
+  ✓ 成功
+[28/232] 处理: DECK41_V2_marsden_one_degree.nc
+[2025-06-07 01:41:47.214] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\dk\DECK41_V2_marsden_one_degree.nc
+[2025-06-07 01:41:47.215] [early_logger] [info] 文件识别完成: E:\Ocean_data\dk\DECK41_V2_marsden_one_degree.nc
+[2025-06-07 01:41:47.217] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 7950987433084799371)
+[2025-06-07 01:41:47.217] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\dk\DECK41_V2_marsden_one_degree.nc, ID=7950987433084799371, 数据库类型=0
+  ✓ 成功
+[29/232] 处理: DECK41_V2_marsden_square.nc
+[2025-06-07 01:41:47.218] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\dk\DECK41_V2_marsden_square.nc
+[2025-06-07 01:41:47.219] [early_logger] [info] 文件识别完成: E:\Ocean_data\dk\DECK41_V2_marsden_square.nc
+[2025-06-07 01:41:47.221] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 7283299217967616397)
+[2025-06-07 01:41:47.221] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\dk\DECK41_V2_marsden_square.nc, ID=7283299217967616397, 数据库类型=0
+  ✓ 成功
+[30/232] 处理: GEBCO_2023.nc
+[2025-06-07 01:41:47.221] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\dp\GEBCO_2023.nc
+[2025-06-07 01:41:47.222] [early_logger] [info] 文件识别完成: E:\Ocean_data\dp\GEBCO_2023.nc
+[2025-06-07 01:41:47.234] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 9206859656397145322)
+[2025-06-07 01:41:47.234] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\dp\GEBCO_2023.nc, ID=9206859656397145322, 数据库类型=0
+  ✓ 成功
+进度: 30/232 (成功: 30, 失败: 0)
+[31/232] 处理: GEBCO_2024.nc
+[2025-06-07 01:41:47.235] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\dp\GEBCO_2024.nc
+[2025-06-07 01:41:47.236] [early_logger] [info] 文件识别完成: E:\Ocean_data\dp\GEBCO_2024.nc
+[2025-06-07 01:41:47.238] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 4343163118628370941)
+[2025-06-07 01:41:47.238] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\dp\GEBCO_2024.nc, ID=4343163118628370941, 数据库类型=0
+  ✓ 成功
+[32/232] 处理: gebco_2024_n0.0_s-90.0_w-180.0_e-90.0.tif
+[2025-06-07 01:41:47.239] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n0.0_s-90.0_w-180.0_e-90.0.tif
+[2025-06-07 01:41:47.240] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n0.0_s-90.0_w-180.0_e-90.0.tif
+[2025-06-07 01:41:47.242] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 8928098515678573156)
+[2025-06-07 01:41:47.247] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n0.0_s-90.0_w-180.0_e-90.0.tif, ID=8928098515678573156, 数据库类型=1
+  ✓ 成功
+[33/232] 处理: gebco_2024_n0.0_s-90.0_w-90.0_e0.0.tif
+[2025-06-07 01:41:47.249] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n0.0_s-90.0_w-90.0_e0.0.tif
+[2025-06-07 01:41:47.250] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n0.0_s-90.0_w-90.0_e0.0.tif
+[2025-06-07 01:41:47.252] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 1259809124683624576)
+[2025-06-07 01:41:47.252] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n0.0_s-90.0_w-90.0_e0.0.tif, ID=1259809124683624576, 数据库类型=1
+  ✓ 成功
+[34/232] 处理: gebco_2024_n0.0_s-90.0_w0.0_e90.0.tif
+[2025-06-07 01:41:47.253] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n0.0_s-90.0_w0.0_e90.0.tif
+[2025-06-07 01:41:47.254] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n0.0_s-90.0_w0.0_e90.0.tif
+[2025-06-07 01:41:47.256] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 8925217551175700001)
+[2025-06-07 01:41:47.256] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n0.0_s-90.0_w0.0_e90.0.tif, ID=8925217551175700001, 数据库类型=1
+  ✓ 成功
+[35/232] 处理: gebco_2024_n0.0_s-90.0_w90.0_e180.0.tif
+[2025-06-07 01:41:47.256] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n0.0_s-90.0_w90.0_e180.0.tif
+[2025-06-07 01:41:47.258] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n0.0_s-90.0_w90.0_e180.0.tif
+[2025-06-07 01:41:47.259] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 5158443877336611740)
+[2025-06-07 01:41:47.260] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n0.0_s-90.0_w90.0_e180.0.tif, ID=5158443877336611740, 数据库类型=1
+  ✓ 成功
+[36/232] 处理: gebco_2024_n90.0_s0.0_w-180.0_e-90.0.tif
+[2025-06-07 01:41:47.260] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n90.0_s0.0_w-180.0_e-90.0.tif
+[2025-06-07 01:41:47.261] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n90.0_s0.0_w-180.0_e-90.0.tif
+[2025-06-07 01:41:47.263] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 12135168874685342109)
+[2025-06-07 01:41:47.264] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n90.0_s0.0_w-180.0_e-90.0.tif, ID=12135168874685342109, 数据库类型=1
+  ✓ 成功
+[37/232] 处理: gebco_2024_n90.0_s0.0_w-90.0_e0.0.tif
+[2025-06-07 01:41:47.264] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n90.0_s0.0_w-90.0_e0.0.tif
+[2025-06-07 01:41:47.265] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n90.0_s0.0_w-90.0_e0.0.tif
+[2025-06-07 01:41:47.267] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 5982634228727461815)
+[2025-06-07 01:41:47.267] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n90.0_s0.0_w-90.0_e0.0.tif, ID=5982634228727461815, 数据库类型=1
+  ✓ 成功
+[38/232] 处理: gebco_2024_n90.0_s0.0_w0.0_e90.0.tif
+[2025-06-07 01:41:47.277] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n90.0_s0.0_w0.0_e90.0.tif
+[2025-06-07 01:41:47.278] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n90.0_s0.0_w0.0_e90.0.tif
+[2025-06-07 01:41:47.280] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 10037808351610779664)
+[2025-06-07 01:41:47.281] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n90.0_s0.0_w0.0_e90.0.tif, ID=10037808351610779664, 数据库类型=1
+  ✓ 成功
+[39/232] 处理: gebco_2024_n90.0_s0.0_w90.0_e180.0.tif
+[2025-06-07 01:41:47.281] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n90.0_s0.0_w90.0_e180.0.tif
+[2025-06-07 01:41:47.282] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n90.0_s0.0_w90.0_e180.0.tif
+[2025-06-07 01:41:47.284] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 18151692956088062125)
+[2025-06-07 01:41:47.284] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_geotiff\gebco_2024_n90.0_s0.0_w90.0_e180.0.tif, ID=18151692956088062125, 数据库类型=1
+  ✓ 成功
+[40/232] 处理: gebco_2024_sub_ice_n0.0_s-90.0_w-180.0_e-90.0.tif
+[2025-06-07 01:41:47.286] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n0.0_s-90.0_w-180.0_e-90.0.tif
+[2025-06-07 01:41:47.287] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n0.0_s-90.0_w-180.0_e-90.0.tif
+[2025-06-07 01:41:47.289] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 3171092414892858117)
+[2025-06-07 01:41:47.289] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n0.0_s-90.0_w-180.0_e-90.0.tif, ID=3171092414892858117, 数据库类型=1
+  ✓ 成功
+进度: 40/232 (成功: 40, 失败: 0)
+[41/232] 处理: gebco_2024_sub_ice_n0.0_s-90.0_w-90.0_e0.0.tif
+[2025-06-07 01:41:47.290] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n0.0_s-90.0_w-90.0_e0.0.tif
+[2025-06-07 01:41:47.292] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n0.0_s-90.0_w-90.0_e0.0.tif
+[2025-06-07 01:41:47.300] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 4006455900596597807)
+[2025-06-07 01:41:47.301] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n0.0_s-90.0_w-90.0_e0.0.tif, ID=4006455900596597807, 数据库类型=1
+  ✓ 成功
+[42/232] 处理: gebco_2024_sub_ice_n0.0_s-90.0_w0.0_e90.0.tif
+[2025-06-07 01:41:47.301] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n0.0_s-90.0_w0.0_e90.0.tif
+[2025-06-07 01:41:47.303] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n0.0_s-90.0_w0.0_e90.0.tif
+[2025-06-07 01:41:47.304] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 8804691474369826408)
+[2025-06-07 01:41:47.305] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n0.0_s-90.0_w0.0_e90.0.tif, ID=8804691474369826408, 数据库类型=1
+  ✓ 成功
+[43/232] 处理: gebco_2024_sub_ice_n0.0_s-90.0_w90.0_e180.0.tif
+[2025-06-07 01:41:47.305] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n0.0_s-90.0_w90.0_e180.0.tif
+[2025-06-07 01:41:47.307] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n0.0_s-90.0_w90.0_e180.0.tif
+[2025-06-07 01:41:47.308] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 17531398011353421973)
+[2025-06-07 01:41:47.309] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n0.0_s-90.0_w90.0_e180.0.tif, ID=17531398011353421973, 数据库类型=1
+  ✓ 成功
+[44/232] 处理: gebco_2024_sub_ice_n90.0_s0.0_w-180.0_e-90.0.tif
+[2025-06-07 01:41:47.309] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n90.0_s0.0_w-180.0_e-90.0.tif
+[2025-06-07 01:41:47.311] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n90.0_s0.0_w-180.0_e-90.0.tif
+[2025-06-07 01:41:47.312] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 10946469537924316178)
+[2025-06-07 01:41:47.312] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n90.0_s0.0_w-180.0_e-90.0.tif, ID=10946469537924316178, 数据库类型=1
+  ✓ 成功
+[45/232] 处理: gebco_2024_sub_ice_n90.0_s0.0_w-90.0_e0.0.tif
+[2025-06-07 01:41:47.313] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n90.0_s0.0_w-90.0_e0.0.tif
+[2025-06-07 01:41:47.314] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n90.0_s0.0_w-90.0_e0.0.tif
+[2025-06-07 01:41:47.316] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 16964486621101275858)
+[2025-06-07 01:41:47.316] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n90.0_s0.0_w-90.0_e0.0.tif, ID=16964486621101275858, 数据库类型=1
+  ✓ 成功
+[46/232] 处理: gebco_2024_sub_ice_n90.0_s0.0_w0.0_e90.0.tif
+[2025-06-07 01:41:47.317] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n90.0_s0.0_w0.0_e90.0.tif
+[2025-06-07 01:41:47.318] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n90.0_s0.0_w0.0_e90.0.tif
+[2025-06-07 01:41:47.327] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 15357682212924762895)
+[2025-06-07 01:41:47.328] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n90.0_s0.0_w0.0_e90.0.tif, ID=15357682212924762895, 数据库类型=1
+  ✓ 成功
+[47/232] 处理: gebco_2024_sub_ice_n90.0_s0.0_w90.0_e180.0.tif
+[2025-06-07 01:41:47.329] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n90.0_s0.0_w90.0_e180.0.tif
+[2025-06-07 01:41:47.330] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n90.0_s0.0_w90.0_e180.0.tif
+[2025-06-07 01:41:47.332] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 3289151524632578970)
+[2025-06-07 01:41:47.332] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_sub_ice_topo_geotiff\gebco_2024_sub_ice_n90.0_s0.0_w90.0_e180.0.tif, ID=3289151524632578970, 数据库类型=1
+  ✓ 成功
+[48/232] 处理: gebco_2024_tid_n0.0_s-90.0_w-180.0_e-90.0.tif
+[2025-06-07 01:41:47.333] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n0.0_s-90.0_w-180.0_e-90.0.tif
+[2025-06-07 01:41:47.334] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n0.0_s-90.0_w-180.0_e-90.0.tif
+[2025-06-07 01:41:47.340] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 16939649794497725628)
+[2025-06-07 01:41:47.340] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n0.0_s-90.0_w-180.0_e-90.0.tif, ID=16939649794497725628, 数据库类型=1
+  ✓ 成功
+[49/232] 处理: gebco_2024_tid_n0.0_s-90.0_w-90.0_e0.0.tif
+[2025-06-07 01:41:47.341] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n0.0_s-90.0_w-90.0_e0.0.tif
+[2025-06-07 01:41:47.342] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n0.0_s-90.0_w-90.0_e0.0.tif
+[2025-06-07 01:41:47.344] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 10536537632598698824)
+[2025-06-07 01:41:47.344] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n0.0_s-90.0_w-90.0_e0.0.tif, ID=10536537632598698824, 数据库类型=1
+  ✓ 成功
+[50/232] 处理: gebco_2024_tid_n0.0_s-90.0_w0.0_e90.0.tif
+[2025-06-07 01:41:47.345] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n0.0_s-90.0_w0.0_e90.0.tif
+[2025-06-07 01:41:47.346] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n0.0_s-90.0_w0.0_e90.0.tif
+[2025-06-07 01:41:47.348] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 15263817650318939465)
+[2025-06-07 01:41:47.348] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n0.0_s-90.0_w0.0_e90.0.tif, ID=15263817650318939465, 数据库类型=1
+  ✓ 成功
+进度: 50/232 (成功: 50, 失败: 0)
+[51/232] 处理: gebco_2024_tid_n0.0_s-90.0_w90.0_e180.0.tif
+[2025-06-07 01:41:47.350] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n0.0_s-90.0_w90.0_e180.0.tif
+[2025-06-07 01:41:47.351] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n0.0_s-90.0_w90.0_e180.0.tif
+[2025-06-07 01:41:47.353] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 5547709344739008692)
+[2025-06-07 01:41:47.353] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n0.0_s-90.0_w90.0_e180.0.tif, ID=5547709344739008692, 数据库类型=1
+  ✓ 成功
+[52/232] 处理: gebco_2024_tid_n90.0_s0.0_w-180.0_e-90.0.tif
+[2025-06-07 01:41:47.354] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n90.0_s0.0_w-180.0_e-90.0.tif
+[2025-06-07 01:41:47.355] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n90.0_s0.0_w-180.0_e-90.0.tif
+[2025-06-07 01:41:47.357] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 15065671960913744021)
+[2025-06-07 01:41:47.357] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n90.0_s0.0_w-180.0_e-90.0.tif, ID=15065671960913744021, 数据库类型=1
+  ✓ 成功
+[53/232] 处理: gebco_2024_tid_n90.0_s0.0_w-90.0_e0.0.tif
+[2025-06-07 01:41:47.358] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n90.0_s0.0_w-90.0_e0.0.tif
+[2025-06-07 01:41:47.359] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n90.0_s0.0_w-90.0_e0.0.tif
+[2025-06-07 01:41:47.368] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 9803361087826305247)
+[2025-06-07 01:41:47.368] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n90.0_s0.0_w-90.0_e0.0.tif, ID=9803361087826305247, 数据库类型=1
+  ✓ 成功
+[54/232] 处理: gebco_2024_tid_n90.0_s0.0_w0.0_e90.0.tif
+[2025-06-07 01:41:47.369] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n90.0_s0.0_w0.0_e90.0.tif
+[2025-06-07 01:41:47.370] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n90.0_s0.0_w0.0_e90.0.tif
+[2025-06-07 01:41:47.372] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 14250432562315095864)
+[2025-06-07 01:41:47.372] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n90.0_s0.0_w0.0_e90.0.tif, ID=14250432562315095864, 数据库类型=1
+  ✓ 成功
+[55/232] 处理: gebco_2024_tid_n90.0_s0.0_w90.0_e180.0.tif
+[2025-06-07 01:41:47.373] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n90.0_s0.0_w90.0_e180.0.tif
+[2025-06-07 01:41:47.374] [early_logger] [info] 文件识别完成: E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n90.0_s0.0_w90.0_e180.0.tif
+[2025-06-07 01:41:47.375] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 10912206820022840421)
+[2025-06-07 01:41:47.381] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\gebco_2024_tid_geotiff\gebco_2024_tid_n90.0_s0.0_w90.0_e180.0.tif, ID=10912206820022840421, 数据库类型=1
+  ✓ 成功
+[56/232] 处理: ibcao_v5_2024_100m_depth.tiff
+[2025-06-07 01:41:47.381] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\ibcao_v5_100m_GeoTiff\ibcao_v5_2024_100m_depth.tiff
+[2025-06-07 01:41:47.382] [early_logger] [info] 文件识别完成: E:\Ocean_data\ibcao_v5_100m_GeoTiff\ibcao_v5_2024_100m_depth.tiff
+[2025-06-07 01:41:47.384] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 5043172137869781344)
+[2025-06-07 01:41:47.384] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\ibcao_v5_100m_GeoTiff\ibcao_v5_2024_100m_depth.tiff, ID=5043172137869781344, 数据库类型=1
+  ✓ 成功
+[57/232] 处理: ibcao_v5_2024_ice_400m.tiff
+[2025-06-07 01:41:47.385] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\ibcao_v5_400m_ice_GeoTiff\ibcao_v5_2024_ice_400m.tiff
+[2025-06-07 01:41:47.386] [early_logger] [info] 文件识别完成: E:\Ocean_data\ibcao_v5_400m_ice_GeoTiff\ibcao_v5_2024_ice_400m.tiff
+[2025-06-07 01:41:47.388] [early_logger] [info] 元数据已成功存储到数据库: 1 (ID: 11169189777558713320)
+[2025-06-07 01:41:47.388] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\ibcao_v5_400m_ice_GeoTiff\ibcao_v5_2024_ice_400m.tiff, ID=11169189777558713320, 数据库类型=1
+  ✓ 成功
+[58/232] 处理: it_2023_01_00_00.nc
+[2025-06-07 01:41:47.395] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2023_01_00_00.nc
+[2025-06-07 01:41:47.396] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2023_01_00_00.nc
+[2025-06-07 01:41:47.398] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 15188437320679548032)
+[2025-06-07 01:41:47.399] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2023_01_00_00.nc, ID=15188437320679548032, 数据库类型=0
+  ✓ 成功
+[59/232] 处理: it_2023_02_00_00.nc
+[2025-06-07 01:41:47.399] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2023_02_00_00.nc
+[2025-06-07 01:41:47.400] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2023_02_00_00.nc
+[2025-06-07 01:41:47.402] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 14735449518699685551)
+[2025-06-07 01:41:47.402] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2023_02_00_00.nc, ID=14735449518699685551, 数据库类型=0
+  ✓ 成功
+[60/232] 处理: it_2023_03_00_00.nc
+[2025-06-07 01:41:47.403] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2023_03_00_00.nc
+[2025-06-07 01:41:47.404] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2023_03_00_00.nc
+[2025-06-07 01:41:47.406] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 11113715264784962234)
+[2025-06-07 01:41:47.410] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2023_03_00_00.nc, ID=11113715264784962234, 数据库类型=0
+  ✓ 成功
+进度: 60/232 (成功: 60, 失败: 0)
+[61/232] 处理: it_2023_04_00_00.nc
+[2025-06-07 01:41:47.411] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2023_04_00_00.nc
+[2025-06-07 01:41:47.412] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2023_04_00_00.nc
+[2025-06-07 01:41:47.414] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 10422276668818008585)
+[2025-06-07 01:41:47.414] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2023_04_00_00.nc, ID=10422276668818008585, 数据库类型=0
+  ✓ 成功
+[62/232] 处理: it_2023_05_00_00.nc
+[2025-06-07 01:41:47.415] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2023_05_00_00.nc
+[2025-06-07 01:41:47.416] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2023_05_00_00.nc
+[2025-06-07 01:41:47.417] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 8233687375707719676)
+[2025-06-07 01:41:47.418] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2023_05_00_00.nc, ID=8233687375707719676, 数据库类型=0
+  ✓ 成功
+[63/232] 处理: it_2023_06_00_00.nc
+[2025-06-07 01:41:47.418] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2023_06_00_00.nc
+[2025-06-07 01:41:47.419] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2023_06_00_00.nc
+[2025-06-07 01:41:47.421] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 15467290428233921355)
+[2025-06-07 01:41:47.421] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2023_06_00_00.nc, ID=15467290428233921355, 数据库类型=0
+  ✓ 成功
+[64/232] 处理: it_2023_07_00_00.nc
+[2025-06-07 01:41:47.422] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2023_07_00_00.nc
+[2025-06-07 01:41:47.423] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2023_07_00_00.nc
+[2025-06-07 01:41:47.425] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 2235481722683348982)
+[2025-06-07 01:41:47.425] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2023_07_00_00.nc, ID=2235481722683348982, 数据库类型=0
+  ✓ 成功
+[65/232] 处理: it_2023_08_00_00.nc
+[2025-06-07 01:41:47.426] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2023_08_00_00.nc
+[2025-06-07 01:41:47.428] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2023_08_00_00.nc
+[2025-06-07 01:41:47.430] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 5965884862685325205)
+[2025-06-07 01:41:47.430] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2023_08_00_00.nc, ID=5965884862685325205, 数据库类型=0
+  ✓ 成功
+[66/232] 处理: it_2023_09_00_00.nc
+[2025-06-07 01:41:47.431] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2023_09_00_00.nc
+[2025-06-07 01:41:47.431] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2023_09_00_00.nc
+[2025-06-07 01:41:47.433] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 15354939413795552552)
+[2025-06-07 01:41:47.443] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2023_09_00_00.nc, ID=15354939413795552552, 数据库类型=0
+  ✓ 成功
+[67/232] 处理: it_2023_10_00_00.nc
+[2025-06-07 01:41:47.443] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2023_10_00_00.nc
+[2025-06-07 01:41:47.444] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2023_10_00_00.nc
+[2025-06-07 01:41:47.446] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 14692285023882645262)
+[2025-06-07 01:41:47.446] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2023_10_00_00.nc, ID=14692285023882645262, 数据库类型=0
+  ✓ 成功
+[68/232] 处理: it_2023_11_00_00.nc
+[2025-06-07 01:41:47.447] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2023_11_00_00.nc
+[2025-06-07 01:41:47.448] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2023_11_00_00.nc
+[2025-06-07 01:41:47.450] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 16758883417148071715)
+[2025-06-07 01:41:47.450] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2023_11_00_00.nc, ID=16758883417148071715, 数据库类型=0
+  ✓ 成功
+[69/232] 处理: it_2023_12_00_00.nc
+[2025-06-07 01:41:47.451] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2023_12_00_00.nc
+[2025-06-07 01:41:47.452] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2023_12_00_00.nc
+[2025-06-07 01:41:47.453] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 228175156621751604)
+[2025-06-07 01:41:47.454] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2023_12_00_00.nc, ID=228175156621751604, 数据库类型=0
+  ✓ 成功
+[70/232] 处理: it_2024_01_00_00.nc
+[2025-06-07 01:41:47.454] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2024_01_00_00.nc
+[2025-06-07 01:41:47.455] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2024_01_00_00.nc
+[2025-06-07 01:41:47.457] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 13567746766672562945)
+[2025-06-07 01:41:47.465] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2024_01_00_00.nc, ID=13567746766672562945, 数据库类型=0
+  ✓ 成功
+进度: 70/232 (成功: 70, 失败: 0)
+[71/232] 处理: it_2024_02_00_00.nc
+[2025-06-07 01:41:47.466] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2024_02_00_00.nc
+[2025-06-07 01:41:47.467] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2024_02_00_00.nc
+[2025-06-07 01:41:47.469] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 15627377315425540366)
+[2025-06-07 01:41:47.470] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2024_02_00_00.nc, ID=15627377315425540366, 数据库类型=0
+  ✓ 成功
+[72/232] 处理: it_2024_03_00_00.nc
+[2025-06-07 01:41:47.470] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2024_03_00_00.nc
+[2025-06-07 01:41:47.471] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2024_03_00_00.nc
+[2025-06-07 01:41:47.473] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 17693975708690966819)
+[2025-06-07 01:41:47.473] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2024_03_00_00.nc, ID=17693975708690966819, 数据库类型=0
+  ✓ 成功
+[73/232] 处理: it_2024_04_00_00.nc
+[2025-06-07 01:41:47.474] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2024_04_00_00.nc
+[2025-06-07 01:41:47.474] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2024_04_00_00.nc
+[2025-06-07 01:41:47.477] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 12980280773599820024)
+[2025-06-07 01:41:47.482] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2024_04_00_00.nc, ID=12980280773599820024, 数据库类型=0
+  ✓ 成功
+[74/232] 处理: it_2024_05_00_00.nc
+[2025-06-07 01:41:47.483] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2024_05_00_00.nc
+[2025-06-07 01:41:47.484] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2024_05_00_00.nc
+[2025-06-07 01:41:47.486] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 17793645966037827045)
+[2025-06-07 01:41:47.486] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2024_05_00_00.nc, ID=17793645966037827045, 数据库类型=0
+  ✓ 成功
+[75/232] 处理: it_2024_06_00_00.nc
+[2025-06-07 01:41:47.487] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2024_06_00_00.nc
+[2025-06-07 01:41:47.488] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2024_06_00_00.nc
+[2025-06-07 01:41:47.490] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 3067362023119423282)
+[2025-06-07 01:41:47.490] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2024_06_00_00.nc, ID=3067362023119423282, 数据库类型=0
+  ✓ 成功
+[76/232] 处理: it_2024_07_00_00.nc
+[2025-06-07 01:41:47.497] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2024_07_00_00.nc
+[2025-06-07 01:41:47.498] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2024_07_00_00.nc
+[2025-06-07 01:41:47.500] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 5093739627214011975)
+[2025-06-07 01:41:47.500] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2024_07_00_00.nc, ID=5093739627214011975, 数据库类型=0
+  ✓ 成功
+[77/232] 处理: it_2024_08_00_00.nc
+[2025-06-07 01:41:47.501] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2024_08_00_00.nc
+[2025-06-07 01:41:47.502] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2024_08_00_00.nc
+[2025-06-07 01:41:47.504] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 2941677979317988492)
+[2025-06-07 01:41:47.504] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2024_08_00_00.nc, ID=2941677979317988492, 数据库类型=0
+  ✓ 成功
+[78/232] 处理: it_2024_09_00_00.nc
+[2025-06-07 01:41:47.505] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2024_09_00_00.nc
+[2025-06-07 01:41:47.505] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2024_09_00_00.nc
+[2025-06-07 01:41:47.507] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 621335900729915033)
+[2025-06-07 01:41:47.507] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2024_09_00_00.nc, ID=621335900729915033, 数据库类型=0
+  ✓ 成功
+[79/232] 处理: it_2024_10_00_00.nc
+[2025-06-07 01:41:47.508] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2024_10_00_00.nc
+[2025-06-07 01:41:47.509] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2024_10_00_00.nc
+[2025-06-07 01:41:47.517] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 10215019615386718163)
+[2025-06-07 01:41:47.517] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2024_10_00_00.nc, ID=10215019615386718163, 数据库类型=0
+  ✓ 成功
+[80/232] 处理: it_2024_11_00_00.nc
+[2025-06-07 01:41:47.518] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2024_11_00_00.nc
+[2025-06-07 01:41:47.519] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2024_11_00_00.nc
+[2025-06-07 01:41:47.521] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 8438506579559436606)
+[2025-06-07 01:41:47.521] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2024_11_00_00.nc, ID=8438506579559436606, 数据库类型=0
+  ✓ 成功
+进度: 80/232 (成功: 80, 失败: 0)
+[81/232] 处理: it_2024_12_00_00.nc
+[2025-06-07 01:41:47.522] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2024_12_00_00.nc
+[2025-06-07 01:41:47.523] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2024_12_00_00.nc
+[2025-06-07 01:41:47.525] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 14437718330343475953)
+[2025-06-07 01:41:47.529] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2024_12_00_00.nc, ID=14437718330343475953, 数据库类型=0
+  ✓ 成功
+[82/232] 处理: it_2025_01_00_00.nc
+[2025-06-07 01:41:47.530] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2025_01_00_00.nc
+[2025-06-07 01:41:47.531] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2025_01_00_00.nc
+[2025-06-07 01:41:47.532] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 13422650947655956838)
+[2025-06-07 01:41:47.533] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2025_01_00_00.nc, ID=13422650947655956838, 数据库类型=0
+  ✓ 成功
+[83/232] 处理: it_2025_02_00_00.nc
+[2025-06-07 01:41:47.533] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\it\it_2025_02_00_00.nc
+[2025-06-07 01:41:47.534] [early_logger] [info] 文件识别完成: E:\Ocean_data\it\it_2025_02_00_00.nc
+[2025-06-07 01:41:47.536] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 8533791108621742009)
+[2025-06-07 01:41:47.536] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\it\it_2025_02_00_00.nc, ID=8533791108621742009, 数据库类型=0
+  ✓ 成功
+[84/232] 处理: rho_2023_01_00_00.nc
+[2025-06-07 01:41:47.537] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2023_01_00_00.nc
+[2025-06-07 01:41:47.537] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2023_01_00_00.nc
+[2025-06-07 01:41:47.539] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 1069991282787277990)
+[2025-06-07 01:41:47.540] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2023_01_00_00.nc, ID=1069991282787277990, 数据库类型=0
+  ✓ 成功
+[85/232] 处理: rho_2023_02_00_00.nc
+[2025-06-07 01:41:47.540] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2023_02_00_00.nc
+[2025-06-07 01:41:47.541] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2023_02_00_00.nc
+[2025-06-07 01:41:47.543] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 14627594042485792761)
+[2025-06-07 01:41:47.543] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2023_02_00_00.nc, ID=14627594042485792761, 数据库类型=0
+  ✓ 成功
+[86/232] 处理: rho_2023_03_00_00.nc
+[2025-06-07 01:41:47.544] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2023_03_00_00.nc
+[2025-06-07 01:41:47.544] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2023_03_00_00.nc
+[2025-06-07 01:41:47.546] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 15390497618385400044)
+[2025-06-07 01:41:47.546] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2023_03_00_00.nc, ID=15390497618385400044, 数据库类型=0
+  ✓ 成功
+[87/232] 处理: rho_2023_04_00_00.nc
+[2025-06-07 01:41:47.547] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2023_04_00_00.nc
+[2025-06-07 01:41:47.548] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2023_04_00_00.nc
+[2025-06-07 01:41:47.550] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 15957338656993979999)
+[2025-06-07 01:41:47.550] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2023_04_00_00.nc, ID=15957338656993979999, 数据库类型=0
+  ✓ 成功
+[88/232] 处理: rho_2023_05_00_00.nc
+[2025-06-07 01:41:47.562] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2023_05_00_00.nc
+[2025-06-07 01:41:47.563] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2023_05_00_00.nc
+[2025-06-07 01:41:47.565] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 14481891955795898794)
+[2025-06-07 01:41:47.565] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2023_05_00_00.nc, ID=14481891955795898794, 数据库类型=0
+  ✓ 成功
+[89/232] 处理: rho_2023_06_00_00.nc
+[2025-06-07 01:41:47.566] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2023_06_00_00.nc
+[2025-06-07 01:41:47.566] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2023_06_00_00.nc
+[2025-06-07 01:41:47.569] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 14153257285076437725)
+[2025-06-07 01:41:47.569] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2023_06_00_00.nc, ID=14153257285076437725, 数据库类型=0
+  ✓ 成功
+[90/232] 处理: rho_2023_07_00_00.nc
+[2025-06-07 01:41:47.570] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2023_07_00_00.nc
+[2025-06-07 01:41:47.570] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2023_07_00_00.nc
+[2025-06-07 01:41:47.572] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 7440023790319988784)
+[2025-06-07 01:41:47.573] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2023_07_00_00.nc, ID=7440023790319988784, 数据库类型=0
+  ✓ 成功
+进度: 90/232 (成功: 90, 失败: 0)
+[91/232] 处理: rho_2023_08_00_00.nc
+[2025-06-07 01:41:47.574] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2023_08_00_00.nc
+[2025-06-07 01:41:47.574] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2023_08_00_00.nc
+[2025-06-07 01:41:47.583] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 8769860386907084547)
+[2025-06-07 01:41:47.584] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2023_08_00_00.nc, ID=8769860386907084547, 数据库类型=0
+  ✓ 成功
+[92/232] 处理: rho_2023_09_00_00.nc
+[2025-06-07 01:41:47.584] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2023_09_00_00.nc
+[2025-06-07 01:41:47.585] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2023_09_00_00.nc
+[2025-06-07 01:41:47.587] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 3371790443412555502)
+[2025-06-07 01:41:47.587] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2023_09_00_00.nc, ID=3371790443412555502, 数据库类型=0
+  ✓ 成功
+[93/232] 处理: rho_2023_10_00_00.nc
+[2025-06-07 01:41:47.588] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2023_10_00_00.nc
+[2025-06-07 01:41:47.589] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2023_10_00_00.nc
+[2025-06-07 01:41:47.591] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 8116670238495206204)
+[2025-06-07 01:41:47.595] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2023_10_00_00.nc, ID=8116670238495206204, 数据库类型=0
+  ✓ 成功
+[94/232] 处理: rho_2023_11_00_00.nc
+[2025-06-07 01:41:47.596] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2023_11_00_00.nc
+[2025-06-07 01:41:47.597] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2023_11_00_00.nc
+[2025-06-07 01:41:47.599] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 2642844822751545161)
+[2025-06-07 01:41:47.599] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2023_11_00_00.nc, ID=2642844822751545161, 数据库类型=0
+  ✓ 成功
+[95/232] 处理: rho_2023_12_00_00.nc
+[2025-06-07 01:41:47.600] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2023_12_00_00.nc
+[2025-06-07 01:41:47.601] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2023_12_00_00.nc
+[2025-06-07 01:41:47.603] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 12710423956589316918)
+[2025-06-07 01:41:47.603] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2023_12_00_00.nc, ID=12710423956589316918, 数据库类型=0
+  ✓ 成功
+[96/232] 处理: rho_2024_01_00_00.nc
+[2025-06-07 01:41:47.604] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2024_01_00_00.nc
+[2025-06-07 01:41:47.605] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2024_01_00_00.nc
+[2025-06-07 01:41:47.606] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 10875583386908388059)
+[2025-06-07 01:41:47.613] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2024_01_00_00.nc, ID=10875583386908388059, 数据库类型=0
+  ✓ 成功
+[97/232] 处理: rho_2024_02_00_00.nc
+[2025-06-07 01:41:47.614] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2024_02_00_00.nc
+[2025-06-07 01:41:47.615] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2024_02_00_00.nc
+[2025-06-07 01:41:47.617] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 7475044513897550860)
+[2025-06-07 01:41:47.617] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2024_02_00_00.nc, ID=7475044513897550860, 数据库类型=0
+  ✓ 成功
+[98/232] 处理: rho_2024_03_00_00.nc
+[2025-06-07 01:41:47.618] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2024_03_00_00.nc
+[2025-06-07 01:41:47.619] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2024_03_00_00.nc
+[2025-06-07 01:41:47.621] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 5154702435309477401)
+[2025-06-07 01:41:47.621] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2024_03_00_00.nc, ID=5154702435309477401, 数据库类型=0
+  ✓ 成功
+[99/232] 处理: rho_2024_04_00_00.nc
+[2025-06-07 01:41:47.622] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2024_04_00_00.nc
+[2025-06-07 01:41:47.623] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2024_04_00_00.nc
+[2025-06-07 01:41:47.625] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 15965173579386355658)
+[2025-06-07 01:41:47.625] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2024_04_00_00.nc, ID=15965173579386355658, 数据库类型=0
+  ✓ 成功
+[100/232] 处理: rho_2024_05_00_00.nc
+[2025-06-07 01:41:47.625] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2024_05_00_00.nc
+[2025-06-07 01:41:47.626] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2024_05_00_00.nc
+[2025-06-07 01:41:47.628] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 14987304107233042687)
+[2025-06-07 01:41:47.628] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2024_05_00_00.nc, ID=14987304107233042687, 数据库类型=0
+  ✓ 成功
+进度: 100/232 (成功: 100, 失败: 0)
+[101/232] 处理: rho_2024_06_00_00.nc
+[2025-06-07 01:41:47.630] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2024_06_00_00.nc
+[2025-06-07 01:41:47.630] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2024_06_00_00.nc
+[2025-06-07 01:41:47.632] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 886003944683874256)
+[2025-06-07 01:41:47.632] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2024_06_00_00.nc, ID=886003944683874256, 数据库类型=0
+  ✓ 成功
+[102/232] 处理: rho_2024_07_00_00.nc
+[2025-06-07 01:41:47.633] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2024_07_00_00.nc
+[2025-06-07 01:41:47.634] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2024_07_00_00.nc
+[2025-06-07 01:41:47.645] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 13430948646359976701)
+[2025-06-07 01:41:47.645] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2024_07_00_00.nc, ID=13430948646359976701, 数据库类型=0
+  ✓ 成功
+[103/232] 处理: rho_2024_08_00_00.nc
+[2025-06-07 01:41:47.646] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2024_08_00_00.nc
+[2025-06-07 01:41:47.646] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2024_08_00_00.nc
+[2025-06-07 01:41:47.648] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 1713999776295551118)
+[2025-06-07 01:41:47.649] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2024_08_00_00.nc, ID=1713999776295551118, 数据库类型=0
+  ✓ 成功
+[104/232] 处理: rho_2024_09_00_00.nc
+[2025-06-07 01:41:47.649] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2024_09_00_00.nc
+[2025-06-07 01:41:47.650] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2024_09_00_00.nc
+[2025-06-07 01:41:47.652] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 3780598169560977571)
+[2025-06-07 01:41:47.652] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2024_09_00_00.nc, ID=3780598169560977571, 数据库类型=0
+  ✓ 成功
+[105/232] 处理: rho_2024_10_00_00.nc
+[2025-06-07 01:41:47.653] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2024_10_00_00.nc
+[2025-06-07 01:41:47.654] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2024_10_00_00.nc
+[2025-06-07 01:41:47.656] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 14325304652887095717)
+[2025-06-07 01:41:47.656] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2024_10_00_00.nc, ID=14325304652887095717, 数据库类型=0
+  ✓ 成功
+[106/232] 处理: rho_2024_11_00_00.nc
+[2025-06-07 01:41:47.657] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2024_11_00_00.nc
+[2025-06-07 01:41:47.657] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2024_11_00_00.nc
+[2025-06-07 01:41:47.660] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 1849806226571960760)
+[2025-06-07 01:41:47.660] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2024_11_00_00.nc, ID=1849806226571960760, 数据库类型=0
+  ✓ 成功
+[107/232] 处理: rho_2024_12_00_00.nc
+[2025-06-07 01:41:47.661] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\rho\rho_2024_12_00_00.nc
+[2025-06-07 01:41:47.661] [early_logger] [info] 文件识别完成: E:\Ocean_data\rho\rho_2024_12_00_00.nc
+[2025-06-07 01:41:47.663] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 12410009153895704327)
+[2025-06-07 01:41:47.663] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\rho\rho_2024_12_00_00.nc, ID=12410009153895704327, 数据库类型=0
+  ✓ 成功
+[108/232] 处理: sca_2023_01_00_00.nc
+[2025-06-07 01:41:47.664] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2023_01_00_00.nc
+[2025-06-07 01:41:47.665] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2023_01_00_00.nc
+[2025-06-07 01:41:47.667] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 14223911153598437498)
+[2025-06-07 01:41:47.675] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2023_01_00_00.nc, ID=14223911153598437498, 数据库类型=0
+  ✓ 成功
+[109/232] 处理: sca_2023_02_00_00.nc
+[2025-06-07 01:41:47.675] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2023_02_00_00.nc
+[2025-06-07 01:41:47.676] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2023_02_00_00.nc
+[2025-06-07 01:41:47.678] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 6576819577063108205)
+[2025-06-07 01:41:47.678] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2023_02_00_00.nc, ID=6576819577063108205, 数据库类型=0
+  ✓ 成功
+[110/232] 处理: sca_2023_03_00_00.nc
+[2025-06-07 01:41:47.679] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2023_03_00_00.nc
+[2025-06-07 01:41:47.680] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2023_03_00_00.nc
+[2025-06-07 01:41:47.682] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 10933896441452199744)
+[2025-06-07 01:41:47.682] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2023_03_00_00.nc, ID=10933896441452199744, 数据库类型=0
+  ✓ 成功
+进度: 110/232 (成功: 110, 失败: 0)
+[111/232] 处理: sca_2023_04_00_00.nc
+[2025-06-07 01:41:47.683] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2023_04_00_00.nc
+[2025-06-07 01:41:47.684] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2023_04_00_00.nc
+[2025-06-07 01:41:47.693] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 7793156952191794955)
+[2025-06-07 01:41:47.693] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2023_04_00_00.nc, ID=7793156952191794955, 数据库类型=0
+  ✓ 成功
+[112/232] 处理: sca_2023_05_00_00.nc
+[2025-06-07 01:41:47.694] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2023_05_00_00.nc
+[2025-06-07 01:41:47.695] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2023_05_00_00.nc
+[2025-06-07 01:41:47.696] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 5398190847546416310)
+[2025-06-07 01:41:47.697] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2023_05_00_00.nc, ID=5398190847546416310, 数据库类型=0
+  ✓ 成功
+[113/232] 处理: sca_2023_06_00_00.nc
+[2025-06-07 01:41:47.697] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2023_06_00_00.nc
+[2025-06-07 01:41:47.698] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2023_06_00_00.nc
+[2025-06-07 01:41:47.700] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 13777355787418196169)
+[2025-06-07 01:41:47.700] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2023_06_00_00.nc, ID=13777355787418196169, 数据库类型=0
+  ✓ 成功
+[114/232] 处理: sca_2023_07_00_00.nc
+[2025-06-07 01:41:47.701] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2023_07_00_00.nc
+[2025-06-07 01:41:47.702] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2023_07_00_00.nc
+[2025-06-07 01:41:47.704] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 804437129452305596)
+[2025-06-07 01:41:47.704] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2023_07_00_00.nc, ID=804437129452305596, 数据库类型=0
+  ✓ 成功
+[115/232] 处理: sca_2023_08_00_00.nc
+[2025-06-07 01:41:47.705] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2023_08_00_00.nc
+[2025-06-07 01:41:47.705] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2023_08_00_00.nc
+[2025-06-07 01:41:47.707] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 7040192940755388471)
+[2025-06-07 01:41:47.707] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2023_08_00_00.nc, ID=7040192940755388471, 数据库类型=0
+  ✓ 成功
+[116/232] 处理: sca_2023_09_00_00.nc
+[2025-06-07 01:41:47.708] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2023_09_00_00.nc
+[2025-06-07 01:41:47.709] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2023_09_00_00.nc
+[2025-06-07 01:41:47.711] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 13675927432767750690)
+[2025-06-07 01:41:47.711] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2023_09_00_00.nc, ID=13675927432767750690, 数据库类型=0
+  ✓ 成功
+[117/232] 处理: sca_2023_10_00_00.nc
+[2025-06-07 01:41:47.712] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2023_10_00_00.nc
+[2025-06-07 01:41:47.712] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2023_10_00_00.nc
+[2025-06-07 01:41:47.723] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 9609466838066798096)
+[2025-06-07 01:41:47.724] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2023_10_00_00.nc, ID=9609466838066798096, 数据库类型=0
+  ✓ 成功
+[118/232] 处理: sca_2023_11_00_00.nc
+[2025-06-07 01:41:47.724] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2023_11_00_00.nc
+[2025-06-07 01:41:47.725] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2023_11_00_00.nc
+[2025-06-07 01:41:47.727] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 11125198945100586557)
+[2025-06-07 01:41:47.727] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2023_11_00_00.nc, ID=11125198945100586557, 数据库类型=0
+  ✓ 成功
+[119/232] 处理: sca_2023_12_00_00.nc
+[2025-06-07 01:41:47.728] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2023_12_00_00.nc
+[2025-06-07 01:41:47.729] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2023_12_00_00.nc
+[2025-06-07 01:41:47.731] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 13607192117054195466)
+[2025-06-07 01:41:47.731] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2023_12_00_00.nc, ID=13607192117054195466, 数据库类型=0
+  ✓ 成功
+[120/232] 处理: sca_2024_01_00_00.nc
+[2025-06-07 01:41:47.732] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2024_01_00_00.nc
+[2025-06-07 01:41:47.732] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2024_01_00_00.nc
+[2025-06-07 01:41:47.734] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 17914949495191644343)
+[2025-06-07 01:41:47.734] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2024_01_00_00.nc, ID=17914949495191644343, 数据库类型=0
+  ✓ 成功
+进度: 120/232 (成功: 120, 失败: 0)
+[121/232] 处理: sca_2024_02_00_00.nc
+[2025-06-07 01:41:47.735] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2024_02_00_00.nc
+[2025-06-07 01:41:47.736] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2024_02_00_00.nc
+[2025-06-07 01:41:47.738] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 11138312488099266408)
+[2025-06-07 01:41:47.738] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2024_02_00_00.nc, ID=11138312488099266408, 数据库类型=0
+  ✓ 成功
+[122/232] 处理: sca_2024_03_00_00.nc
+[2025-06-07 01:41:47.739] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2024_03_00_00.nc
+[2025-06-07 01:41:47.740] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2024_03_00_00.nc
+[2025-06-07 01:41:47.742] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 1749257936989039061)
+[2025-06-07 01:41:47.742] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2024_03_00_00.nc, ID=1749257936989039061, 数据库类型=0
+  ✓ 成功
+[123/232] 处理: sca_2024_04_00_00.nc
+[2025-06-07 01:41:47.743] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2024_04_00_00.nc
+[2025-06-07 01:41:47.744] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2024_04_00_00.nc
+[2025-06-07 01:41:47.746] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 3286505887343433342)
+[2025-06-07 01:41:47.754] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2024_04_00_00.nc, ID=3286505887343433342, 数据库类型=0
+  ✓ 成功
+[124/232] 处理: sca_2024_05_00_00.nc
+[2025-06-07 01:41:47.755] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2024_05_00_00.nc
+[2025-06-07 01:41:47.756] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2024_05_00_00.nc
+[2025-06-07 01:41:47.758] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 4870367454456772627)
+[2025-06-07 01:41:47.758] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2024_05_00_00.nc, ID=4870367454456772627, 数据库类型=0
+  ✓ 成功
+[125/232] 处理: sca_2024_06_00_00.nc
+[2025-06-07 01:41:47.759] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2024_06_00_00.nc
+[2025-06-07 01:41:47.759] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2024_06_00_00.nc
+[2025-06-07 01:41:47.761] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 6885398096531325348)
+[2025-06-07 01:41:47.762] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2024_06_00_00.nc, ID=6885398096531325348, 数据库类型=0
+  ✓ 成功
+[126/232] 处理: sca_2024_07_00_00.nc
+[2025-06-07 01:41:47.762] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2024_07_00_00.nc
+[2025-06-07 01:41:47.763] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2024_07_00_00.nc
+[2025-06-07 01:41:47.765] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 1675816165323114801)
+[2025-06-07 01:41:47.765] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2024_07_00_00.nc, ID=1675816165323114801, 数据库类型=0
+  ✓ 成功
+[127/232] 处理: sca_2024_08_00_00.nc
+[2025-06-07 01:41:47.766] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2024_08_00_00.nc
+[2025-06-07 01:41:47.767] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2024_08_00_00.nc
+[2025-06-07 01:41:47.769] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 6651923634325141754)
+[2025-06-07 01:41:47.769] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2024_08_00_00.nc, ID=6651923634325141754, 数据库类型=0
+  ✓ 成功
+[128/232] 处理: sca_2024_09_00_00.nc
+[2025-06-07 01:41:47.770] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2024_09_00_00.nc
+[2025-06-07 01:41:47.770] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2024_09_00_00.nc
+[2025-06-07 01:41:47.772] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 2908921120199041519)
+[2025-06-07 01:41:47.772] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2024_09_00_00.nc, ID=2908921120199041519, 数据库类型=0
+  ✓ 成功
+[129/232] 处理: sca_2024_10_00_00.nc
+[2025-06-07 01:41:47.773] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2024_10_00_00.nc
+[2025-06-07 01:41:47.774] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2024_10_00_00.nc
+[2025-06-07 01:41:47.776] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 616370902502294881)
+[2025-06-07 01:41:47.776] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2024_10_00_00.nc, ID=616370902502294881, 数据库类型=0
+  ✓ 成功
+[130/232] 处理: sca_2024_11_00_00.nc
+[2025-06-07 01:41:47.788] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2024_11_00_00.nc
+[2025-06-07 01:41:47.789] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2024_11_00_00.nc
+[2025-06-07 01:41:47.791] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 13974296378925987988)
+[2025-06-07 01:41:47.791] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2024_11_00_00.nc, ID=13974296378925987988, 数据库类型=0
+  ✓ 成功
+进度: 130/232 (成功: 130, 失败: 0)
+[131/232] 处理: sca_2024_12_00_00.nc
+[2025-06-07 01:41:47.793] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sca\sca_2024_12_00_00.nc
+[2025-06-07 01:41:47.794] [early_logger] [info] 文件识别完成: E:\Ocean_data\sca\sca_2024_12_00_00.nc
+[2025-06-07 01:41:47.795] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 12332383832300439811)
+[2025-06-07 01:41:47.796] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sca\sca_2024_12_00_00.nc, ID=12332383832300439811, 数据库类型=0
+  ✓ 成功
+[132/232] 处理: sediment.nc
+[2025-06-07 01:41:47.796] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sediment\sediment.nc
+[2025-06-07 01:41:47.797] [early_logger] [info] 文件识别完成: E:\Ocean_data\sediment\sediment.nc
+[2025-06-07 01:41:47.799] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 11072686212927472584)
+[2025-06-07 01:41:47.799] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sediment\sediment.nc, ID=11072686212927472584, 数据库类型=0
+  ✓ 成功
+[133/232] 处理: so_2023_01_00_00.nc
+[2025-06-07 01:41:47.800] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2023_01_00_00.nc
+[2025-06-07 01:41:47.801] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2023_01_00_00.nc
+[2025-06-07 01:41:47.803] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 1057178285386434446)
+[2025-06-07 01:41:47.803] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2023_01_00_00.nc, ID=1057178285386434446, 数据库类型=0
+  ✓ 成功
+[134/232] 处理: so_2023_02_00_00.nc
+[2025-06-07 01:41:47.804] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2023_02_00_00.nc
+[2025-06-07 01:41:47.804] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2023_02_00_00.nc
+[2025-06-07 01:41:47.806] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 17444291810343008641)
+[2025-06-07 01:41:47.807] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2023_02_00_00.nc, ID=17444291810343008641, 数据库类型=0
+  ✓ 成功
+[135/232] 处理: so_2023_03_00_00.nc
+[2025-06-07 01:41:47.807] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2023_03_00_00.nc
+[2025-06-07 01:41:47.808] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2023_03_00_00.nc
+[2025-06-07 01:41:47.810] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 5039812491835092404)
+[2025-06-07 01:41:47.818] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2023_03_00_00.nc, ID=5039812491835092404, 数据库类型=0
+  ✓ 成功
+[136/232] 处理: so_2023_04_00_00.nc
+[2025-06-07 01:41:47.819] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2023_04_00_00.nc
+[2025-06-07 01:41:47.820] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2023_04_00_00.nc
+[2025-06-07 01:41:47.822] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 8970284670884457671)
+[2025-06-07 01:41:47.822] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2023_04_00_00.nc, ID=8970284670884457671, 数据库类型=0
+  ✓ 成功
+[137/232] 处理: so_2023_05_00_00.nc
+[2025-06-07 01:41:47.823] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2023_05_00_00.nc
+[2025-06-07 01:41:47.823] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2023_05_00_00.nc
+[2025-06-07 01:41:47.825] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 6943907066789868978)
+[2025-06-07 01:41:47.825] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2023_05_00_00.nc, ID=6943907066789868978, 数据库类型=0
+  ✓ 成功
+[138/232] 处理: so_2023_06_00_00.nc
+[2025-06-07 01:41:47.826] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2023_06_00_00.nc
+[2025-06-07 01:41:47.827] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2023_06_00_00.nc
+[2025-06-07 01:41:47.829] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 3223446935998721125)
+[2025-06-07 01:41:47.829] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2023_06_00_00.nc, ID=3223446935998721125, 数据库类型=0
+  ✓ 成功
+[139/232] 处理: so_2023_07_00_00.nc
+[2025-06-07 01:41:47.830] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2023_07_00_00.nc
+[2025-06-07 01:41:47.831] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2023_07_00_00.nc
+[2025-06-07 01:41:47.833] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 16856825817270265720)
+[2025-06-07 01:41:47.833] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2023_07_00_00.nc, ID=16856825817270265720, 数据库类型=0
+  ✓ 成功
+[140/232] 处理: so_2023_08_00_00.nc
+[2025-06-07 01:41:47.834] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2023_08_00_00.nc
+[2025-06-07 01:41:47.835] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2023_08_00_00.nc
+[2025-06-07 01:41:47.846] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 10218761895999271387)
+[2025-06-07 01:41:47.846] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2023_08_00_00.nc, ID=10218761895999271387, 数据库类型=0
+  ✓ 成功
+进度: 140/232 (成功: 140, 失败: 0)
+[141/232] 处理: so_2023_09_00_00.nc
+[2025-06-07 01:41:47.847] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2023_09_00_00.nc
+[2025-06-07 01:41:47.848] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2023_09_00_00.nc
+[2025-06-07 01:41:47.850] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 12474300696631942726)
+[2025-06-07 01:41:47.850] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2023_09_00_00.nc, ID=12474300696631942726, 数据库类型=0
+  ✓ 成功
+[142/232] 处理: so_2023_10_00_00.nc
+[2025-06-07 01:41:47.851] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2023_10_00_00.nc
+[2025-06-07 01:41:47.852] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2023_10_00_00.nc
+[2025-06-07 01:41:47.854] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 3871071949174250948)
+[2025-06-07 01:41:47.854] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2023_10_00_00.nc, ID=3871071949174250948, 数据库类型=0
+  ✓ 成功
+[143/232] 处理: so_2023_11_00_00.nc
+[2025-06-07 01:41:47.855] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2023_11_00_00.nc
+[2025-06-07 01:41:47.855] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2023_11_00_00.nc
+[2025-06-07 01:41:47.857] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 16181153383148490577)
+[2025-06-07 01:41:47.857] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2023_11_00_00.nc, ID=16181153383148490577, 数据库类型=0
+  ✓ 成功
+[144/232] 处理: so_2023_12_00_00.nc
+[2025-06-07 01:41:47.858] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2023_12_00_00.nc
+[2025-06-07 01:41:47.859] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2023_12_00_00.nc
+[2025-06-07 01:41:47.871] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 13276820671163359774)
+[2025-06-07 01:41:47.871] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2023_12_00_00.nc, ID=13276820671163359774, 数据库类型=0
+  ✓ 成功
+[145/232] 处理: so_2024_01_00_00.nc
+[2025-06-07 01:41:47.872] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2024_01_00_00.nc
+[2025-06-07 01:41:47.873] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2024_01_00_00.nc
+[2025-06-07 01:41:47.875] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 14058202038673059043)
+[2025-06-07 01:41:47.876] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2024_01_00_00.nc, ID=14058202038673059043, 数据库类型=0
+  ✓ 成功
+[146/232] 处理: so_2024_02_00_00.nc
+[2025-06-07 01:41:47.876] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2024_02_00_00.nc
+[2025-06-07 01:41:47.877] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2024_02_00_00.nc
+[2025-06-07 01:41:47.879] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 15729354622069578228)
+[2025-06-07 01:41:47.879] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2024_02_00_00.nc, ID=15729354622069578228, 数据库类型=0
+  ✓ 成功
+[147/232] 处理: so_2024_03_00_00.nc
+[2025-06-07 01:41:47.880] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2024_03_00_00.nc
+[2025-06-07 01:41:47.881] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2024_03_00_00.nc
+[2025-06-07 01:41:47.883] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 13106682463682720961)
+[2025-06-07 01:41:47.883] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2024_03_00_00.nc, ID=13106682463682720961, 数据库类型=0
+  ✓ 成功
+[148/232] 处理: so_2024_04_00_00.nc
+[2025-06-07 01:41:47.883] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2024_04_00_00.nc
+[2025-06-07 01:41:47.884] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2024_04_00_00.nc
+[2025-06-07 01:41:47.886] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 17878613901787889138)
+[2025-06-07 01:41:47.886] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2024_04_00_00.nc, ID=17878613901787889138, 数据库类型=0
+  ✓ 成功
+[149/232] 处理: so_2024_05_00_00.nc
+[2025-06-07 01:41:47.887] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2024_05_00_00.nc
+[2025-06-07 01:41:47.888] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2024_05_00_00.nc
+[2025-06-07 01:41:47.889] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 4632956799200992007)
+[2025-06-07 01:41:47.890] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2024_05_00_00.nc, ID=4632956799200992007, 数据库类型=0
+  ✓ 成功
+[150/232] 处理: so_2024_06_00_00.nc
+[2025-06-07 01:41:47.902] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2024_06_00_00.nc
+[2025-06-07 01:41:47.903] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2024_06_00_00.nc
+[2025-06-07 01:41:47.905] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 12519497945586800056)
+[2025-06-07 01:41:47.906] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2024_06_00_00.nc, ID=12519497945586800056, 数据库类型=0
+  ✓ 成功
+进度: 150/232 (成功: 150, 失败: 0)
+[151/232] 处理: so_2024_07_00_00.nc
+[2025-06-07 01:41:47.907] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2024_07_00_00.nc
+[2025-06-07 01:41:47.908] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2024_07_00_00.nc
+[2025-06-07 01:41:47.910] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 6548252298192383397)
+[2025-06-07 01:41:47.910] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2024_07_00_00.nc, ID=6548252298192383397, 数据库类型=0
+  ✓ 成功
+[152/232] 处理: so_2024_08_00_00.nc
+[2025-06-07 01:41:47.911] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2024_08_00_00.nc
+[2025-06-07 01:41:47.911] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2024_08_00_00.nc
+[2025-06-07 01:41:47.913] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 15799106058825604998)
+[2025-06-07 01:41:47.914] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2024_08_00_00.nc, ID=15799106058825604998, 数据库类型=0
+  ✓ 成功
+[153/232] 处理: so_2024_09_00_00.nc
+[2025-06-07 01:41:47.914] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2024_09_00_00.nc
+[2025-06-07 01:41:47.915] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2024_09_00_00.nc
+[2025-06-07 01:41:47.917] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 13491335497120163611)
+[2025-06-07 01:41:47.917] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2024_09_00_00.nc, ID=13491335497120163611, 数据库类型=0
+  ✓ 成功
+[154/232] 处理: so_2024_10_00_00.nc
+[2025-06-07 01:41:47.918] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2024_10_00_00.nc
+[2025-06-07 01:41:47.919] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2024_10_00_00.nc
+[2025-06-07 01:41:47.920] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 11305669919820331629)
+[2025-06-07 01:41:47.920] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2024_10_00_00.nc, ID=11305669919820331629, 数据库类型=0
+  ✓ 成功
+[155/232] 处理: so_2024_11_00_00.nc
+[2025-06-07 01:41:47.921] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2024_11_00_00.nc
+[2025-06-07 01:41:47.933] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2024_11_00_00.nc
+[2025-06-07 01:41:47.935] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 15662746784209423168)
+[2025-06-07 01:41:47.936] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2024_11_00_00.nc, ID=15662746784209423168, 数据库类型=0
+  ✓ 成功
+[156/232] 处理: so_2024_12_00_00.nc
+[2025-06-07 01:41:47.937] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2024_12_00_00.nc
+[2025-06-07 01:41:47.938] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2024_12_00_00.nc
+[2025-06-07 01:41:47.940] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 15209758982229560687)
+[2025-06-07 01:41:47.940] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2024_12_00_00.nc, ID=15209758982229560687, 数据库类型=0
+  ✓ 成功
+[157/232] 处理: so_2025_01_00_00.nc
+[2025-06-07 01:41:47.941] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2025_01_00_00.nc
+[2025-06-07 01:41:47.942] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2025_01_00_00.nc
+[2025-06-07 01:41:47.944] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 15223946169380722184)
+[2025-06-07 01:41:47.944] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2025_01_00_00.nc, ID=15223946169380722184, 数据库类型=0
+  ✓ 成功
+[158/232] 处理: so_2025_02_00_00.nc
+[2025-06-07 01:41:47.945] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\so\so_2025_02_00_00.nc
+[2025-06-07 01:41:47.945] [early_logger] [info] 文件识别完成: E:\Ocean_data\so\so_2025_02_00_00.nc
+[2025-06-07 01:41:47.947] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 15699601726470884823)
+[2025-06-07 01:41:47.947] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\so\so_2025_02_00_00.nc, ID=15699601726470884823, 数据库类型=0
+  ✓ 成功
+[159/232] 处理: sp_2023_01_00_00.nc
+[2025-06-07 01:41:47.948] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2023_01_00_00.nc
+[2025-06-07 01:41:47.949] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2023_01_00_00.nc
+[2025-06-07 01:41:47.951] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 15433895542147889596)
+[2025-06-07 01:41:47.951] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2023_01_00_00.nc, ID=15433895542147889596, 数据库类型=0
+  ✓ 成功
+[160/232] 处理: sp_2023_02_00_00.nc
+[2025-06-07 01:41:47.961] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2023_02_00_00.nc
+[2025-06-07 01:41:47.962] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2023_02_00_00.nc
+[2025-06-07 01:41:47.964] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 3975871291177827339)
+[2025-06-07 01:41:47.964] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2023_02_00_00.nc, ID=3975871291177827339, 数据库类型=0
+  ✓ 成功
+进度: 160/232 (成功: 160, 失败: 0)
+[161/232] 处理: sp_2023_03_00_00.nc
+[2025-06-07 01:41:47.965] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2023_03_00_00.nc
+[2025-06-07 01:41:47.966] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2023_03_00_00.nc
+[2025-06-07 01:41:47.968] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 1580905186532448694)
+[2025-06-07 01:41:47.968] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2023_03_00_00.nc, ID=1580905186532448694, 数据库类型=0
+  ✓ 成功
+[162/232] 处理: sp_2023_04_00_00.nc
+[2025-06-07 01:41:47.970] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2023_04_00_00.nc
+[2025-06-07 01:41:47.971] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2023_04_00_00.nc
+[2025-06-07 01:41:47.973] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 2759533916049140589)
+[2025-06-07 01:41:47.974] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2023_04_00_00.nc, ID=2759533916049140589, 数据库类型=0
+  ✓ 成功
+[163/232] 处理: sp_2023_05_00_00.nc
+[2025-06-07 01:41:47.974] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2023_05_00_00.nc
+[2025-06-07 01:41:47.975] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2023_05_00_00.nc
+[2025-06-07 01:41:47.977] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 7116610780438232128)
+[2025-06-07 01:41:47.977] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2023_05_00_00.nc, ID=7116610780438232128, 数据库类型=0
+  ✓ 成功
+[164/232] 处理: sp_2023_06_00_00.nc
+[2025-06-07 01:41:47.978] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2023_06_00_00.nc
+[2025-06-07 01:41:47.979] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2023_06_00_00.nc
+[2025-06-07 01:41:47.981] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 6663622978458369647)
+[2025-06-07 01:41:47.989] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2023_06_00_00.nc, ID=6663622978458369647, 数据库类型=0
+  ✓ 成功
+[165/232] 处理: sp_2023_07_00_00.nc
+[2025-06-07 01:41:47.990] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2023_07_00_00.nc
+[2025-06-07 01:41:47.991] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2023_07_00_00.nc
+[2025-06-07 01:41:47.993] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 10406625492584469882)
+[2025-06-07 01:41:47.993] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2023_07_00_00.nc, ID=10406625492584469882, 数据库类型=0
+  ✓ 成功
+[166/232] 处理: sp_2023_08_00_00.nc
+[2025-06-07 01:41:47.996] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2023_08_00_00.nc
+[2025-06-07 01:41:47.997] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2023_08_00_00.nc
+[2025-06-07 01:41:47.999] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 5430518023582442929)
+[2025-06-07 01:41:47.999] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2023_08_00_00.nc, ID=5430518023582442929, 数据库类型=0
+  ✓ 成功
+[167/232] 处理: sp_2023_09_00_00.nc
+[2025-06-07 01:41:48.000] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2023_09_00_00.nc
+[2025-06-07 01:41:48.001] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2023_09_00_00.nc
+[2025-06-07 01:41:48.003] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 10640099954790653476)
+[2025-06-07 01:41:48.003] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2023_09_00_00.nc, ID=10640099954790653476, 数据库类型=0
+  ✓ 成功
+[168/232] 处理: sp_2023_10_00_00.nc
+[2025-06-07 01:41:48.004] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2023_10_00_00.nc
+[2025-06-07 01:41:48.005] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2023_10_00_00.nc
+[2025-06-07 01:41:48.007] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 9789906456040227850)
+[2025-06-07 01:41:48.007] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2023_10_00_00.nc, ID=9789906456040227850, 数据库类型=0
+  ✓ 成功
+[169/232] 处理: sp_2023_11_00_00.nc
+[2025-06-07 01:41:48.008] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2023_11_00_00.nc
+[2025-06-07 01:41:48.009] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2023_11_00_00.nc
+[2025-06-07 01:41:48.011] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 9109151974746397247)
+[2025-06-07 01:41:48.012] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2023_11_00_00.nc, ID=9109151974746397247, 数据库类型=0
+  ✓ 成功
+[170/232] 处理: sp_2023_12_00_00.nc
+[2025-06-07 01:41:48.022] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2023_12_00_00.nc
+[2025-06-07 01:41:48.023] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2023_12_00_00.nc
+[2025-06-07 01:41:48.025] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 5792181177052830480)
+[2025-06-07 01:41:48.025] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2023_12_00_00.nc, ID=5792181177052830480, 数据库类型=0
+  ✓ 成功
+进度: 170/232 (成功: 170, 失败: 0)
+[171/232] 处理: sp_2024_01_00_00.nc
+[2025-06-07 01:41:48.027] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2024_01_00_00.nc
+[2025-06-07 01:41:48.028] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2024_01_00_00.nc
+[2025-06-07 01:41:48.030] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 7864516962635116533)
+[2025-06-07 01:41:48.037] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2024_01_00_00.nc, ID=7864516962635116533, 数据库类型=0
+  ✓ 成功
+[172/232] 处理: sp_2024_02_00_00.nc
+[2025-06-07 01:41:48.038] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2024_02_00_00.nc
+[2025-06-07 01:41:48.039] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2024_02_00_00.nc
+[2025-06-07 01:41:48.041] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 4754304219838047810)
+[2025-06-07 01:41:48.041] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2024_02_00_00.nc, ID=4754304219838047810, 数据库类型=0
+  ✓ 成功
+[173/232] 处理: sp_2024_03_00_00.nc
+[2025-06-07 01:41:48.042] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2024_03_00_00.nc
+[2025-06-07 01:41:48.043] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2024_03_00_00.nc
+[2025-06-07 01:41:48.045] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 16542072160276034391)
+[2025-06-07 01:41:48.045] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2024_03_00_00.nc, ID=16542072160276034391, 数据库类型=0
+  ✓ 成功
+[174/232] 处理: sp_2024_04_00_00.nc
+[2025-06-07 01:41:48.046] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2024_04_00_00.nc
+[2025-06-07 01:41:48.046] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2024_04_00_00.nc
+[2025-06-07 01:41:48.049] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 1070819166462629828)
+[2025-06-07 01:41:48.049] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2024_04_00_00.nc, ID=1070819166462629828, 数据库类型=0
+  ✓ 成功
+[175/232] 处理: sp_2024_05_00_00.nc
+[2025-06-07 01:41:48.049] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2024_05_00_00.nc
+[2025-06-07 01:41:48.050] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2024_05_00_00.nc
+[2025-06-07 01:41:48.052] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 13380900600436869457)
+[2025-06-07 01:41:48.052] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2024_05_00_00.nc, ID=13380900600436869457, 数据库类型=0
+  ✓ 成功
+[176/232] 处理: sp_2024_06_00_00.nc
+[2025-06-07 01:41:48.053] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2024_06_00_00.nc
+[2025-06-07 01:41:48.054] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2024_06_00_00.nc
+[2025-06-07 01:41:48.056] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 10476567888451738654)
+[2025-06-07 01:41:48.064] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2024_06_00_00.nc, ID=10476567888451738654, 数据库类型=0
+  ✓ 成功
+[177/232] 处理: sp_2024_07_00_00.nc
+[2025-06-07 01:41:48.065] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2024_07_00_00.nc
+[2025-06-07 01:41:48.066] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2024_07_00_00.nc
+[2025-06-07 01:41:48.068] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 17974364047461132467)
+[2025-06-07 01:41:48.068] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2024_07_00_00.nc, ID=17974364047461132467, 数据库类型=0
+  ✓ 成功
+[178/232] 处理: sp_2024_08_00_00.nc
+[2025-06-07 01:41:48.069] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2024_08_00_00.nc
+[2025-06-07 01:41:48.070] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2024_08_00_00.nc
+[2025-06-07 01:41:48.072] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 3063553087748699872)
+[2025-06-07 01:41:48.072] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2024_08_00_00.nc, ID=3063553087748699872, 数据库类型=0
+  ✓ 成功
+[179/232] 处理: sp_2024_09_00_00.nc
+[2025-06-07 01:41:48.073] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2024_09_00_00.nc
+[2025-06-07 01:41:48.073] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2024_09_00_00.nc
+[2025-06-07 01:41:48.075] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 11200152620708168845)
+[2025-06-07 01:41:48.076] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2024_09_00_00.nc, ID=11200152620708168845, 数据库类型=0
+  ✓ 成功
+[180/232] 处理: sp_2024_10_00_00.nc
+[2025-06-07 01:41:48.077] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2024_10_00_00.nc
+[2025-06-07 01:41:48.077] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2024_10_00_00.nc
+[2025-06-07 01:41:48.079] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 6170031888172836551)
+[2025-06-07 01:41:48.080] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2024_10_00_00.nc, ID=6170031888172836551, 数据库类型=0
+  ✓ 成功
+进度: 180/232 (成功: 180, 失败: 0)
+[181/232] 处理: sp_2024_11_00_00.nc
+[2025-06-07 01:41:48.081] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2024_11_00_00.nc
+[2025-06-07 01:41:48.082] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2024_11_00_00.nc
+[2025-06-07 01:41:48.083] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 4143654284078247858)
+[2025-06-07 01:41:48.083] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2024_11_00_00.nc, ID=4143654284078247858, 数据库类型=0
+  ✓ 成功
+[182/232] 处理: sp_2024_12_00_00.nc
+[2025-06-07 01:41:48.084] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\sp\sp_2024_12_00_00.nc
+[2025-06-07 01:41:48.085] [early_logger] [info] 文件识别完成: E:\Ocean_data\sp\sp_2024_12_00_00.nc
+[2025-06-07 01:41:48.087] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 423194153287100005)
+[2025-06-07 01:41:48.096] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\sp\sp_2024_12_00_00.nc, ID=423194153287100005, 数据库类型=0
+  ✓ 成功
+[183/232] 处理: tcl_2023_01_00_00.nc
+[2025-06-07 01:41:48.097] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2023_01_00_00.nc
+[2025-06-07 01:41:48.097] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2023_01_00_00.nc
+[2025-06-07 01:41:48.099] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 9104718437638389854)
+[2025-06-07 01:41:48.099] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2023_01_00_00.nc, ID=9104718437638389854, 数据库类型=0
+  ✓ 成功
+[184/232] 处理: tcl_2023_02_00_00.nc
+[2025-06-07 01:41:48.101] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2023_02_00_00.nc
+[2025-06-07 01:41:48.101] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2023_02_00_00.nc
+[2025-06-07 01:41:48.103] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 4346917915746392721)
+[2025-06-07 01:41:48.103] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2023_02_00_00.nc, ID=4346917915746392721, 数据库类型=0
+  ✓ 成功
+[185/232] 处理: tcl_2023_03_00_00.nc
+[2025-06-07 01:41:48.104] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2023_03_00_00.nc
+[2025-06-07 01:41:48.105] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2023_03_00_00.nc
+[2025-06-07 01:41:48.114] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 7309152663430460932)
+[2025-06-07 01:41:48.115] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2023_03_00_00.nc, ID=7309152663430460932, 数据库类型=0
+  ✓ 成功
+[186/232] 处理: tcl_2023_04_00_00.nc
+[2025-06-07 01:41:48.116] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2023_04_00_00.nc
+[2025-06-07 01:41:48.116] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2023_04_00_00.nc
+[2025-06-07 01:41:48.119] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 15362874178176627863)
+[2025-06-07 01:41:48.119] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2023_04_00_00.nc, ID=15362874178176627863, 数据库类型=0
+  ✓ 成功
+[187/232] 处理: tcl_2023_05_00_00.nc
+[2025-06-07 01:41:48.120] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2023_05_00_00.nc
+[2025-06-07 01:41:48.120] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2023_05_00_00.nc
+[2025-06-07 01:41:48.122] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 14167347083833944706)
+[2025-06-07 01:41:48.127] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2023_05_00_00.nc, ID=14167347083833944706, 数据库类型=0
+  ✓ 成功
+[188/232] 处理: tcl_2023_06_00_00.nc
+[2025-06-07 01:41:48.130] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2023_06_00_00.nc
+[2025-06-07 01:41:48.131] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2023_06_00_00.nc
+[2025-06-07 01:41:48.133] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 14102850459602947637)
+[2025-06-07 01:41:48.133] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2023_06_00_00.nc, ID=14102850459602947637, 数据库类型=0
+  ✓ 成功
+[189/232] 处理: tcl_2023_07_00_00.nc
+[2025-06-07 01:41:48.134] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2023_07_00_00.nc
+[2025-06-07 01:41:48.135] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2023_07_00_00.nc
+[2025-06-07 01:41:48.137] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 7032433918495395016)
+[2025-06-07 01:41:48.137] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2023_07_00_00.nc, ID=7032433918495395016, 数据库类型=0
+  ✓ 成功
+[190/232] 处理: tcl_2023_08_00_00.nc
+[2025-06-07 01:41:48.138] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2023_08_00_00.nc
+[2025-06-07 01:41:48.145] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2023_08_00_00.nc
+[2025-06-07 01:41:48.147] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 4486990524200328811)
+[2025-06-07 01:41:48.148] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2023_08_00_00.nc, ID=4486990524200328811, 数据库类型=0
+  ✓ 成功
+进度: 190/232 (成功: 190, 失败: 0)
+[191/232] 处理: tcl_2023_09_00_00.nc
+[2025-06-07 01:41:48.149] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2023_09_00_00.nc
+[2025-06-07 01:41:48.150] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2023_09_00_00.nc
+[2025-06-07 01:41:48.152] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 887353343904252310)
+[2025-06-07 01:41:48.152] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2023_09_00_00.nc, ID=887353343904252310, 数据库类型=0
+  ✓ 成功
+[192/232] 处理: tcl_2023_10_00_00.nc
+[2025-06-07 01:41:48.153] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2023_10_00_00.nc
+[2025-06-07 01:41:48.153] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2023_10_00_00.nc
+[2025-06-07 01:41:48.155] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 11905526869841845716)
+[2025-06-07 01:41:48.156] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2023_10_00_00.nc, ID=11905526869841845716, 数据库类型=0
+  ✓ 成功
+[193/232] 处理: tcl_2023_11_00_00.nc
+[2025-06-07 01:41:48.156] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2023_11_00_00.nc
+[2025-06-07 01:41:48.157] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2023_11_00_00.nc
+[2025-06-07 01:41:48.165] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 16942113706054934177)
+[2025-06-07 01:41:48.166] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2023_11_00_00.nc, ID=16942113706054934177, 数据库类型=0
+  ✓ 成功
+[194/232] 处理: tcl_2023_12_00_00.nc
+[2025-06-07 01:41:48.166] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2023_12_00_00.nc
+[2025-06-07 01:41:48.167] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2023_12_00_00.nc
+[2025-06-07 01:41:48.169] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 4620379674958234158)
+[2025-06-07 01:41:48.170] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2023_12_00_00.nc, ID=4620379674958234158, 数据库类型=0
+  ✓ 成功
+[195/232] 处理: tcl_2024_01_00_00.nc
+[2025-06-07 01:41:48.170] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2024_01_00_00.nc
+[2025-06-07 01:41:48.171] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2024_01_00_00.nc
+[2025-06-07 01:41:48.173] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 13084170328092695219)
+[2025-06-07 01:41:48.177] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2024_01_00_00.nc, ID=13084170328092695219, 数据库类型=0
+  ✓ 成功
+[196/232] 处理: tcl_2024_02_00_00.nc
+[2025-06-07 01:41:48.178] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2024_02_00_00.nc
+[2025-06-07 01:41:48.179] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2024_02_00_00.nc
+[2025-06-07 01:41:48.181] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 14627369520803744196)
+[2025-06-07 01:41:48.181] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2024_02_00_00.nc, ID=14627369520803744196, 数据库类型=0
+  ✓ 成功
+[197/232] 处理: tcl_2024_03_00_00.nc
+[2025-06-07 01:41:48.182] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2024_03_00_00.nc
+[2025-06-07 01:41:48.182] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2024_03_00_00.nc
+[2025-06-07 01:41:48.184] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 8490706881068432209)
+[2025-06-07 01:41:48.185] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2024_03_00_00.nc, ID=8490706881068432209, 数据库类型=0
+  ✓ 成功
+[198/232] 处理: tcl_2024_04_00_00.nc
+[2025-06-07 01:41:48.185] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2024_04_00_00.nc
+[2025-06-07 01:41:48.186] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2024_04_00_00.nc
+[2025-06-07 01:41:48.188] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 18310854574179162178)
+[2025-06-07 01:41:48.195] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2024_04_00_00.nc, ID=18310854574179162178, 数据库类型=0
+  ✓ 成功
+[199/232] 处理: tcl_2024_05_00_00.nc
+[2025-06-07 01:41:48.196] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2024_05_00_00.nc
+[2025-06-07 01:41:48.196] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2024_05_00_00.nc
+[2025-06-07 01:41:48.199] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 11651878440907597143)
+[2025-06-07 01:41:48.199] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2024_05_00_00.nc, ID=11651878440907597143, 数据库类型=0
+  ✓ 成功
+[200/232] 处理: tcl_2024_06_00_00.nc
+[2025-06-07 01:41:48.200] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2024_06_00_00.nc
+[2025-06-07 01:41:48.201] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2024_06_00_00.nc
+[2025-06-07 01:41:48.203] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 11176222883817434504)
+[2025-06-07 01:41:48.203] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2024_06_00_00.nc, ID=11176222883817434504, 数据库类型=0
+  ✓ 成功
+进度: 200/232 (成功: 200, 失败: 0)
+[201/232] 处理: tcl_2024_07_00_00.nc
+[2025-06-07 01:41:48.204] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2024_07_00_00.nc
+[2025-06-07 01:41:48.205] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2024_07_00_00.nc
+[2025-06-07 01:41:48.207] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 2974323243266679285)
+[2025-06-07 01:41:48.207] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2024_07_00_00.nc, ID=2974323243266679285, 数据库类型=0
+  ✓ 成功
+[202/232] 处理: tcl_2024_08_00_00.nc
+[2025-06-07 01:41:48.208] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2024_08_00_00.nc
+[2025-06-07 01:41:48.208] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2024_08_00_00.nc
+[2025-06-07 01:41:48.210] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 15570869919272003158)
+[2025-06-07 01:41:48.211] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2024_08_00_00.nc, ID=15570869919272003158, 数据库类型=0
+  ✓ 成功
+[203/232] 处理: tcl_2024_09_00_00.nc
+[2025-06-07 01:41:48.211] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2024_09_00_00.nc
+[2025-06-07 01:41:48.212] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2024_09_00_00.nc
+[2025-06-07 01:41:48.214] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 8385614784758833963)
+[2025-06-07 01:41:48.223] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2024_09_00_00.nc, ID=8385614784758833963, 数据库类型=0
+  ✓ 成功
+[204/232] 处理: tcl_2024_10_00_00.nc
+[2025-06-07 01:41:48.223] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2024_10_00_00.nc
+[2025-06-07 01:41:48.224] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2024_10_00_00.nc
+[2025-06-07 01:41:48.226] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 5083680653370801661)
+[2025-06-07 01:41:48.226] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2024_10_00_00.nc, ID=5083680653370801661, 数据库类型=0
+  ✓ 成功
+[205/232] 处理: tcl_2024_11_00_00.nc
+[2025-06-07 01:41:48.227] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2024_11_00_00.nc
+[2025-06-07 01:41:48.228] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2024_11_00_00.nc
+[2025-06-07 01:41:48.231] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 10985480025404250832)
+[2025-06-07 01:41:48.231] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2024_11_00_00.nc, ID=10985480025404250832, 数据库类型=0
+  ✓ 成功
+[206/232] 处理: tcl_2024_12_00_00.nc
+[2025-06-07 01:41:48.232] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\tcl\tcl_2024_12_00_00.nc
+[2025-06-07 01:41:48.233] [early_logger] [info] 文件识别完成: E:\Ocean_data\tcl\tcl_2024_12_00_00.nc
+[2025-06-07 01:41:48.235] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 6640036114243867647)
+[2025-06-07 01:41:48.235] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\tcl\tcl_2024_12_00_00.nc, ID=6640036114243867647, 数据库类型=0
+  ✓ 成功
+[207/232] 处理: to_2023_01_00_00.nc
+[2025-06-07 01:41:48.236] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2023_01_00_00.nc
+[2025-06-07 01:41:48.237] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2023_01_00_00.nc
+[2025-06-07 01:41:48.239] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 17314442826200874080)
+[2025-06-07 01:41:48.248] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2023_01_00_00.nc, ID=17314442826200874080, 数据库类型=0
+  ✓ 成功
+[208/232] 处理: to_2023_02_00_00.nc
+[2025-06-07 01:41:48.249] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2023_02_00_00.nc
+[2025-06-07 01:41:48.250] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2023_02_00_00.nc
+[2025-06-07 01:41:48.252] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 9846601576326344207)
+[2025-06-07 01:41:48.252] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2023_02_00_00.nc, ID=9846601576326344207, 数据库类型=0
+  ✓ 成功
+[209/232] 处理: to_2023_03_00_00.nc
+[2025-06-07 01:41:48.253] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2023_03_00_00.nc
+[2025-06-07 01:41:48.254] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2023_03_00_00.nc
+[2025-06-07 01:41:48.256] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 16023307828307830938)
+[2025-06-07 01:41:48.256] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2023_03_00_00.nc, ID=16023307828307830938, 数据库类型=0
+  ✓ 成功
+[210/232] 处理: to_2023_04_00_00.nc
+[2025-06-07 01:41:48.257] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2023_04_00_00.nc
+[2025-06-07 01:41:48.257] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2023_04_00_00.nc
+[2025-06-07 01:41:48.259] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 12356320823403547241)
+[2025-06-07 01:41:48.260] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2023_04_00_00.nc, ID=12356320823403547241, 数据库类型=0
+  ✓ 成功
+进度: 210/232 (成功: 210, 失败: 0)
+[211/232] 处理: to_2023_05_00_00.nc
+[2025-06-07 01:41:48.261] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2023_05_00_00.nc
+[2025-06-07 01:41:48.271] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2023_05_00_00.nc
+[2025-06-07 01:41:48.273] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 14673119874762667356)
+[2025-06-07 01:41:48.273] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2023_05_00_00.nc, ID=14673119874762667356, 数据库类型=0
+  ✓ 成功
+[212/232] 处理: to_2023_06_00_00.nc
+[2025-06-07 01:41:48.274] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2023_06_00_00.nc
+[2025-06-07 01:41:48.274] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2023_06_00_00.nc
+[2025-06-07 01:41:48.277] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 9079954168869893803)
+[2025-06-07 01:41:48.277] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2023_06_00_00.nc, ID=9079954168869893803, 数据库类型=0
+  ✓ 成功
+[213/232] 处理: to_2023_07_00_00.nc
+[2025-06-07 01:41:48.278] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2023_07_00_00.nc
+[2025-06-07 01:41:48.278] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2023_07_00_00.nc
+[2025-06-07 01:41:48.280] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 16265209303383062998)
+[2025-06-07 01:41:48.281] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2023_07_00_00.nc, ID=16265209303383062998, 数据库类型=0
+  ✓ 成功
+[214/232] 处理: to_2023_08_00_00.nc
+[2025-06-07 01:41:48.281] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2023_08_00_00.nc
+[2025-06-07 01:41:48.282] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2023_08_00_00.nc
+[2025-06-07 01:41:48.284] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 3668662627377739125)
+[2025-06-07 01:41:48.284] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2023_08_00_00.nc, ID=3668662627377739125, 数据库类型=0
+  ✓ 成功
+[215/232] 处理: to_2023_09_00_00.nc
+[2025-06-07 01:41:48.285] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2023_09_00_00.nc
+[2025-06-07 01:41:48.286] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2023_09_00_00.nc
+[2025-06-07 01:41:48.288] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 11870562267928494344)
+[2025-06-07 01:41:48.288] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2023_09_00_00.nc, ID=11870562267928494344, 数据库类型=0
+  ✓ 成功
+[216/232] 处理: to_2023_10_00_00.nc
+[2025-06-07 01:41:48.289] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2023_10_00_00.nc
+[2025-06-07 01:41:48.289] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2023_10_00_00.nc
+[2025-06-07 01:41:48.291] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 1796374790514205550)
+[2025-06-07 01:41:48.292] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2023_10_00_00.nc, ID=1796374790514205550, 数据库类型=0
+  ✓ 成功
+[217/232] 处理: to_2023_11_00_00.nc
+[2025-06-07 01:41:48.305] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2023_11_00_00.nc
+[2025-06-07 01:41:48.306] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2023_11_00_00.nc
+[2025-06-07 01:41:48.308] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 7194444734008734595)
+[2025-06-07 01:41:48.308] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2023_11_00_00.nc, ID=7194444734008734595, 数据库类型=0
+  ✓ 成功
+[218/232] 处理: to_2023_12_00_00.nc
+[2025-06-07 01:41:48.309] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2023_12_00_00.nc
+[2025-06-07 01:41:48.310] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2023_12_00_00.nc
+[2025-06-07 01:41:48.312] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 8836357280634282772)
+[2025-06-07 01:41:48.312] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2023_12_00_00.nc, ID=8836357280634282772, 数据库类型=0
+  ✓ 成功
+[219/232] 处理: to_2024_01_00_00.nc
+[2025-06-07 01:41:48.313] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2024_01_00_00.nc
+[2025-06-07 01:41:48.314] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2024_01_00_00.nc
+[2025-06-07 01:41:48.316] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 8069350299787055713)
+[2025-06-07 01:41:48.316] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2024_01_00_00.nc, ID=8069350299787055713, 数据库类型=0
+  ✓ 成功
+[220/232] 处理: to_2024_02_00_00.nc
+[2025-06-07 01:41:48.317] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2024_02_00_00.nc
+[2025-06-07 01:41:48.318] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2024_02_00_00.nc
+[2025-06-07 01:41:48.320] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 14387293286090671598)
+[2025-06-07 01:41:48.326] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2024_02_00_00.nc, ID=14387293286090671598, 数据库类型=0
+  ✓ 成功
+进度: 220/232 (成功: 220, 失败: 0)
+[221/232] 处理: to_2024_03_00_00.nc
+[2025-06-07 01:41:48.327] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2024_03_00_00.nc
+[2025-06-07 01:41:48.328] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2024_03_00_00.nc
+[2025-06-07 01:41:48.330] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 1338619155875649027)
+[2025-06-07 01:41:48.330] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2024_03_00_00.nc, ID=1338619155875649027, 数据库类型=0
+  ✓ 成功
+[222/232] 处理: to_2024_04_00_00.nc
+[2025-06-07 01:41:48.331] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2024_04_00_00.nc
+[2025-06-07 01:41:48.332] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2024_04_00_00.nc
+[2025-06-07 01:41:48.334] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 4110217900088425688)
+[2025-06-07 01:41:48.334] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2024_04_00_00.nc, ID=4110217900088425688, 数据库类型=0
+  ✓ 成功
+[223/232] 处理: to_2024_05_00_00.nc
+[2025-06-07 01:41:48.341] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2024_05_00_00.nc
+[2025-06-07 01:41:48.342] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2024_05_00_00.nc
+[2025-06-07 01:41:48.344] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 100410828626217669)
+[2025-06-07 01:41:48.344] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2024_05_00_00.nc, ID=100410828626217669, 数据库类型=0
+  ✓ 成功
+[224/232] 处理: to_2024_06_00_00.nc
+[2025-06-07 01:41:48.345] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2024_06_00_00.nc
+[2025-06-07 01:41:48.346] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2024_06_00_00.nc
+[2025-06-07 01:41:48.348] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 11244849590450153362)
+[2025-06-07 01:41:48.348] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2024_06_00_00.nc, ID=11244849590450153362, 数据库类型=0
+  ✓ 成功
+[225/232] 处理: to_2024_07_00_00.nc
+[2025-06-07 01:41:48.349] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2024_07_00_00.nc
+[2025-06-07 01:41:48.350] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2024_07_00_00.nc
+[2025-06-07 01:41:48.352] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 8412758390041324455)
+[2025-06-07 01:41:48.352] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2024_07_00_00.nc, ID=8412758390041324455, 数据库类型=0
+  ✓ 成功
+[226/232] 处理: to_2024_08_00_00.nc
+[2025-06-07 01:41:48.353] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2024_08_00_00.nc
+[2025-06-07 01:41:48.353] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2024_08_00_00.nc
+[2025-06-07 01:41:48.355] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 7959256387353964524)
+[2025-06-07 01:41:48.356] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2024_08_00_00.nc, ID=7959256387353964524, 数据库类型=0
+  ✓ 成功
+[227/232] 处理: to_2024_09_00_00.nc
+[2025-06-07 01:41:48.356] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2024_09_00_00.nc
+[2025-06-07 01:41:48.357] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2024_09_00_00.nc
+[2025-06-07 01:41:48.359] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 7196352811454357241)
+[2025-06-07 01:41:48.359] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2024_09_00_00.nc, ID=7196352811454357241, 数据库类型=0
+  ✓ 成功
+[228/232] 处理: to_2024_10_00_00.nc
+[2025-06-07 01:41:48.360] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2024_10_00_00.nc
+[2025-06-07 01:41:48.361] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2024_10_00_00.nc
+[2025-06-07 01:41:48.363] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 7922684134070669491)
+[2025-06-07 01:41:48.372] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2024_10_00_00.nc, ID=7922684134070669491, 数据库类型=0
+  ✓ 成功
+[229/232] 处理: to_2024_11_00_00.nc
+[2025-06-07 01:41:48.373] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2024_11_00_00.nc
+[2025-06-07 01:41:48.373] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2024_11_00_00.nc
+[2025-06-07 01:41:48.375] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 424887975061275678)
+[2025-06-07 01:41:48.375] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2024_11_00_00.nc, ID=424887975061275678, 数据库类型=0
+  ✓ 成功
+[230/232] 处理: to_2024_12_00_00.nc
+[2025-06-07 01:41:48.377] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2024_12_00_00.nc
+[2025-06-07 01:41:48.379] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2024_12_00_00.nc
+[2025-06-07 01:41:48.382] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 3329220687046406481)
+[2025-06-07 01:41:48.385] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2024_12_00_00.nc, ID=3329220687046406481, 数据库类型=0
+  ✓ 成功
+进度: 230/232 (成功: 230, 失败: 0)
+[231/232] 处理: to_2025_01_00_00.nc
+[2025-06-07 01:41:48.386] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2025_01_00_00.nc
+[2025-06-07 01:41:48.387] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2025_01_00_00.nc
+[2025-06-07 01:41:48.389] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 2329998925503734214)
+[2025-06-07 01:41:48.389] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2025_01_00_00.nc, ID=2329998925503734214, 数据库类型=0
+  ✓ 成功
+[232/232] 处理: to_2025_02_00_00.nc
+[2025-06-07 01:41:48.390] [early_logger] [info] 开始智能识别文件: E:\Ocean_data\to\to_2025_02_00_00.nc
+[2025-06-07 01:41:48.391] [early_logger] [info] 文件识别完成: E:\Ocean_data\to\to_2025_02_00_00.nc
+[2025-06-07 01:41:48.393] [early_logger] [info] 元数据已成功存储到数据库: 0 (ID: 12800323246981703833)
+[2025-06-07 01:41:48.393] [early_logger] [info] 元数据存储完成: 文件=E:\Ocean_data\to\to_2025_02_00_00.nc, ID=12800323246981703833, 数据库类型=0
+  ✓ 成功
+进度: 232/232 (成功: 232, 失败: 0)
+
+=== 处理完成 ===
+总文件数: 232
+成功处理: 232
+处理失败: 0
+成功率: 100.0%
+
+总耗时: 1 秒
+[2025-06-07 01:41:48.396] [early_logger] [info] === 测试元数据查询功能 ===
+
+=== 元数据查询测试 ===
+[2025-06-07 01:41:48.398] [SQLiteStorage] [info] findFiles query returned 206 results
+[2025-06-07 01:41:48.425] [SQLiteStorage] [info] findFiles query returned 206 results
+[2025-06-07 01:41:48.447] [SQLiteStorage] [info] findFiles query returned 206 results
+[2025-06-07 01:41:48.468] [SQLiteStorage] [info] findFiles query returned 206 results
+[2025-06-07 01:41:48.491] [SQLiteStorage] [info] findFiles query returned 26 results
+[2025-06-07 01:41:48.494] [SQLiteStorage] [info] findFiles query returned 26 results
+[2025-06-07 01:41:48.497] [SQLiteStorage] [info] findFiles query returned 26 results
+[2025-06-07 01:41:48.499] [SQLiteStorage] [info] findFiles query returned 26 results
+[2025-06-07 01:41:48.502] [SQLiteStorage] [info] findFiles query returned 0 results
+[2025-06-07 01:41:48.503] [SQLiteStorage] [info] findFiles query returned 0 results
+[2025-06-07 01:41:48.503] [SQLiteStorage] [info] findFiles query returned 0 results
+[2025-06-07 01:41:48.504] [SQLiteStorage] [info] findFiles query returned 0 results
+[2025-06-07 01:41:48.504] [SQLiteStorage] [info] findFiles query returned 0 results
+[2025-06-07 01:41:48.505] [SQLiteStorage] [info] findFiles query returned 0 results
+[2025-06-07 01:41:48.506] [SQLiteStorage] [info] findFiles query returned 0 results
+[2025-06-07 01:41:48.507] [SQLiteStorage] [info] findFiles query returned 0 results
+[2025-06-07 01:41:48.507] [early_logger] [info] 统计信息计算完成：总数据集 200 个，平均质量 0.85
+✓ 查询成功
+  总数据集: 200
+  平均质量: 85.0%
+  数据类型 0: 50 个
+  数据类型 1: 50 个
+  数据类型 2: 50 个
+  数据类型 3: 50 个
+
+=========================================
+✓ 程序执行成功
+按回车键退出...
+
+[2025-06-07 01:42:00.317] [early_logger] [info] 开始销毁元数据服务...
+[2025-06-07 01:42:00.330] [early_logger] [info] 开始关闭多数据库管理器
+[2025-06-07 01:42:00.332] [early_logger] [info] 所有数据库连接已关闭
+[2025-06-07 01:42:00.333] [early_logger] [info] 所有数据库连接已关闭
+[2025-06-07 01:42:00.334] [early_logger] [info] 多数据库管理器已关闭
+[UnifiedThreadPoolManager] 开始关闭线程池...
+[UnifiedThreadPoolManager] 线程池关闭完成
+[2025-06-07 01:42:00.340] [early_logger] [info] 元数据服务销毁完成
+
+D:\OSCEAN\build\bin\Debug>

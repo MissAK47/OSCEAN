@@ -1,0 +1,9 @@
+/build
+/common_utilities/Debug
+/common_utilities/build
+/common_utilities/CMakeFiles
+/common_utilities/common_utilities
+/common_utilities/common_utilities.dir
+/core_service_interfaces/CMakeFiles
+/core_service_interfaces/build
+/core_services_impl/crs_service/build
